@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios --simulator \"iPhone 8 Plus\"",
     "build-ios": "react-native unbundle --entry-file index.ios.js --platform ios --dev false",
     "test": "jest"
   },
   "dependencies": {
     "babel-eslint": "^8.2.2",
     "react": "16.2.0",
-    "react-native": "0.54.0"
+    "react-native": "0.54.0",
+    "react-navigation": "^1.5.1"
   },
   "devDependencies": {
     "babel-jest": "22.4.1",
@@ -20,11 +21,11 @@
     "eslint-config-standard": "^10.2.0",
     "eslint-config-standard-react": "^6.0.0",
     "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^6.0.1",
     "jest": "22.4.2",
     "react-test-renderer": "^16.3.0-alpha.1"
   },
