@@ -6,7 +6,7 @@ console.disableYellowBox = true
  * TODO: 配置具体的关闭提醒
  */
 
-export default class App<Props> extends React.Component {
+export default class App extends React.Component {
   render () {
     return (
       <Index />
