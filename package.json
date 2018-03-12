@@ -12,6 +12,7 @@
     "babel-eslint": "^8.2.2",
     "react": "16.2.0",
     "react-native": "0.54.0",
+    "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.5.1"
   },
