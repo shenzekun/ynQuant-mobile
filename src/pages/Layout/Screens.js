@@ -7,7 +7,7 @@ import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons' // 图标
 
 import HomeScreen from '../Home/home' // 首页
-import Setting from '../Setting/Setting' // 设置
+import Setting from '../Setting/setting' // 设置
 
 export default {
   Home: {
