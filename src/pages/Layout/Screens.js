@@ -23,7 +23,7 @@ export default {
               focused
                 ? require('../../images/knowledge-active.png')
                 : require('../../images/knowledge.png')
-            }
+            } style={{width: 23, height: 23}}
           />
         )
       },
@@ -37,8 +37,8 @@ export default {
         return (
           <Image
             source={
-              focused ? require('../../images/shape-active.png') : require('../../images/shape.png')
-            }
+              focused ? require('../../images/information-active.png') : require('../../images/information.png')
+            } style={{width: 23, height: 23}}
           />
         )
       },
@@ -52,8 +52,8 @@ export default {
         return (
           <Image
             source={
-              focused ? require('../../images/simulate-active.png') : require('../../images/simulate.png')
-            }
+              focused ? require('../../images/simulation-active.png') : require('../../images/simulation.png')
+            } style={{width: 23, height: 23}}
           />
         )
       },
@@ -68,7 +68,7 @@ export default {
           <Image
             source={
               focused ? require('../../images/about-active.png') : require('../../images/about.png')
-            }
+            } style={{width: 23, height: 25}}
           />
         )
       },
