@@ -5,41 +5,74 @@
 
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons' // 图标
-
+import { Image } from 'react-native'
 import HomeScreen from '../Home/home' // 首页
-import Setting from '../Setting/setting' // 设置
+import InformationScreen from '../Information/information' // 时讯
+import knowledgeScreen from '../Knowedge/knowledge' // 知识
+import SimulateScreen from '../Simulate/simulate' // 模拟
+import AboutScreen from '../About/about' // 我的
 
 export default {
-  Home: {
-    screen: HomeScreen,
-    navigationOptions: {
-      title: '首页',
-      activeTintColor: '#e91e63',
-      labelStyle: {
-        fontSize: 12
-      },
-      showIcon: true,
-      style: {
-        backgroundColor: 'blue'
-      }
-    }
-  },
-  Setting: {
-    screen: Setting,
+  knowledgeScreen: {
+    screen: knowledgeScreen,
     navigationOptions: {
       tabBarIcon: ({ focused, tintColor }) => {
-        console.log(tintColor)
-        return <Ionicons name={'ios-information-circle'} size={25} color={tintColor} />
+        return (
+          <Image
+            source={
+              focused
+                ? require('../../images/knowledge-active.png')
+                : require('../../images/knowledge.png')
+            } style={{width: 23, height: 23}}
+          />
+        )
       },
-      title: '设置',
-      activeTintColor: '#e91e63',
-      labelStyle: {
-        fontSize: 12
+      title: '知识'
+    }
+  },
+  InformationScreen: {
+    screen: InformationScreen,
+    navigationOptions: {
+      tabBarIcon: ({ focused, tintColor }) => {
+        return (
+          <Image
+            source={
+              focused ? require('../../images/information-active.png') : require('../../images/information.png')
+            } style={{width: 23, height: 23}}
+          />
+        )
       },
-      showIcon: true,
-      style: {
-        backgroundColor: 'blue'
-      }
+      title: '时讯'
+    }
+  },
+  SimulateScreen: {
+    screen: SimulateScreen,
+    navigationOptions: {
+      tabBarIcon: ({ focused, tintColor }) => {
+        return (
+          <Image
+            source={
+              focused ? require('../../images/simulation-active.png') : require('../../images/simulation.png')
+            } style={{width: 23, height: 23}}
+          />
+        )
+      },
+      title: '模拟'
+    }
+  },
+  AboutScreen: {
+    screen: AboutScreen,
+    navigationOptions: {
+      tabBarIcon: ({ focused, tintColor }) => {
+        return (
+          <Image
+            source={
+              focused ? require('../../images/about-active.png') : require('../../images/about.png')
+            } style={{width: 23, height: 25}}
+          />
+        )
+      },
+      title: '我的'
     }
   }
 }
