@@ -21,11 +21,21 @@ const TabBar = TabNavigator(Screen, {
   animationEnabled: false // 开启动画
 })
 
-const Navigator = StackNavigator({
-  TabBar: {
-    screen: TabBar
+const Navigator = StackNavigator(
+  {
+    TabBar: {
+      screen: TabBar
+    }
+  },
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#000'
+      },
+      headerTintColor: '#fff'
+    }
   }
-})
+)
 export default class Tabs extends React.Component {
   render () {
     return <Navigator />
