@@ -27,7 +27,7 @@ export default {
   Setting: {
     screen: Setting,
     navigationOptions: {
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({ focused, tintColor }) => {
         console.log(tintColor)
         return <Ionicons name={'ios-information-circle'} size={25} color={tintColor} />
       },
