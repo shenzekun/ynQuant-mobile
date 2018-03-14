@@ -22,9 +22,8 @@ class TouchTab extends React.Component {
           borderRightWidth: isEven ? 0 : 1,
           borderBottomWidth: 1,
           borderTopWidth: 1
-        }}
-      >
-        <TouchableOpacity onPress={() => this.props.goToPage(index)} style={styles.tab} key={index}>
+        }} key={index}>
+        <TouchableOpacity onPress={() => this.props.goToPage(index)} style={styles.tab} >
           <View style={styles.tabItem}>
             <Text style={{ color: color }}>{this.props.tabNames[index]}</Text>
           </View>
