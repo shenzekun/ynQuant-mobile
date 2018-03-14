@@ -16,7 +16,12 @@ const TabBar = TabNavigator(Screen, {
     activeTintColor: '#fff', // 选中时文字颜色
     inactiveTintColor: '#9a9a9a', // 未选中时文字颜色
     showIcon: true,
-    lazy: true // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
+    lazy: true, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
+    labelStyle: {
+      // tab 字样式
+      fontWeight: 'bold',
+      fontSize: 11
+    }
   },
   animationEnabled: false // 开启动画
 })
@@ -28,11 +33,17 @@ const Navigator = StackNavigator(
     }
   },
   {
+    headerMode: 'none', // 没有标题栏
+    mode: 'card', // 使用标准的iOS和Android页面转换风格
     navigationOptions: {
       headerStyle: {
         backgroundColor: '#000'
       },
-      headerTintColor: '#fff'
+      headerTintColor: '#fff', // 设置导航栏颜色
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      },
+      gesturesEnabled: true // 支持手滑返回
     }
   }
 )
