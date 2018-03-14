@@ -47,7 +47,7 @@ const propTypes = {
   tabNames: PropTypes.array, // 标签名
   activeTab: PropTypes.number, // 当前被选中的tab下标
   goToPage: PropTypes.func, // 跳转到对应tab的方法
-  tab: PropTypes.array // 所有tabs集合
+  tabs: PropTypes.array // 所有tabs集合
 }
 TouchTab.propTypes = propTypes
 
