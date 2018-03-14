@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import {Image} from 'react-native'
+import { Image } from 'react-native'
 import InformationScreen from '../Information/information' // 时讯
 import knowledgeScreen from '../Knowedge/knowledge' // 知识
 import SimulateScreen from '../Simulate/simulate' // 模拟
@@ -14,14 +14,15 @@ export default {
   knowledgeScreen: {
     screen: knowledgeScreen,
     navigationOptions: {
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({ focused, tintColor }) => {
         return (
           <Image
             source={
               focused
                 ? require('../../images/knowledge-active.png')
                 : require('../../images/knowledge.png')
-            } style={{width: 23, height: 23}}
+            }
+            style={{ width: 23, height: 23 }}
           />
         )
       },
@@ -31,14 +32,15 @@ export default {
   InformationScreen: {
     screen: InformationScreen,
     navigationOptions: {
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({ focused, tintColor }) => {
         return (
           <Image
             source={
               focused
                 ? require('../../images/information-active.png')
                 : require('../../images/information.png')
-            } style={{width: 23, height: 23}}
+            }
+            style={{ width: 23, height: 23 }}
           />
         )
       },
@@ -48,14 +50,15 @@ export default {
   SimulateScreen: {
     screen: SimulateScreen,
     navigationOptions: {
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({ focused, tintColor }) => {
         return (
           <Image
             source={
               focused
                 ? require('../../images/simulation-active.png')
                 : require('../../images/simulation.png')
-            } style={{width: 23, height: 23}}
+            }
+            style={{ width: 23, height: 23 }}
           />
         )
       },
@@ -65,14 +68,15 @@ export default {
   AboutScreen: {
     screen: AboutScreen,
     navigationOptions: {
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({ focused, tintColor }) => {
         return (
           <Image
             source={
               focused
                 ? require('../../images/about-active.png')
                 : require('../../images/about.png')
-            } style={{width: 23, height: 25}}
+            }
+            style={{ width: 23, height: 25 }}
           />
         )
       },
