@@ -1,20 +1,12 @@
 import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 class TouchTab extends React.Component {
-  //   setAnimationValue ({ value }) {
-  //     console.log(value)
-  //   }
-
-  //   componentDidMount () {
-  //     // Animated.Value监听范围 [0, tab数量-1]
-  //     this.props.scrollValue.addListener(this.setAnimationValue)
-  //   }
   renderTabOption (tab, index) {
     let color = this.props.activeTab === index ? '#000' : '#fff'
     let bgColor = this.props.activeTab === index ? '#fff' : '#000'
+    let isEven = index % 2 === 0
     return (
       <View
         style={{
@@ -22,12 +14,12 @@ class TouchTab extends React.Component {
           borderColor: '#fff',
           height: 24,
           backgroundColor: bgColor,
-          borderTopLeftRadius: index % 2 === 0 ? 3 : 0,
-          borderBottomLeftRadius: index % 2 === 0 ? 3 : 0,
-          borderBottomRightRadius: index % 2 === 0 ? 0 : 3,
-          borderTopRightRadius: index % 2 === 0 ? 0 : 3,
-          borderLeftWidth: index % 2 === 0 ? 1 : 0,
-          borderRightWidth: index % 2 === 0 ? 0 : 1,
+          borderTopLeftRadius: isEven ? 3 : 0,
+          borderBottomLeftRadius: isEven ? 3 : 0,
+          borderBottomRightRadius: isEven ? 0 : 3,
+          borderTopRightRadius: isEven ? 0 : 3,
+          borderLeftWidth: isEven ? 1 : 0,
+          borderRightWidth: isEven ? 0 : 1,
           borderBottomWidth: 1,
           borderTopWidth: 1
         }}
