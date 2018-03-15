@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Button,
+  Image,
   Text,
   View,
   TextInput,
@@ -28,28 +29,38 @@ class LoginScreen extends React.Component {
   render () {
     return (
       <View style={styles.loginPage}>
+        <Image
+          source={require('../../images/Logo/loginLogo.png')}
+          style={{ width: 250, height: 120, marginTop: 30, padding: 20}}
+        />
         <View style={styles.loginSection}>
-          <TextInput
-            style={styles.emailInput}
-            placeholder='邮箱'
-            keyboardType={'numeric'}
-            autoCapitalize={'none'}
-          />
-          <TextInput
-            style={styles.passwordInput}
-            placeholder='password'
-            secureTextEntry
-            autoCapitalize={'none'}
-            maxLength={20}
-            // onChangeText={text => (this.password = text)}
-          />
-          <Text style={styles.yinuoText}>亿诺智汇科技</Text>
+          <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.7 }}>
+            <TextInput
+              style={styles.emailInput}
+              placeholderTextColor={'#fff'}
+              placeholder='邮箱'
+              keyboardType={'email-address'}
+              autoCapitalize={'none'}
+            />
+          </View>
+          <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.5 }}>
+            <TextInput
+              style={styles.passwordInput}
+              placeholderTextColor={'#fff'}
+              placeholder='密码'
+              secureTextEntry
+              autoCapitalize={'none'}
+              maxLength={20}
+              // onChangeText={text => (this.password = text)}
+            />
+          </View>
+          <Text style={styles.yinuoText}>亿诺智汇科技©</Text>
           <TouchableOpacity
             style={styles.loginButton}
             // onPress={() => navigate('HomeScreen')}
             underlayColor='#fff'
           >
-            <Text style={styles.submitText}>登录</Text>
+            <Text style={styles.loginButtonText}>登录</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -57,16 +68,17 @@ class LoginScreen extends React.Component {
             // onPress={() => navigate('HomeScreen')}
             underlayColor='#fff'
           >
-            <Text style={styles.submitText}>登录</Text>
+            <Text style={styles.weChatButtonText}>微信登录</Text>
           </TouchableOpacity>
 
-          <Text style={styles.remindText}>没有账号？</Text>
+          <Text style={styles.remindText}>还没有注册？</Text>
+
           <TouchableOpacity
-            style={styles.weChatButton}
+            style={styles.registerButton}
             // onPress={() => navigate('HomeScreen')}
             underlayColor='#fff'
           >
-            <Text style={styles.registerButton}>注册</Text>
+            <Text style={styles.registerButtonText}>注册</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -77,62 +89,90 @@ const styles = StyleSheet.create({
   loginPage: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    padding: 20
+    alignItems: 'center',
+    padding: 0,
+    backgroundColor: '#171616'
   },
   loginSection: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    padding: 10
+    padding: 1,
+    borderColor: '#171616'
   },
-  loginTitle: {
-    fontSize: 28,
-    fontWeight: '500',
-    color: 'blue',
+  emailInput: {
+    marginBottom: 1,
+    marginTop: 40,
+    height: 40,
     textAlign: 'center',
-    marginTop: 32,
-    marginBottom: 32
+    borderLeftColor: 'red',
+    color: 'white',
+    fontSize: 17
   },
-  loginButton: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 8,
-    backgroundColor: '#1E6738',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff'
+  passwordInput: {
+    marginBottom: 1,
+    borderRadius: 3,
+    borderColor: 'black',
+    height: 40,
+    textAlign: 'center',
+    fontSize: 17
   },
   yinuoText: {
-    marginBottom: 60,
-    fontSize: 10,
-    color: 'gray',
+    marginTop: 20,
+    marginBottom: 86,
+    fontSize: 13,
+    color: 'white',
     textAlign: 'center'
+  },
+  loginButton: {
+    backgroundColor: '#171616',
+    borderRadius: 21,
+    borderWidth: 1,
+    borderColor: '#fff',
+    height: 45,
+    width: 220
+  },
+  loginButtonText: {
+    paddingTop: 8,
+    textAlign: 'center',
+    fontSize: 19,
+    color: 'white'
+  },
+  weChatButton: {
+    fontSize: 14,
+    borderRadius: 21,
+    backgroundColor: '#97e960',
+    height: 45,
+    width: 220,
+    marginTop: 8
+  },
+  weChatButtonText: {
+    paddingTop: 12,
+    textAlign: 'center',
+    fontSize: 19,
+    color: 'black'
   },
   remindText: {
     textAlign: 'center',
-    fontSize: 10,
-    marginTop: 130
+    fontSize: 15,
+    marginTop: 70,
+    color: 'gray',
+    marginBottom: 9
   },
-  weChatButton: {
+  registerButton: {
     color: 'blue',
     fontSize: 14,
+    borderRadius: 21,
+    backgroundColor: '#171616',
+    height: 45,
     width: 220,
-    height: 40,
-    borderRadius: 3,
-    backgroundColor: 'blue'
+    borderColor: '#fff',
+    borderWidth: 1,
+    marginBottom: 25
   },
-  emailInput: {
-    marginBottom: 3,
-    marginTop: 187.5,
-    height: 40,
-    textAlign: 'center'
-  },
-  passwordInput: {
-    marginBottom: 2,
-    borderRadius: 3,
-    borderColor: 'white',
-    height: 40,
-    textAlign: 'center'
+  registerButtonText: {
+    marginTop: 5,
+    textAlign: 'center',
+    fontSize: 19,
+    paddingTop: 7,
+    color: 'white'
   }
 })
 

@@ -13,6 +13,7 @@ export default class App extends React.Component {
     return (
       <Provider store={configureStore}>
         <Navigator />
+        {/* <LoginScreen /> */}
       </Provider>
     )
   }
