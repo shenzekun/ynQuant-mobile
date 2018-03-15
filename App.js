@@ -13,7 +13,7 @@ export default class App extends React.Component {
     return (
       <Provider store={configureStore}>
         {/* <Navigator /> */}
-        <LoginScreen />
+        <LoginScreen /> // 这里不应该修改入口文件, 你可以本地调试的时候使用, 但是push的时候不应该包含这个部分
       </Provider>
     )
   }
