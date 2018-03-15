@@ -6,7 +6,7 @@ class TouchTab extends React.Component {
   renderTabOption (tab, index) {
     let color = this.props.activeTab === index ? '#000' : '#fff'
     let bgColor = this.props.activeTab === index ? '#fff' : '#000'
-    let isEven = index % 2 === 0
+    let len = this.props.tabs.length - 1
     return (
       <View
         style={{
@@ -14,16 +14,18 @@ class TouchTab extends React.Component {
           borderColor: '#fff',
           height: 24,
           backgroundColor: bgColor,
-          borderTopLeftRadius: isEven ? 3 : 0,
-          borderBottomLeftRadius: isEven ? 3 : 0,
-          borderBottomRightRadius: isEven ? 0 : 3,
-          borderTopRightRadius: isEven ? 0 : 3,
-          borderLeftWidth: isEven ? 1 : 0,
-          borderRightWidth: isEven ? 0 : 1,
+          borderTopLeftRadius: index === 0 ? 3 : 0,
+          borderBottomLeftRadius: index === 0 ? 3 : 0,
+          borderBottomRightRadius: index === len ? 3 : 0,
+          borderTopRightRadius: index === len ? 3 : 0,
+          borderLeftWidth: 1,
+          borderRightWidth: index === len ? 1 : 0,
           borderBottomWidth: 1,
           borderTopWidth: 1
-        }} key={index}>
-        <TouchableOpacity onPress={() => this.props.goToPage(index)} style={styles.tab} >
+        }}
+        key={index}
+      >
+        <TouchableOpacity onPress={() => this.props.goToPage(index)} style={styles.tab}>
           <View style={styles.tabItem}>
             <Text style={{ color: color }}>{this.props.tabNames[index]}</Text>
           </View>
