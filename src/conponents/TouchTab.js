@@ -3,26 +3,25 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
 class TouchTab extends React.Component {
+  len = this.props.tabs.length - 1
   renderTabOption (tab, index) {
     let color = this.props.activeTab === index ? '#000' : '#fff'
     let bgColor = this.props.activeTab === index ? '#fff' : '#000'
-    let len = this.props.tabs.length - 1
+    let isShowRightBorder = index === this.len
+    let isShowLeftBorder = index === 0
     return (
       <View
-        style={{
-          flex: 1,
-          borderColor: '#fff',
-          height: 24,
-          backgroundColor: bgColor,
-          borderTopLeftRadius: index === 0 ? 3 : 0,
-          borderBottomLeftRadius: index === 0 ? 3 : 0,
-          borderBottomRightRadius: index === len ? 3 : 0,
-          borderTopRightRadius: index === len ? 3 : 0,
-          borderLeftWidth: 1,
-          borderRightWidth: index === len ? 1 : 0,
-          borderBottomWidth: 1,
-          borderTopWidth: 1
-        }}
+        style={[
+          styles.tabsWrap,
+          {
+            backgroundColor: bgColor,
+            borderTopLeftRadius: isShowLeftBorder ? 3 : 0,
+            borderBottomLeftRadius: isShowLeftBorder ? 3 : 0,
+            borderBottomRightRadius: isShowRightBorder ? 3 : 0,
+            borderTopRightRadius: isShowRightBorder ? 3 : 0,
+            borderRightWidth: isShowRightBorder ? 1 : 0
+          }
+        ]}
         key={index}
       >
         <TouchableOpacity onPress={() => this.props.goToPage(index)} style={styles.tab}>
@@ -35,8 +34,8 @@ class TouchTab extends React.Component {
   }
   render () {
     return (
-      <View style={styles.tabs}>
-        <View style={{ flex: 1, flexDirection: 'row', marginLeft: 15, marginRight: 15 }}>
+      <View style={styles.container}>
+        <View style={styles.tabs}>
           {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
         </View>
       </View>
@@ -53,11 +52,24 @@ const propTypes = {
 TouchTab.propTypes = propTypes
 
 const styles = StyleSheet.create({
-  tabs: {
+  container: {
     height: 40,
     backgroundColor: '#000'
   },
-
+  tabs: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: 15,
+    marginRight: 15
+  },
+  tabsWrap: {
+    flex: 1,
+    borderColor: '#fff',
+    height: 24,
+    borderLeftWidth: 1,
+    borderBottomWidth: 1,
+    borderTopWidth: 1
+  },
   tab: {
     flex: 1,
     justifyContent: 'center',
