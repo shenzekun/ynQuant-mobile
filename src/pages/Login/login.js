@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     height: 40,
     textAlign: 'center',
-    borderLeftColor: 'red',
     color: 'white',
     fontSize: 17
   },
