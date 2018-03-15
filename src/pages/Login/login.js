@@ -1,5 +1,12 @@
 import React from 'react'
-import { Button, Text, View, TextInput, StyleSheet } from 'react-native'
+import {
+  Button,
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native'
 import { connect } from 'react-redux'
 // import { loginAction } from './loginActions'
 
@@ -37,10 +44,30 @@ class LoginScreen extends React.Component {
             // onChangeText={text => (this.password = text)}
           />
           <Text style={styles.yinuoText}>亿诺智汇科技</Text>
-          <Button style={styles.loginBut} backgroundColor='blue' title='登录' />
-          <Button style={styles.weChatBut} title='微信登录' />
+          <TouchableOpacity
+            style={styles.loginButton}
+            // onPress={() => navigate('HomeScreen')}
+            underlayColor='#fff'
+          >
+            <Text style={styles.submitText}>登录</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.weChatButton}
+            // onPress={() => navigate('HomeScreen')}
+            underlayColor='#fff'
+          >
+            <Text style={styles.submitText}>登录</Text>
+          </TouchableOpacity>
+
           <Text style={styles.remindText}>没有账号？</Text>
-          <Button style={styles.regBut} title='注册' />
+          <TouchableOpacity
+            style={styles.weChatButton}
+            // onPress={() => navigate('HomeScreen')}
+            underlayColor='#fff'
+          >
+            <Text style={styles.registerButton}>注册</Text>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -66,7 +93,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
     marginBottom: 32
   },
-  loginBut: {
+  loginButton: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 8,
@@ -86,7 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 130
   },
-  weChatBut: {
+  weChatButton: {
     color: 'blue',
     fontSize: 14,
     width: 220,
