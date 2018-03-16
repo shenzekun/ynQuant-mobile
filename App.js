@@ -13,8 +13,8 @@ export default class App extends React.Component {
   render () {
     return (
       <Provider store={configureStore}>
-        {/* <Navigator /> */}
-        <RegisterScreen />
+        <Navigator />
+        {/* <RegisterScreen /> */}
       </Provider>
     )
   }
