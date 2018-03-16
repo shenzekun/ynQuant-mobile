@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingBottom: 10,
     paddingLeft: 20,
-    borderLeftWidth: 1.5,
+    borderLeftWidth: 1.3,
     borderLeftColor: '#e0e0e0',
     marginLeft: 30,
     marginRight: 25,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: '#7ddaff',
     position: 'absolute',
-    left: -28,
+    left: -27.9,
     top: -1
   },
   dotInWard: {
