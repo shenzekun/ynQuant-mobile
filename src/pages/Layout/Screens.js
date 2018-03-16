@@ -6,13 +6,13 @@
 import React from 'react'
 import { Image } from 'react-native'
 import InformationScreen from '../Information/information' // 时讯
-import knowledgeScreen from '../Knowedge/knowledge' // 知识
+import KnowledgeScreen from '../Knowedge/knowledge' // 知识
 import SimulateScreen from '../Simulate/simulate' // 模拟
 import AboutScreen from '../About/about' // 我的
 
 export default {
-  knowledgeScreen: {
-    screen: knowledgeScreen,
+  KnowledgeScreen: {
+    screen: KnowledgeScreen,
     navigationOptions: {
       tabBarIcon: ({ focused, tintColor }) => {
         return (
