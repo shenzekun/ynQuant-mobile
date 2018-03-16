@@ -14,8 +14,8 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
-import KnowedgeScreen from '../Knowedge/knowledge'
 import TouchTab from '../../conponents/TouchTab'
+import NewScreen from '../News/news'
 /*
   状态栏配置
   https://reactnavigation.org/docs/status-bar.html
@@ -77,8 +77,8 @@ class InformationScreen extends React.Component {
           </Animated.View>
         </Animated.View>
         <ScrollableTabView renderTabBar={() => <TouchTab tabNames={tabNames} />}>
-          <KnowedgeScreen tabLabel='环球新闻' />
-          <KnowedgeScreen tabLabel='关键日历' />
+          <NewScreen tabLabel='环球新闻' />
+          <NewScreen tabLabel='关键日历' />
         </ScrollableTabView>
       </View>
     )
