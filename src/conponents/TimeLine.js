@@ -1,73 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 
-var flatListData = [
-  {
-    month: '03月',
-    day: '9',
-    content: [
-      {
-        key: 1,
-        time: '12:01:01',
-        text: '444dsdsdsdsdsdsdsdsdafkljasdfkjasdkfhadskjhjdkahdjksahfjkasbdjkbcjasdjfbsadbsad'
-      },
-      {
-        key: 2,
-        time: '12:01:01',
-        text:
-          '333dasdasdasdasdsadasdasdasdasdasdasdasdasdasdasdasdasdjkdasjdkasdakjdaskdjaskdjaskdjsadjasdkasjdkasjdkasdas'
-      },
-      {
-        key: 3,
-        time: '12:01:01',
-        text: '2222'
-      },
-      {
-        key: 4,
-        time: '12:01:01',
-        text: '111'
-      }
-    ]
-  },
-  {
-    month: '03月',
-    day: '8',
-    content: [
-      {
-        key: 5,
-        time: '12:01:01',
-        text: '444'
-      },
-      {
-        key: 6,
-        time: '12:01:01',
-        text:
-          '333dasdasdasdasdsadasdasdasdasdasdasdasdasdasdasdasdasdjkdasjdkasdakjdaskdjaskdjaskdjsadjasdkasjdkasjdkasdas'
-      },
-      {
-        key: 7,
-        time: '12:01:01',
-        text: '2222'
-      },
-      {
-        key: 8,
-        time: '12:01:01',
-        text: '111'
-      }
-    ]
-  }
-]
 class TimeLine extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      flatListData: flatListData,
       isRefresh: false
     }
   }
   renderRow (rowData) {
-    let firstContent = rowData.item.content.splice(0, 1) // 获取第一个内容
-    let content = rowData.item.content // 获取其余内容
+    let array = [...rowData.item.content]
+    let firstContent = array.splice(0, 1) // 获取第一个内容
+    let content = array // 获取其余内容
     return (
       <View style={styles.row}>
         <View style={styles.date}>
@@ -76,7 +21,7 @@ class TimeLine extends React.Component {
         </View>
         <TouchableOpacity style={styles.contentWrap}>
           <View style={styles.time}>
-            <Text style={[styles.fontColor, styles.timeFont]}>{firstContent[0].time || ''}</Text>
+            <Text style={[styles.fontColor, styles.timeFont]}>{firstContent[0].time}</Text>
           </View>
           <View style={styles.content}>
             <Text style={styles.contentFont}>{firstContent[0].text}</Text>
@@ -105,11 +50,12 @@ class TimeLine extends React.Component {
   }
 
   render () {
+    // console.log(this.props.data)
     return (
       <View style={styles.container}>
         <View style={styles.rowWrap}>
           <FlatList
-            data={this.state.flatListData}
+            data={this.props.data}
             renderItem={this.renderRow}
             refreshing={this.state.isRefresh}
             initialNumToRender={6}
@@ -200,5 +146,10 @@ const styles = StyleSheet.create({
     top: 3.5
   }
 })
+
+const propTypes = {
+  data: PropTypes.array // 新闻数据
+}
+TimeLine.propTypes = propTypes
 
 export default TimeLine
