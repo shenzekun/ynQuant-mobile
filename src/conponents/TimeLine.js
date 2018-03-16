@@ -100,8 +100,9 @@ const styles = StyleSheet.create({
     color: '#808080'
   },
   dayFont: {
-    fontSize: 15,
-    textAlign: 'center'
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
   monthFont: {
     fontSize: 11,
