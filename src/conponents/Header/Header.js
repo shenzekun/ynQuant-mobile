@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  View,
-  StatusBar,
-  StyleSheet,
-  Platform,
-  Animated,
-  TextInput,
-  Image
-} from 'react-native'
+import { View, StatusBar, StyleSheet, Platform, Animated, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import TouchTab from '../../conponents/TouchTab'
@@ -24,7 +16,7 @@ class Header extends React.Component {
   tabNames = this.props.tabNames
   bgColor = this.props.bgColor ? this.props.bgColor : '#000'
   searchColor = this.props.searchColor ? this.props.searchColor : '#393f49'
-  renderTouchTab () {}
+  childLen = this.props.children.length
   render () {
     return (
       <View style={{ flex: 1 }}>
@@ -67,6 +59,7 @@ class Header extends React.Component {
         </Animated.View>
         <ScrollableTabView
           renderTabBar={() => <TouchTab tabNames={this.tabNames} bgColor={this.bgColor} />}
+          prerenderingSiblingsNumber={this.childLen}
         >
           {this.props.children}
         </ScrollableTabView>
