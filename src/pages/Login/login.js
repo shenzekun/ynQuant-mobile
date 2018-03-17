@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     marginTop: 70,
-    color: 'gray',
+    color: '#777777',
     marginBottom: 9
   },
   registerButton: {

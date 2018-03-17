@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider'
 
 const styles = StyleSheet.create({
@@ -38,8 +38,9 @@ const slides = [
 
 export default class IntroScreen extends React.Component {
   _onDone = () => {
- }
+  }
+
   render () {
-    return <AppIntroSlider slides={slides} onDone={this._onDone} />
+    return <AppIntroSlider slides={slides} onDone={this._onDone}/>
   }
 }
