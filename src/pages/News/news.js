@@ -83,10 +83,10 @@ class NewScreen extends React.Component {
 
 const styles = StyleSheet.create({
   btnWrap: {
-    width: 40,
-    height: 40,
+    width: 48,
+    height: 48,
     backgroundColor: '#09498b',
-    borderRadius: 20,
+    borderRadius: 24,
     position: 'absolute',
     right: 10,
     bottom: 10,
@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5
   },
   btnText: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     color: '#fff',
     position: 'absolute',
-    left: 8.5,
-    top: 8.5,
-    fontSize: 11.5
+    left: 10.5,
+    top: 10.5,
+    fontSize: 13.5
   }
 })
 export default NewScreen

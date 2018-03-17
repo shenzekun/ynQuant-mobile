@@ -9,8 +9,7 @@ import {
   Image,
   TextInput,
   Animated,
-  ScrollView,
-  FlatList
+  ScrollView
 } from 'react-native'
 import { connect } from 'react-redux'
 import ScrollableTabView from 'react-native-scrollable-tab-view'

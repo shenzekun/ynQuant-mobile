@@ -53,14 +53,12 @@ class TimeLine extends React.Component {
     // console.log(this.props.data)
     return (
       <View style={styles.container}>
-        <View style={styles.rowWrap}>
-          <FlatList
-            data={this.props.data}
-            renderItem={this.renderRow}
-            refreshing={this.state.isRefresh}
-            initialNumToRender={6}
-          />
-        </View>
+        <FlatList
+          data={this.props.data}
+          renderItem={this.renderRow}
+          refreshing={this.state.isRefresh}
+          initialNumToRender={6}
+        />
       </View>
     )
   }
@@ -70,9 +68,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  rowWrap: {
-    marginTop: 10
-  },
   row: {
     flexDirection: 'column',
     paddingBottom: 10,
@@ -81,7 +76,7 @@ const styles = StyleSheet.create({
     borderLeftColor: '#e0e0e0',
     marginLeft: 30,
     marginRight: 25,
-    marginTop: 10,
+    marginTop: 15,
     position: 'relative'
   },
   contentWrap: {
