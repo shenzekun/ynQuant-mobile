@@ -172,11 +172,11 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   cardImg: {
-    height: 27,
-    width: 27,
+    height: 24,
+    width: 24,
     position: 'absolute',
     top: 13,
-    left: 12
+    left: 13
   },
   cardDesc: {
     marginTop: 15,
