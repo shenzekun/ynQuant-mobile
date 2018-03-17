@@ -19,13 +19,13 @@ class NewScreen extends React.Component {
           {
             key: 1,
             time: '12:01:01',
-            text: '444dsdsdsdsdsdsdsdsdafkljasdfkjasdkfhadskjhjdkahdjksahfjkasbdjkbcjasdjfbsadbsad'
+            text: '据天空新闻：英国首相特雷莎·梅将在格林威治时间16:30（北京时间13日00:30）在英国国会发表声明。'
           },
           {
             key: 2,
             time: '12:01:01',
             text:
-              '333dasdasdasdasdsadasdasdasdasdasdasdasdasdasdasdasdasdjkdasjdkasdakjdaskdjaskdjaskdjsadjasdkasjdkasjdkasdas'
+              '据零对冲：人们或许会很惊讶地发现，欧洲央行的资产负债表再次触及了历史新高。'
           },
           {
             key: 3,
@@ -83,10 +83,10 @@ class NewScreen extends React.Component {
 
 const styles = StyleSheet.create({
   btnWrap: {
-    width: 48,
-    height: 48,
+    width: 49,
+    height: 49,
     backgroundColor: '#09498b',
-    borderRadius: 24,
+    borderRadius: 24.5,
     position: 'absolute',
     right: 10,
     bottom: 10,
@@ -96,12 +96,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5
   },
   btnText: {
-    width: 40,
-    height: 40,
+    width: 28,
+    height: 28,
     color: '#fff',
     position: 'absolute',
-    left: 10.5,
-    top: 10.5,
+    left: 11,
+    top: 11,
     fontSize: 13.5
   }
 })

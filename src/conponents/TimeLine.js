@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1.3,
     borderLeftColor: '#e0e0e0',
     marginLeft: 30,
-    marginRight: 25,
+    marginRight: 12,
     marginTop: 15,
     position: 'relative'
   },
   contentWrap: {
     flex: 1,
     marginBottom: 25,
-    marginLeft: 10
+    marginLeft: 13
   },
   commonWrap: {
     flex: 1,

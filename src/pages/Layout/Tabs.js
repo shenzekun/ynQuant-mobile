@@ -33,8 +33,6 @@ const Navigator = StackNavigator(
     }
   },
   {
-    headerMode: 'none', // 没有标题栏
-    mode: 'card', // 使用标准的iOS和Android页面转换风格
     cardStyle: {
       // 为各个页面设置统一的样式
       backgroundColor: '#fff'

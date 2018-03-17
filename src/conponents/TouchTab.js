@@ -26,7 +26,7 @@ class TouchTab extends React.Component {
       >
         <TouchableOpacity onPress={() => this.props.goToPage(index)} style={styles.tab}>
           <View style={styles.tabItem}>
-            <Text style={{ color: color }}>{this.props.tabNames[index]}</Text>
+            <Text style={[styles.tabText, { color: color }]}>{this.props.tabNames[index]}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -53,8 +53,10 @@ TouchTab.propTypes = propTypes
 
 const styles = StyleSheet.create({
   container: {
-    height: 40,
-    backgroundColor: '#000'
+    height: 53,
+    backgroundColor: '#000',
+    paddingTop: 12,
+    paddingBottom: 11
   },
   tabs: {
     flex: 1,
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
   tabsWrap: {
     flex: 1,
     borderColor: '#fff',
-    height: 24,
+    height: 29,
     borderLeftWidth: 1,
     borderBottomWidth: 1,
     borderTopWidth: 1
@@ -78,6 +80,9 @@ const styles = StyleSheet.create({
   tabItem: {
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  tabText: {
+    fontSize: 13
   }
 })
 export default TouchTab
