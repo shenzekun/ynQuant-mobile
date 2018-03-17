@@ -1,27 +1,34 @@
 import React from 'react'
-import { Text, View, StyleSheet, Animated, Image, ScrollView } from 'react-native'
-import { connect } from 'react-redux'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
+
 class BaseKnowledge extends React.Component {
   render () {
     return (
       <ScrollView style={{ flex: 1 }}>
-        <View style={styles.cardWrap}>
-          <View style={styles.cardDescWrap}>
-            <View style={styles.cardLogo}>
-              <Image
-                source={require('../../../images/knowledge/knowledge.png')}
-                style={styles.cardImg}
-              />
+        <TouchableOpacity style={styles.cardWrap} activeOpacity={0.7}>
+          <LinearGradient
+            style={styles.gradient}
+            colors={['#89AD45', '#ABC672']}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}>
+            <View style={styles.cardDescWrap}>
+              <View style={styles.cardLogo}>
+                <Image
+                  source={require('../../../images/knowledge/knowledge.png')}
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardDesc}>
+                <Text style={[styles.cardTitle, styles.cardDescFontColor]}>外汇基础知识</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  建议完成时间: 15分钟
+                </Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
+              </View>
             </View>
-            <View style={styles.cardDesc}>
-              <Text style={[styles.cardTitle, styles.cardDescFontColor]}>外汇基础知识</Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
-                建议完成时间: 15分钟
-              </Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
-            </View>
-          </View>
+          </LinearGradient>
           <View style={styles.cardStatusWrap}>
             <View style={styles.rowCenter}>
               <Image
@@ -47,25 +54,31 @@ class BaseKnowledge extends React.Component {
               </View>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.cardWrap}>
-          <View style={styles.cardDescWrap}>
-            <View style={styles.cardLogo}>
-              <Image
-                source={require('../../../images/knowledge/knowledge.png')}
-                style={styles.cardImg}
-              />
+        <TouchableOpacity style={styles.cardWrap} activeOpacity={0.7}>
+          <LinearGradient
+            style={styles.gradient}
+            colors={['#89AD45', '#ABC672']}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}>
+            <View style={styles.cardDescWrap}>
+              <View style={styles.cardLogo}>
+                <Image
+                  source={require('../../../images/knowledge/knowledge.png')}
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardDesc}>
+                <Text style={[styles.cardTitle, styles.cardDescFontColor]}>外汇专业知识</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  建议完成时间: 15分钟
+                </Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
+              </View>
             </View>
-            <View style={styles.cardDesc}>
-              <Text style={[styles.cardTitle, styles.cardDescFontColor]}>外汇专业知识</Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
-                建议完成时间: 15分钟
-              </Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
-            </View>
-          </View>
+          </LinearGradient>
           <View style={styles.cardStatusWrap}>
             <View style={styles.rowCenter}>
               <Image
@@ -91,25 +104,31 @@ class BaseKnowledge extends React.Component {
               </View>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.cardWrap}>
-          <View style={styles.cardDescWrap}>
-            <View style={styles.cardLogo}>
-              <Image
-                source={require('../../../images/knowledge/knowledge.png')}
-                style={styles.cardImg}
-              />
+        <TouchableOpacity style={styles.cardWrap} activeOpacity={0.7}>
+          <LinearGradient
+            style={styles.gradient}
+            colors={['#89AD45', '#ABC672']}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}>
+            <View style={styles.cardDescWrap}>
+              <View style={styles.cardLogo}>
+                <Image
+                  source={require('../../../images/knowledge/knowledge.png')}
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardDesc}>
+                <Text style={[styles.cardTitle, styles.cardDescFontColor]}>外汇专业知识</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  建议完成时间: 15分钟
+                </Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
+              </View>
             </View>
-            <View style={styles.cardDesc}>
-              <Text style={[styles.cardTitle, styles.cardDescFontColor]}>外汇专业知识</Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
-                建议完成时间: 15分钟
-              </Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
-              <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
-            </View>
-          </View>
+          </LinearGradient>
           <View style={styles.cardStatusWrap}>
             <View style={styles.rowCenter}>
               <Image
@@ -135,7 +154,7 @@ class BaseKnowledge extends React.Component {
               </View>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     )
   }
@@ -155,9 +174,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     elevation: 1 // 让安卓拥有灰色阴影
   },
+  gradient: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    overflow: 'hidden'
+  },
   cardDescWrap: {
     flexDirection: 'row',
-    backgroundColor: '#ABC672',
     position: 'relative',
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5

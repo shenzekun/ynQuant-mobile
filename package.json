@@ -16,6 +16,7 @@
     "react-native": "0.54.0",
     "react-native-app-intro": "^1.1.5",
     "react-native-app-intro-slider": "^0.2.4",
+    "react-native-linear-gradient": "^2.4.0",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^4.5.0",
