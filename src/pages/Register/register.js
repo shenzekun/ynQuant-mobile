@@ -1,14 +1,6 @@
 import React from 'react'
-import {
-  Button,
-  Image,
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity
-} from 'react-native'
-import { connect } from 'react-redux'
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
+import {connect} from 'react-redux'
 // import { loginAction } from './loginActions'
 
 /**
@@ -32,13 +24,13 @@ class RegisterScreen extends React.Component {
         {/* header */}
         <View style={styles.headerStyle}>
           <Image
+            style={styles.logo}
             source={require('../../images/Logo/loginLogo.png')}
-            style={{ width: 250, height: 120 }}
           />
         </View>
         {/* body */}
         <View style={styles.bodyStyle}>
-          <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.9 }}>
+          <View style={styles.inputer}>
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
@@ -47,16 +39,16 @@ class RegisterScreen extends React.Component {
               autoCapitalize={'none'}
             />
           </View>
-          <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.6 }}>
+          <View style={styles.inputer}>
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
               placeholder='用户名'
               autoCapitalize={'none'}
-              maxLength={8}
+              maxLength={16}
             />
           </View>
-          <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.7 }}>
+          <View style={styles.inputer}>
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
@@ -67,7 +59,7 @@ class RegisterScreen extends React.Component {
               maxLength={20}
             />
           </View>
-          <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.6 }}>
+          <View style={styles.inputer}>
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
@@ -77,7 +69,7 @@ class RegisterScreen extends React.Component {
               maxLength={20}
             />
           </View>
-          <View style={styles.selectType} />
+          <View style={styles.selectType}/>
 
           <TouchableOpacity
             style={styles.registerButton}
@@ -97,7 +89,7 @@ class RegisterScreen extends React.Component {
               // onPress={() => navigate('HomeScreen')}
               underlayColor='#fff'
             >
-              <Text style={{ fontSize: 14 }}>登录</Text>
+              <Text style={{fontSize: 14}}>登录.</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -105,63 +97,77 @@ class RegisterScreen extends React.Component {
     )
   }
 }
+
 const styles = StyleSheet.create({
   registerPage: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
     backgroundColor: 'white',
     padding: 0
   },
   headerStyle: {
-    padding: 0,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'black',
-    width: 400,
-    height: 200
+    height: 222
   },
   bodyStyle: {
-    marginTop: 19
+    marginTop: 62,
+    alignItems: 'center'
   },
   registerButton: {
     fontSize: 14,
     borderRadius: 21,
     backgroundColor: 'black',
+    alignContent: 'center',
+    justifyContent: 'center',
     height: 45,
     width: 220,
-    marginTop: 10
+    marginTop: 35.5
+  },
+  inputer: {
+    height: 31,
+    width: 244,
+    marginTop: 18.5,
+    alignItems: 'center',
+    borderBottomWidth: 0.5,
+    borderColor: '#BDBDBD'
+  },
+  input: {
+    width: 230,
+    height: 21,
+    fontSize: 15,
+    textAlign: 'center'
   },
   registerButtonText: {
-    fontSize: 15,
+    fontSize: 17,
     textAlign: 'center',
-    color: 'white',
-    marginTop: 15
+    color: 'white'
   },
   footerStyle: {
     flex: 1,
-    backgroundColor: 'gray',
-    height: 35,
-    marginTop: 150
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#ECEFF1',
+    height: 44
   },
   footerFix: {
-    flexDirection: 'row',
-    width: 400,
-    marginTop: 5,
-    paddingLeft: 120
+    flexDirection: 'row'
   },
-  renmindText: {
-    color: 'gray'
+  remindText: {
+    color: '#777777'
   },
-  input: {
-    width: 200,
-    height: 40,
-    paddingTop: 6,
-    textAlign: 'center'
-  },
+
   selectType: {
     flexDirection: 'row',
     backgroundColor: 'gray',
-    height: 50
+    height: 50,
+    width: 244,
+    marginTop: 10.5
   }
 })
 
