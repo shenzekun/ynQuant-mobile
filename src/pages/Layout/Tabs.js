@@ -16,7 +16,8 @@ const TabBar = TabNavigator(Screen, {
     activeTintColor: '#fff', // 选中时文字颜色
     inactiveTintColor: '#9a9a9a', // 未选中时文字颜色
     showIcon: true,
-    lazy: true, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
+    tabBarPosition: 'bottom', // tab bar的位置
+    lazy: false, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
     labelStyle: {
       // tab 字样式
       fontWeight: 'bold',
@@ -33,8 +34,6 @@ const Navigator = StackNavigator(
     }
   },
   {
-    headerMode: 'none', // 没有标题栏
-    mode: 'card', // 使用标准的iOS和Android页面转换风格
     cardStyle: {
       // 为各个页面设置统一的样式
       backgroundColor: '#fff'

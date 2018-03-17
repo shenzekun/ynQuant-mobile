@@ -2,6 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
+const propTypes = {
+  data: PropTypes.array.isRequired // 新闻数据
+}
 class TimeLine extends React.Component {
   constructor (props) {
     super(props)
@@ -53,14 +56,12 @@ class TimeLine extends React.Component {
     // console.log(this.props.data)
     return (
       <View style={styles.container}>
-        <View style={styles.rowWrap}>
-          <FlatList
-            data={this.props.data}
-            renderItem={this.renderRow}
-            refreshing={this.state.isRefresh}
-            initialNumToRender={6}
-          />
-        </View>
+        <FlatList
+          data={this.props.data}
+          renderItem={this.renderRow}
+          refreshing={this.state.isRefresh}
+          initialNumToRender={6}
+        />
       </View>
     )
   }
@@ -70,9 +71,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  rowWrap: {
-    marginTop: 10
-  },
   row: {
     flexDirection: 'column',
     paddingBottom: 10,
@@ -80,14 +78,14 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1.3,
     borderLeftColor: '#e0e0e0',
     marginLeft: 30,
-    marginRight: 25,
-    marginTop: 10,
+    marginRight: 12,
+    marginTop: 15,
     position: 'relative'
   },
   contentWrap: {
     flex: 1,
     marginBottom: 25,
-    marginLeft: 10
+    marginLeft: 13
   },
   commonWrap: {
     flex: 1,
@@ -148,9 +146,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const propTypes = {
-  data: PropTypes.array // 新闻数据
-}
 TimeLine.propTypes = propTypes
 
 export default TimeLine

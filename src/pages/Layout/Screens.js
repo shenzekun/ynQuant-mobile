@@ -26,7 +26,9 @@ export default {
           />
         )
       },
-      title: '知识'
+      title: '知识',
+      header: 'none',
+      mode: 'modal' // 使用标准的iOS和Android页面转换风格
     }
   },
   InformationScreen: {
@@ -44,7 +46,8 @@ export default {
           />
         )
       },
-      title: '时讯'
+      title: '时讯',
+      header: 'none'
     }
   },
   SimulateScreen: {
