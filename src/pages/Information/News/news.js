@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import TimeLine from '../../conponents/TimeLine'
+import TimeLine from '../../../conponents/TimeLine'
 
 class NewScreen extends React.Component {
   constructor (props) {

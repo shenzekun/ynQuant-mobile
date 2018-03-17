@@ -2,6 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
+const propTypes = {
+  data: PropTypes.array.isRequired // 新闻数据
+}
 class TimeLine extends React.Component {
   constructor (props) {
     super(props)
@@ -143,9 +146,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const propTypes = {
-  data: PropTypes.array // 新闻数据
-}
 TimeLine.propTypes = propTypes
 
 export default TimeLine
