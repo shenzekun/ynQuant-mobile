@@ -1,11 +1,8 @@
 import React from 'react'
 import {
-  Button,
   Text,
   View,
-  StatusBar,
   StyleSheet,
-  Platform,
   Animated,
   Image,
   ScrollView
