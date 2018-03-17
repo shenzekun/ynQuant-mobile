@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Text,
-  View,
-  StyleSheet,
-  Animated,
-  Image,
-  ScrollView
-} from 'react-native'
+import { Text, View, StyleSheet, Animated, Image, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 class BaseKnowledge extends React.Component {
   render () {
@@ -159,7 +152,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2
     },
-    shadowOpacity: 0.3
+    shadowOpacity: 0.3,
+    elevation: 1 // 让安卓拥有灰色阴影
   },
   cardDescWrap: {
     flexDirection: 'row',
