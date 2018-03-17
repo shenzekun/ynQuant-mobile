@@ -17,7 +17,7 @@ class KnowledgeScreen extends React.Component {
   render () {
     let tabNames = this.state.tabNames
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Header tabNames={tabNames} headerTitle='知识' searchColor='#7c7c7c' bgColor='#4b525e'>
           <BaseKnowledge tabLabel='基础知识' />
           <BaseKnowledge tabLabel='进阶知识' />
@@ -26,4 +26,8 @@ class KnowledgeScreen extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#f0f5f9' }
+})
 export default KnowledgeScreen
