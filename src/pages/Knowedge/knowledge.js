@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native'
 import BaseKnowledge from './BaseKnowledge/baseKnowledge'
 import Header from '../../conponents/Header/Header'
 import { connect } from 'react-redux'
-
 /*
   状态栏配置
   https://reactnavigation.org/docs/status-bar.html

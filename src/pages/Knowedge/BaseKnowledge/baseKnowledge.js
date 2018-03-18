@@ -11,7 +11,8 @@ class BaseKnowledge extends React.Component {
             style={styles.gradient}
             colors={['#89AD45', '#ABC672']}
             start={{ x: 0, y: 0.5 }}
-            end={{ x: 1, y: 0.5 }}>
+            end={{ x: 1, y: 0.5 }}
+          >
             <View style={styles.cardDescWrap}>
               <View style={styles.cardLogo}>
                 <Image
@@ -24,8 +25,12 @@ class BaseKnowledge extends React.Component {
                 <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
                   建议完成时间: 15分钟
                 </Text>
-                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
-                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  建议人群: 初学者
+                </Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  完成人数: 1333人
+                </Text>
               </View>
             </View>
           </LinearGradient>
@@ -61,7 +66,8 @@ class BaseKnowledge extends React.Component {
             style={styles.gradient}
             colors={['#89AD45', '#ABC672']}
             start={{ x: 0, y: 0.5 }}
-            end={{ x: 1, y: 0.5 }}>
+            end={{ x: 1, y: 0.5 }}
+          >
             <View style={styles.cardDescWrap}>
               <View style={styles.cardLogo}>
                 <Image
@@ -74,8 +80,12 @@ class BaseKnowledge extends React.Component {
                 <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
                   建议完成时间: 15分钟
                 </Text>
-                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
-                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  建议人群: 初学者
+                </Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  完成人数: 1333人
+                </Text>
               </View>
             </View>
           </LinearGradient>
@@ -111,7 +121,8 @@ class BaseKnowledge extends React.Component {
             style={styles.gradient}
             colors={['#89AD45', '#ABC672']}
             start={{ x: 0, y: 0.5 }}
-            end={{ x: 1, y: 0.5 }}>
+            end={{ x: 1, y: 0.5 }}
+          >
             <View style={styles.cardDescWrap}>
               <View style={styles.cardLogo}>
                 <Image
@@ -124,8 +135,12 @@ class BaseKnowledge extends React.Component {
                 <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
                   建议完成时间: 15分钟
                 </Text>
-                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>建议人群: 初学者</Text>
-                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>完成人数: 1333人</Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  建议人群: 初学者
+                </Text>
+                <Text style={[styles.cardSubTitle, styles.cardDescFontColor]}>
+                  完成人数: 1333人
+                </Text>
               </View>
             </View>
           </LinearGradient>
@@ -195,11 +210,11 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   cardImg: {
-    height: 27,
-    width: 27,
+    height: 24,
+    width: 24,
     position: 'absolute',
     top: 13,
-    left: 12
+    left: 13
   },
   cardDesc: {
     marginTop: 15,
