@@ -20,8 +20,8 @@ class InformationScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Header tabNames={tabNames} headerTitle='时训'>
-          <NewScreen tabLabel='环球新闻' />
-          <NewScreen tabLabel='关键日历' />
+          <NewScreen tabLabel='环球新闻' navigation={this.props.navigation} />
+          <NewScreen tabLabel='关键日历' navigation={this.props.navigation} />
         </Header>
       </View>
     )

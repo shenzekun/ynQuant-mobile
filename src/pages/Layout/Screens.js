@@ -27,8 +27,18 @@ export default {
         )
       },
       title: '知识',
-      header: 'none',
-      mode: 'modal' // 使用标准的iOS和Android页面转换风格
+      mode: 'modal', // 使用标准的iOS和Android页面转换风格
+      headerStyle: {
+        backgroundColor: '#4b525f',
+        borderBottomColor: '#4b525f'
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        fontSize: 34,
+        position: 'absolute',
+        left: 0,
+        top: 5
+      }
     }
   },
   InformationScreen: {
@@ -46,8 +56,18 @@ export default {
           />
         )
       },
+      headerStyle: {
+        backgroundColor: '#000',
+        borderBottomColor: '#000'
+      },
       title: '时讯',
-      header: 'none'
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        fontSize: 34,
+        position: 'absolute',
+        left: 0,
+        top: 5
+      }
     }
   },
   SimulateScreen: {
@@ -75,9 +95,7 @@ export default {
         return (
           <Image
             source={
-              focused
-                ? require('../../images/about-active.png')
-                : require('../../images/about.png')
+              focused ? require('../../images/about-active.png') : require('../../images/about.png')
             }
             style={{ width: 23, height: 25 }}
           />

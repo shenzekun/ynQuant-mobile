@@ -21,16 +21,6 @@ class Header extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle='light-content' backgroundColor='#000' />
-        <View
-          style={[
-            styles.titleContainer,
-            {
-              backgroundColor: this.bgColor
-            }
-          ]}
-        >
-          <Animated.Text style={[styles.headerTitle]}>{this.props.headerTitle}</Animated.Text>
-        </View>
         <Animated.View
           style={[
             styles.container,
@@ -97,7 +87,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginLeft: 5,
-    marginRight: 5
+    marginRight: 5,
+    marginTop: 5
   },
   searchIcon: {
     marginLeft: 6,

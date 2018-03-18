@@ -5,6 +5,7 @@
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import React from 'react'
 import Screen from './Screens'
+import DayAnalysisScreen from '../Information/News/dayAnalysis'
 
 const TabBar = TabNavigator(Screen, {
   // 定义全局 Tabbar 配置, 配置文档: https://reactnavigation.org/docs/tab-navigator.html
@@ -31,6 +32,10 @@ const Navigator = StackNavigator(
   {
     TabBar: {
       screen: TabBar
+    },
+    DayAnalysisScreen: {
+      screen: DayAnalysisScreen,
+      headerBackTitle: '返回'
     }
   },
   {
@@ -39,13 +44,7 @@ const Navigator = StackNavigator(
       backgroundColor: '#fff'
     },
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#000'
-      },
       headerTintColor: '#fff', // 设置导航栏颜色
-      headerTitleStyle: {
-        fontWeight: 'bold'
-      },
       gesturesEnabled: true // 支持手滑返回
     }
   }
