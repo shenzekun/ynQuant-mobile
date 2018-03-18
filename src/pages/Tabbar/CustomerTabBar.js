@@ -25,7 +25,6 @@ class CustomerTabBar extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     let color = this.state.animate.interpolate({
       inputRange: [0, 1],
       outputRange: [this.props.prevBackgroundColor, this.props.backgroundColor]
