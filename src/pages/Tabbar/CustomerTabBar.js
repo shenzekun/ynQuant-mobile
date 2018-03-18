@@ -8,10 +8,10 @@ const mapStateToProps = state => {
 
 class CustomerTabBar extends React.Component {
   render () {
-    let color = this.state.x.interpolate({
-      inputRange: [0, 300],
-      outputRange: ['rgba(255, 0, 0, 1)', 'rgba(0, 255, 0, 1)']
-    })
+    // let color = this.state.x.interpolate({
+    //   inputRange: [0, 300],
+    //   outputRange: ['rgba(255, 0, 0, 1)', 'rgba(0, 255, 0, 1)']
+    // })
     return (
       <TabBarBottom {...this.props} style={{ backgroundColor: this.props.backgroundColor || '#333' }} />
     )
