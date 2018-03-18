@@ -5,7 +5,7 @@ const propTypes = {
   tabNames: PropTypes.array.isRequired, // 标签名
   activeTab: PropTypes.number, // 当前被选中的tab下标
   goToPage: PropTypes.func, // 跳转到对应tab的方法
-  tabs: PropTypes.array, // 所有tabs集合
+  tabs: PropTypes.array.isRequired, // 所有tabs集合
   bgColor: PropTypes.string // 背景颜色
 }
 class TouchTab extends React.Component {

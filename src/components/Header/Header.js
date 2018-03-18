@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StatusBar, StyleSheet, Platform, Animated, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
-import TouchTab from '../../conponents/TouchTab'
+import TouchTab from '../../components/TouchTab'
 import PropTypes from 'prop-types'
 
 const propTypes = {
