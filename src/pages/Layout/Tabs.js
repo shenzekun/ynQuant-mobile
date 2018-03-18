@@ -38,17 +38,17 @@ const Navigator = StackNavigator(
     },
     DayAnalysisScreen: {
       screen: DayAnalysisScreen,
-      headerBackTitle: '返回'
+      navigationOptions: {
+        headerTintColor: '#fff', // 设置导航栏颜色
+        gesturesEnabled: true, // 支持手滑返回
+        headerBackTitle: '返回'
+      }
     }
   },
   {
     cardStyle: {
       // 为各个页面设置统一的样式
       backgroundColor: '#fff'
-    },
-    navigationOptions: {
-      headerTintColor: '#fff', // 设置导航栏颜色
-      gesturesEnabled: true // 支持手滑返回
     }
   }
 )
