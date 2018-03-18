@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet, Animated, Image, ScrollView } from 'react-native'
+import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 class BaseKnowledge extends React.Component {
   render () {
