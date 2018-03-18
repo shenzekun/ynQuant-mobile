@@ -5,6 +5,7 @@
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import React from 'react'
 import Screen from './Screens'
+import DayAnalysisScreen from '../Information/News/dayAnalysis'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
 import { connect } from 'react-redux'
 
@@ -34,22 +35,20 @@ const Navigator = StackNavigator(
   {
     TabBar: {
       screen: TabBar
+    },
+    DayAnalysisScreen: {
+      screen: DayAnalysisScreen,
+      navigationOptions: {
+        headerTintColor: '#fff', // 设置导航栏颜色
+        gesturesEnabled: true, // 支持手滑返回
+        headerBackTitle: '返回'
+      }
     }
   },
   {
     cardStyle: {
       // 为各个页面设置统一的样式
       backgroundColor: '#fff'
-    },
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#000'
-      },
-      headerTintColor: '#fff', // 设置导航栏颜色
-      headerTitleStyle: {
-        fontWeight: 'bold'
-      },
-      gesturesEnabled: true // 支持手滑返回
     }
   }
 )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import BaseKnowledge from './BaseKnowledge/baseKnowledge'
-import Header from '../../conponents/Header/Header'
+import Header from '../../components/Header/Header'
 import { connect } from 'react-redux'
 /*
   状态栏配置
