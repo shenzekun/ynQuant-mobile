@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import BaseKnowledge from './BaseKnowledge/baseKnowledge'
-import Header from '../../conponents/Header/Header'
+import Header from '../../components/Header/Header'
 /*
   状态栏配置
   https://reactnavigation.org/docs/status-bar.html
