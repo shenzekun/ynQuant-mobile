@@ -1,19 +1,32 @@
 import React from 'react'
-import { View, StyleSheet, Platform } from 'react-native'
-import { connect } from 'react-redux'
+import { StyleSheet, View } from 'react-native'
 import BaseKnowledge from './BaseKnowledge/baseKnowledge'
-import Header from '../../components/Header/Header'
+import Header from '../../conponents/Header/Header'
+import { connect } from 'react-redux'
 /*
   状态栏配置
   https://reactnavigation.org/docs/status-bar.html
 */
+const mapStateToProps = state => {
+  return state.Knowlege
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+
 class KnowledgeScreen extends React.Component {
+  static navigationOptions = ({ navigation, navigationOptions, screenProps }) => {
+  }
+
   constructor (props) {
     super(props)
     this.state = {
       tabNames: ['基础知识', '进阶知识']
     }
   }
+
   render () {
     let tabNames = this.state.tabNames
     return (
@@ -30,4 +43,4 @@ class KnowledgeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f0f5f9' }
 })
-export default KnowledgeScreen
+export default connect(mapStateToProps, mapDispatchToProps)(KnowledgeScreen)
