@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios --simulator \"iPhone 8 Plus\"",
     "ios-device": "node node_modules/react-native/local-cli/cli.js run-ios --device",
-    "build-ios": "react-native unbundle --entry-file index.ios.js --platform ios --dev false",
+    "build-ios": "react-native bundle --bundle-output build/ios.bundle --entry-file App.js --platform ios --dev false ",
     "test": "jest"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "react-native": "^0.54.2",
     "react-native-app-intro": "^1.1.5",
     "react-native-app-intro-slider": "^0.2.4",
+    "react-native-git-upgrade": "^0.2.7",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-swiper": "^1.5.13",
