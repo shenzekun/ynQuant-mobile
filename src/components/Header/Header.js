@@ -1,13 +1,11 @@
 import React from 'react'
-import { View, StatusBar, StyleSheet, Platform, Animated, TextInput, Image } from 'react-native'
-import { connect } from 'react-redux'
+import { Animated, Image, Platform, StatusBar, StyleSheet, TextInput, View } from 'react-native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import TouchTab from '../../components/TouchTab'
 import PropTypes from 'prop-types'
 
 const propTypes = {
   tabNames: PropTypes.array.isRequired, //  标签名
-  headerTitle: PropTypes.string.isRequired, // 头部标题
   bgColor: PropTypes.string, // 背景颜色
   searchColor: PropTypes.string // 搜索框颜色
 }
@@ -17,6 +15,7 @@ class Header extends React.Component {
   bgColor = this.props.bgColor ? this.props.bgColor : '#000'
   searchColor = this.props.searchColor ? this.props.searchColor : '#393f49'
   childLen = this.props.children.length
+
   render () {
     return (
       <View style={{ flex: 1 }}>
