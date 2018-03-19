@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, InteractionManager } from 'react-native'
 import { connect } from 'react-redux'
 import TimeLine from '../../../components/TimeLine'
 
@@ -68,7 +68,9 @@ class NewScreen extends React.Component {
         ]
       }
     ]
-    this.setState({ data: flatListData })
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({ data: flatListData })
+    })
   }
   render () {
     const { navigate } = this.props.navigation

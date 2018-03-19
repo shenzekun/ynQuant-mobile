@@ -47,7 +47,10 @@ const Navigator = StackNavigator(
       navigationOptions: {
         headerTintColor: '#fff', // 设置导航栏颜色
         gesturesEnabled: true, // 支持手滑返回
-        headerBackTitle: '返回'
+        headerStyle: {
+          backgroundColor: '#4b525f',
+          borderBottomColor: '#4b525f'
+        }
       }
     }
   },
