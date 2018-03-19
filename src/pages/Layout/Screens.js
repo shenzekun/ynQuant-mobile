@@ -33,6 +33,7 @@ export default {
         borderBottomColor: '#4b525f'
       },
       headerTitleStyle: {
+        color: '#fff',
         fontWeight: 'bold',
         fontSize: 34,
         position: 'absolute',
