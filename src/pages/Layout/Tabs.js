@@ -8,6 +8,7 @@ import Screen from './Screens'
 import DayAnalysisScreen from '../Information/News/dayAnalysis'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
 import { connect } from 'react-redux'
+import InformationScreen from '../Information/information'
 
 let TabBar = TabNavigator(Screen, {
   // 定义全局 Tabbar 配置, 配置文档: https://reactnavigation.org/docs/tab-navigator.html
@@ -28,7 +29,7 @@ let TabBar = TabNavigator(Screen, {
       fontSize: 11
     }
   },
-  animationEnabled: false // 开启动画
+  animationEnabled: true // 开启动画
 })
 
 const Navigator = StackNavigator(
@@ -53,13 +54,6 @@ const Navigator = StackNavigator(
   }
 )
 
-const changeTabBarColor = (backgroundColor) => ({
-  type: 'CHANGE_TABBAR_BG_COLOR',
-  payload: {
-    backgroundColor: backgroundColor
-  }
-})
-
 function getCurrentRouteName (navigationState) {
   if (!navigationState) {
     return null
@@ -72,15 +66,23 @@ function getCurrentRouteName (navigationState) {
   return route.routeName
 }
 
-function getCurrentRouteScreenColor (ScreenName) {
-  console.log(ScreenName)
+function getScreenColor (ScreenName) {
   switch (ScreenName) {
     case 'KnowledgeScreen':
-      return '#4b525e'
+      return 'rgba(75,83,94,1)'
+    case 'InformationScreen':
+      return 'rgba(0,0,0,1)'
     default:
-      return '#000'
+      return 'rgba(0,0,0,1)'
   }
 }
+
+const changeTabBarColor = (nextBackgroundColor) => ({
+  type: 'CHANGE_TABBAR_BG_COLOR',
+  payload: {
+    nextBackgroundColor: nextBackgroundColor
+  }
+})
 
 const mapStateToProps = state => {
   return state
@@ -88,7 +90,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPageChange: (color) => dispatch(changeTabBarColor(color))
+    onPageChange: (nextColor) => dispatch(changeTabBarColor(nextColor))
   }
 }
 
@@ -96,10 +98,8 @@ class Tabs extends React.Component {
   render () {
     return <Navigator
       onNavigationStateChange={(prevState, currentState) => {
-        // const currentScreen = getCurrentRouteName(currentState)
-        // const prevScreen = getCurrentRouteName(prevState)
-
-        this.props.onPageChange(getCurrentRouteScreenColor(getCurrentRouteName(currentState)))
+        const currentScreen = getCurrentRouteName(currentState)
+        this.props.onPageChange(getScreenColor(currentScreen))
       }}
     />
   }

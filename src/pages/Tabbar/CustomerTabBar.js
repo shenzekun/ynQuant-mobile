@@ -1,5 +1,6 @@
 import { TabBarBottom } from 'react-navigation'
 import React from 'react'
+import { Animated, Easing } from 'react-native'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
@@ -7,13 +8,29 @@ const mapStateToProps = state => {
 }
 
 class CustomerTabBar extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      animate: new Animated.Value(0)
+    }
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    this.state.animate.setValue(0)
+    Animated.timing(this.state.animate, {
+      toValue: 1,
+      duration: 300,
+      easing: Easing.ease
+    }).start()
+  }
+
   render () {
-    // let color = this.state.x.interpolate({
-    //   inputRange: [0, 300],
-    //   outputRange: ['rgba(255, 0, 0, 1)', 'rgba(0, 255, 0, 1)']
-    // })
+    let color = this.state.animate.interpolate({
+      inputRange: [0, 1],
+      outputRange: [this.props.prevBackgroundColor, this.props.backgroundColor]
+    })
     return (
-      <TabBarBottom {...this.props} style={{ backgroundColor: this.props.backgroundColor || '#333' }} />
+      <TabBarBottom {...this.props} style={{ backgroundColor: color || '#333' }} />
     )
   }
 }
