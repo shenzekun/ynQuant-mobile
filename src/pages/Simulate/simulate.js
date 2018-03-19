@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Text, View, StatusBar } from 'react-native'
-import { connect } from 'react-redux'
+import { StatusBar, Text, View } from 'react-native'
+
 /*
   状态栏配置
   https://reactnavigation.org/docs/status-bar.html
