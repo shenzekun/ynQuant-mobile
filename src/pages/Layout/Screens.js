@@ -60,6 +60,7 @@ export default {
         backgroundColor: '#000',
         borderBottomColor: '#000'
       },
+      headerBackTitle: '返回',
       headerTintColor: '#fff', // 导航栏颜色
       title: '时讯',
       headerTitleStyle: {

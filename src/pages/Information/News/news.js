@@ -68,9 +68,8 @@ class NewScreen extends React.Component {
         ]
       }
     ]
-    InteractionManager.runAfterInteractions(() => {
-      this.setState({ data: flatListData })
-    })
+
+    this.setState({ data: flatListData })
   }
   render () {
     const { navigate } = this.props.navigation

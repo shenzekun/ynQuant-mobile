@@ -9,7 +9,11 @@ import DayAnalysisScreen from '../Information/News/dayAnalysis'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
 import { connect } from 'react-redux'
 import { changeTabBarColor } from './TabsAction'
-import { Dimensions } from 'react-native'
+import { Dimensions, Text } from 'react-native'
+
+let today = new Date()
+let mouth = today.getMonth() + 1
+let day = today.getDate()
 
 let TabBar = TabNavigator(Screen, {
   // 定义全局 Tabbar 配置, 配置文档: https://reactnavigation.org/docs/tab-navigator.html
@@ -48,9 +52,14 @@ const Navigator = StackNavigator(
         headerTintColor: '#fff', // 设置导航栏颜色
         gesturesEnabled: true, // 支持手滑返回
         headerStyle: {
-          backgroundColor: '#4b525f',
-          borderBottomColor: '#4b525f'
-        }
+          backgroundColor: '#094c90'
+        },
+        headerTitle: '今日分析',
+        headerRight: (
+          <Text style={{ color: 'white', fontSize: 17, marginRight: 9 }}>
+            {mouth}月{day}日
+          </Text>
+        )
       }
     }
   },
