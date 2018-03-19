@@ -6,7 +6,7 @@ const initialState = {
 export default (state = initialState, action) => {
   const prevBackgroundColor = state.backgroundColor
   switch (action.type) {
-    case 'CHANGE_TABBAR_BG_COLOR': {
+    case 'CHANGE_BG_COLOR': {
       return {
         ...state,
         backgroundColor: action.payload.nextBackgroundColor,

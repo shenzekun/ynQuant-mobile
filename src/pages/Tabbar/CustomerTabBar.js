@@ -30,7 +30,7 @@ class CustomerTabBar extends React.Component {
       outputRange: [this.props.prevBackgroundColor, this.props.backgroundColor]
     })
     return (
-      <TabBarBottom {...this.props} style={{ backgroundColor: color || '#333' }} />
+      <TabBarBottom {...this.props} style={{ backgroundColor: color }} />
     )
   }
 }

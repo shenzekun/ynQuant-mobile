@@ -8,7 +8,7 @@ import Screen from './Screens'
 import DayAnalysisScreen from '../Information/News/dayAnalysis'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
 import { connect } from 'react-redux'
-import InformationScreen from '../Information/information'
+import { changeTabBarColor } from './TabsAction'
 
 let TabBar = TabNavigator(Screen, {
   // 定义全局 Tabbar 配置, 配置文档: https://reactnavigation.org/docs/tab-navigator.html
@@ -22,14 +22,14 @@ let TabBar = TabNavigator(Screen, {
     inactiveTintColor: '#9a9a9a', // 未选中时文字颜色
     showIcon: true,
     tabBarPosition: 'bottom', // tab bar的位置
-    lazy: false, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
+    lazy: true, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
     labelStyle: {
       // tab 字样式
       fontWeight: 'bold',
       fontSize: 11
     }
   },
-  animationEnabled: true // 开启动画
+  animationEnabled: false // 开启动画
 })
 
 const Navigator = StackNavigator(
@@ -54,36 +54,6 @@ const Navigator = StackNavigator(
   }
 )
 
-function getCurrentRouteName (navigationState) {
-  if (!navigationState) {
-    return null
-  }
-  const route = navigationState.routes[navigationState.index]
-  // dive into nested navigators
-  if (route.routes) {
-    return getCurrentRouteName(route)
-  }
-  return route.routeName
-}
-
-function getScreenColor (ScreenName) {
-  switch (ScreenName) {
-    case 'KnowledgeScreen':
-      return 'rgba(75,83,94,1)'
-    case 'InformationScreen':
-      return 'rgba(0,0,0,1)'
-    default:
-      return 'rgba(0,0,0,1)'
-  }
-}
-
-const changeTabBarColor = (nextBackgroundColor) => ({
-  type: 'CHANGE_TABBAR_BG_COLOR',
-  payload: {
-    nextBackgroundColor: nextBackgroundColor
-  }
-})
-
 const mapStateToProps = state => {
   return state
 }
@@ -95,11 +65,32 @@ const mapDispatchToProps = dispatch => {
 }
 
 class Tabs extends React.Component {
+  getScreenColor (ScreenName) {
+    const screenColor = {
+      KnowledgeScreen: 'rgba(75,83,94,1)',
+      InformationScreen: 'rgba(0,0,0,1)'
+    }
+
+    return screenColor[ScreenName] || 'rgba(0,0,0,1)'
+  }
+
+  getCurrentRouteName (navigationState) {
+    if (!navigationState) {
+      return null
+    }
+    const route = navigationState.routes[navigationState.index]
+    // dive into nested navigators
+    if (route.routes) {
+      return this.getCurrentRouteName(route)
+    }
+    return route.routeName
+  }
+
   render () {
     return <Navigator
       onNavigationStateChange={(prevState, currentState) => {
-        const currentScreen = getCurrentRouteName(currentState)
-        this.props.onPageChange(getScreenColor(currentScreen))
+        const currentScreen = this.getCurrentRouteName(currentState)
+        this.props.onPageChange(this.getScreenColor(currentScreen))
       }}
     />
   }
