@@ -1,16 +1,22 @@
+
 const initialState = {
-  prevBackgroundColor: 'rgba(0,0,0,1)',
-  backgroundColor: 'rgba(0,0,0,1)'
+  prevBackgroundColor: '#000',
+  backgroundColor: '#000',
+  searchBgColor: '#393f49',
+  prevSearchBgColor: '#393f49'
 }
 
 export default (state = initialState, action) => {
   const prevBackgroundColor = state.backgroundColor
+  const prevSearchBgColor = state.searchBgColor
   switch (action.type) {
     case 'CHANGE_TABBAR_BG_COLOR': {
       return {
         ...state,
         backgroundColor: action.payload.nextBackgroundColor,
-        prevBackgroundColor: prevBackgroundColor
+        prevBackgroundColor: prevBackgroundColor,
+        searchBgColor: action.payload.nextBackgroundColor,
+        prevSearchBgColor: prevSearchBgColor
       }
     }
     default: {

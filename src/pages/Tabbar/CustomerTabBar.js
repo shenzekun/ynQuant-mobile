@@ -19,8 +19,8 @@ class CustomerTabBar extends React.Component {
     this.state.animate.setValue(0)
     Animated.timing(this.state.animate, {
       toValue: 1,
-      duration: 300,
-      easing: Easing.ease
+      duration: 100,
+      easing: Easing.linear
     }).start()
   }
 
