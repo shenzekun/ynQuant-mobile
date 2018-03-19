@@ -27,7 +27,6 @@ export default {
         )
       },
       title: '知识',
-      mode: 'modal', // 使用标准的iOS和Android页面转换风格
       headerStyle: {
         backgroundColor: '#4b525f',
         borderBottomColor: '#4b525f'

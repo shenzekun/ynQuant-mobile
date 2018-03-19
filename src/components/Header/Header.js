@@ -16,7 +16,7 @@ import { connect } from 'react-redux'
 
 const propTypes = {
   tabNames: PropTypes.array.isRequired, //  标签名
-  bgColor: PropTypes.string, // 背景颜色
+  // bgColor: PropTypes.string, // 背景颜色
   searchColor: PropTypes.string // 搜索框颜色
 }
 const mapStateToProps = state => {
@@ -24,7 +24,7 @@ const mapStateToProps = state => {
 }
 class Header extends React.Component {
   tabNames = this.props.tabNames
-  // bgColor = this.props.bgColor ? this.props.bgColor : '#000'
+  bgColor = this.props.bgColor ? this.props.bgColor : '#000'
   searchColor = this.props.searchColor ? this.props.searchColor : '#393f49'
   childLen = this.props.children.length
 
@@ -53,9 +53,10 @@ class Header extends React.Component {
   }
 
   render () {
+    console.log(this.props.prevBackgroundColor)
     let bgColor = this.state.animate.interpolate({
       inputRange: [0, 1],
-      outputRange: [this.props.prevBackgroundColor, this.props.backgroundColor]
+      outputRange: [this.props.backgroundColor, this.props.backgroundColor]
     })
     return (
       <View style={{ flex: 1 }}>
@@ -68,7 +69,7 @@ class Header extends React.Component {
             }
           ]}
         >
-          <Animated.View
+          <View
             style={[
               styles.searchBox,
               {
@@ -84,10 +85,10 @@ class Header extends React.Component {
               keyboardType='default'
             />
             <Image source={require('../../images/dictation.png')} style={styles.voiceIcon} />
-          </Animated.View>
+          </View>
         </Animated.View>
         <ScrollableTabView
-          renderTabBar={() => <TouchTab tabNames={this.tabNames} bgColor={this.bgColor} />}
+          renderTabBar={() => <TouchTab tabNames={this.tabNames} bgColor={bgColor} />}
           prerenderingSiblingsNumber={this.childLen}
         >
           {this.props.children}
