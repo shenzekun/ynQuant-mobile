@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 
 const propTypes = {
   tabNames: PropTypes.array.isRequired, //  标签名
-  headerTitle: PropTypes.string.isRequired, // 头部标题
   bgColor: PropTypes.string, // 背景颜色
   searchColor: PropTypes.string // 搜索框颜色
 }
