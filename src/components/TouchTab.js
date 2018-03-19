@@ -32,9 +32,9 @@ class TouchTab extends React.Component {
     }).start()
   }
 
-  componentWillUpdate () {
-    this.startAnimate()
-  }
+  // componentWillUpdate () {
+  //   this.startAnimate()
+  // }
 
   componentDidMount () {
     this.startAnimate()

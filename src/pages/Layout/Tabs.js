@@ -9,6 +9,7 @@ import DayAnalysisScreen from '../Information/News/dayAnalysis'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
 import { connect } from 'react-redux'
 import { changeTabBarColor } from './TabsAction'
+import { Dimensions } from 'react-native'
 
 let TabBar = TabNavigator(Screen, {
   // 定义全局 Tabbar 配置, 配置文档: https://reactnavigation.org/docs/tab-navigator.html
@@ -22,14 +23,18 @@ let TabBar = TabNavigator(Screen, {
     inactiveTintColor: '#9a9a9a', // 未选中时文字颜色
     showIcon: true,
     tabBarPosition: 'bottom', // tab bar的位置
-    lazy: true, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
     labelStyle: {
       // tab 字样式
       fontWeight: 'bold',
       fontSize: 11
     }
   },
-  animationEnabled: false // 开启动画
+  lazy: false, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
+  animationEnabled: false, // 开启动画
+  initialLayout: {
+    height: 49,
+    width: Dimensions.get('window').width
+  }
 })
 
 const Navigator = StackNavigator(
@@ -60,7 +65,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPageChange: (nextColor) => dispatch(changeTabBarColor(nextColor))
+    onPageChange: nextColor => dispatch(changeTabBarColor(nextColor))
   }
 }
 
@@ -87,12 +92,14 @@ class Tabs extends React.Component {
   }
 
   render () {
-    return <Navigator
-      onNavigationStateChange={(prevState, currentState) => {
-        const currentScreen = this.getCurrentRouteName(currentState)
-        this.props.onPageChange(this.getScreenColor(currentScreen))
-      }}
-    />
+    return (
+      <Navigator
+        onNavigationStateChange={(prevState, currentState) => {
+          const currentScreen = this.getCurrentRouteName(currentState)
+          this.props.onPageChange(this.getScreenColor(currentScreen))
+        }}
+      />
+    )
   }
 }
 
