@@ -13,7 +13,7 @@ import AboutScreen from '../About/about' // 我的
 export default {
   KnowledgeScreen: {
     screen: KnowledgeScreen,
-    navigationOptions: {
+    navigationOptions: () => ({
       tabBarIcon: ({ focused, tintColor }) => {
         return (
           <Image
@@ -39,7 +39,7 @@ export default {
         left: 0,
         top: 5
       }
-    }
+    })
   },
   InformationScreen: {
     screen: InformationScreen,

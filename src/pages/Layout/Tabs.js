@@ -6,10 +6,12 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import React from 'react'
 import Screen from './Screens'
 import DayAnalysisScreen from '../Information/News/dayAnalysis'
+import BaseIntroduce from '../Knowedge/BaseKnowledge/baseIntroduce'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
 import { connect } from 'react-redux'
 import { changeTabBarColor } from './TabsAction'
 import { Dimensions, Text } from 'react-native'
+import BaseDetail from '../Knowedge/BaseKnowledge/baseDetail'
 
 let today = new Date()
 let mouth = today.getMonth() + 1
@@ -61,13 +63,23 @@ const Navigator = StackNavigator(
           </Text>
         )
       }
+    },
+    BaseIntroduce: {
+      screen: BaseIntroduce,
+      navigationOptions: {
+        header: 'none'
+      }
+    },
+    BaseDetail: {
+      screen: BaseDetail
     }
   },
   {
     cardStyle: {
       // 为各个页面设置统一的样式
       backgroundColor: '#fff'
-    }
+    },
+    headerMode: 'screen'
   }
 )
 
@@ -88,7 +100,7 @@ class Tabs extends React.Component {
       InformationScreen: 'rgba(0,0,0,1)'
     }
 
-    return screenColor[ScreenName] || 'rgba(0,0,0,1)'
+    return screenColor[ScreenName] || null
   }
 
   getCurrentRouteName (navigationState) {

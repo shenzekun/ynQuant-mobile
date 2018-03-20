@@ -53,7 +53,6 @@ class Header extends React.Component {
   }
 
   render () {
-    console.log(this.props.prevBackgroundColor)
     let bgColor = this.state.animate.interpolate({
       inputRange: [0, 1],
       outputRange: [this.props.backgroundColor, this.props.backgroundColor]
