@@ -6,10 +6,16 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import React from 'react'
 import Screen from './Screens'
 import DayAnalysisScreen from '../Information/News/dayAnalysis'
+import BaseIntroduce from '../Knowedge/BaseKnowledge/baseIntroduce'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
 import { connect } from 'react-redux'
 import { changeTabBarColor } from './TabsAction'
-import { Dimensions } from 'react-native'
+import { Dimensions, Text } from 'react-native'
+import BaseDetail from '../Knowedge/BaseKnowledge/baseDetail'
+
+let today = new Date()
+let mouth = today.getMonth() + 1
+let day = today.getDate()
 
 let TabBar = TabNavigator(Screen, {
   // 定义全局 Tabbar 配置, 配置文档: https://reactnavigation.org/docs/tab-navigator.html
@@ -48,17 +54,32 @@ const Navigator = StackNavigator(
         headerTintColor: '#fff', // 设置导航栏颜色
         gesturesEnabled: true, // 支持手滑返回
         headerStyle: {
-          backgroundColor: '#4b525f',
-          borderBottomColor: '#4b525f'
-        }
+          backgroundColor: '#094c90'
+        },
+        headerTitle: '今日分析',
+        headerRight: (
+          <Text style={{ color: 'white', fontSize: 17, marginRight: 9 }}>
+            {mouth}月{day}日
+          </Text>
+        )
       }
+    },
+    BaseIntroduce: {
+      screen: BaseIntroduce,
+      navigationOptions: {
+        header: 'none'
+      }
+    },
+    BaseDetail: {
+      screen: BaseDetail
     }
   },
   {
     cardStyle: {
       // 为各个页面设置统一的样式
       backgroundColor: '#fff'
-    }
+    },
+    headerMode: 'screen'
   }
 )
 
@@ -79,7 +100,7 @@ class Tabs extends React.Component {
       InformationScreen: 'rgba(0,0,0,1)'
     }
 
-    return screenColor[ScreenName] || 'rgba(0,0,0,1)'
+    return screenColor[ScreenName] || null
   }
 
   getCurrentRouteName (navigationState) {

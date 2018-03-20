@@ -12,19 +12,18 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-  }
+  return {}
 }
 
 class KnowledgeScreen extends React.Component {
-  static navigationOptions = ({ navigation, navigationOptions, screenProps }) => {
-  }
+  static navigationOptions = ({ navigation, navigationOptions, screenProps }) => {}
 
   constructor (props) {
     super(props)
     this.state = {
       tabNames: ['基础知识', '进阶知识']
     }
+    console.log(this.props.navigation)
   }
 
   render () {
@@ -32,8 +31,8 @@ class KnowledgeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Header tabNames={tabNames} headerTitle='知识' searchColor='#7c7c7c' bgColor='#4b525e'>
-          <BaseKnowledge tabLabel='基础知识' />
-          <BaseKnowledge tabLabel='进阶知识' />
+          <BaseKnowledge tabLabel='基础知识' navigation={this.props.navigation} />
+          <BaseKnowledge tabLabel='进阶知识' navigation={this.props.navigation} />
         </Header>
       </View>
     )
