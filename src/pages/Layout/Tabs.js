@@ -73,7 +73,7 @@ const Navigator = StackNavigator(
         headerTintColor: '#fff', // 设置导航栏颜色
         headerStyle: {
           backgroundColor: '#4b525f',
-          borderBottomColor: '#4b525f'
+          borderBottomColor: '#414752'
         }
       }
     }
