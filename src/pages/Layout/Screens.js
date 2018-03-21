@@ -31,6 +31,7 @@ export default {
         backgroundColor: '#4b525f',
         borderBottomColor: '#4b525f'
       },
+      headerBackTitle: '返回',
       headerTitleStyle: {
         color: '#fff',
         fontWeight: 'bold',
