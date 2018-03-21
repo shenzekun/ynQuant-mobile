@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, Image, Platform} from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import {NavigationActions, SafeAreaView} from 'react-navigation'
 
 class BaseIntroduce extends React.Component {
   constructor (props) {
@@ -21,7 +21,7 @@ class BaseIntroduce extends React.Component {
     console.log(this.props)
     const {goBack} = this.props.navigation
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.contentWrap}>
           <Image
             source={require('../../../images/knowledge/foreignExchange.png')}
@@ -29,12 +29,10 @@ class BaseIntroduce extends React.Component {
           />
           <Text style={styles.title}>外汇基础知识</Text>
           <Text style={styles.contentText}>外汇，就是外国货币或以外国货币表示的能用于国际结算的支付手段</Text>
-          <View style={styles.btn}>
-            <Text onPress={() => goBack()} style={[styles.btnText, styles.backColor]}>返回</Text>
-            <Text onPress={() => this._replaceTo()} style={[styles.btnText, styles.continueColor]}>开始</Text>
-          </View>
+          <Text onPress={() => goBack()} style={[styles.btnText, styles.backColor]}>返回</Text>
+          <Text onPress={() => this._replaceTo()} style={[styles.btnText, styles.continueColor]}>开始</Text>
         </View>
-      </View>
+      </SafeAreaView>
     )
   }
 }
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   img: {
-    width: 345,
+    width: '100%',
     height: 284
   },
   content: {
@@ -74,14 +72,10 @@ const styles = StyleSheet.create({
     lineHeight: 27,
     position: 'relative'
   },
-  btn: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  btnText: {
+    fontSize: 17,
     position: 'absolute',
     bottom: 30
-  },
-  btnText: {
-    fontSize: 17
   },
   backColor: {
     color: '#777777',
@@ -89,7 +83,7 @@ const styles = StyleSheet.create({
   },
   continueColor: {
     color: '#000',
-    left: 202
+    right: 68
   }
 })
 export default BaseIntroduce

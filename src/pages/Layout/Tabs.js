@@ -22,9 +22,6 @@ let TabBar = TabNavigator(Screen, {
   initialRouteName: 'InformationScreen', // 首页名字
   tabBarComponent: CustomerTabBar,
   tabBarOptions: {
-    style: {
-      // backgroundColor: '#000' // 底部 tab 颜色
-    },
     activeTintColor: '#fff', // 选中时文字颜色
     inactiveTintColor: '#9a9a9a', // 未选中时文字颜色
     showIcon: true,
@@ -71,7 +68,14 @@ const Navigator = StackNavigator(
       }
     },
     BaseDetail: {
-      screen: BaseDetail
+      screen: BaseDetail,
+      navigationOptions: {
+        headerTintColor: '#fff', // 设置导航栏颜色
+        headerStyle: {
+          backgroundColor: '#4b525f',
+          borderBottomColor: '#4b525f'
+        }
+      }
     }
   },
   {
