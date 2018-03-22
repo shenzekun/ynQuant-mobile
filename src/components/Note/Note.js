@@ -3,14 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  SectionList,
   TouchableOpacity,
   Image,
-  ScrollView,
   FlatList
 } from 'react-native'
 import PropTypes from 'prop-types'
-import {getLineBreak} from '../../config/utils'
+import { getLineBreak } from '../../config/utils'
 
 const propTypes = {
   data: PropTypes.array.isRequired // 数据
@@ -33,18 +31,18 @@ class Note extends React.Component {
     return (
       <View key={key}>
         <View style={styles.noteHeaderWrap}>
-          <Image source={{uri: imageUrl}} style={styles.img}/>
+          <Image source={{ uri: imageUrl }} style={styles.img} />
           <View style={styles.personInfoWrap}>
             <Text style={styles.nameTitle}>{name}</Text>
             <View style={styles.locationWrap}>
-              <Image source={require('../../images/note/location.png')}/>
+              <Image source={require('../../images/note/location.png')} />
               <Text style={styles.locationText}>{location}</Text>
               <Text style={styles.locationText}>{time}</Text>
             </View>
           </View>
           <View style={styles.likeWrap}>
             <TouchableOpacity>
-              <Image source={require('../../images/note/like.png')}/>
+              <Image source={require('../../images/note/like.png')} />
             </TouchableOpacity>
             <Text style={styles.likeNum}>{like}</Text>
           </View>
@@ -57,9 +55,12 @@ class Note extends React.Component {
   render () {
     return (
       <View style={styles.noteWrap}>
-        <FlatList renderItem={this._renderItem} data={this.props.data} initialNumToRender={2}
+        <FlatList
+          renderItem={this._renderItem}
+          data={this.props.data}
+          initialNumToRender={2}
           showsVerticalScrollIndicator={false}
-          ListFooterComponent={() => (<View style={{height: 190}} />)}
+          ListFooterComponent={() => <View style={{ height: 190 }} />}
         />
       </View>
     )
