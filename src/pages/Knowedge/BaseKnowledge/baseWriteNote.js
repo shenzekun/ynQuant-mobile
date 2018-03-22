@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import CheckBox from 'react-native-check-box'
 import Note from '../../../components/Note/note'
 
@@ -8,25 +8,48 @@ class BaseWriteNote extends React.Component {
     super(props)
     this.state = {
       isCheckBoxSelected: true,
-      data: [{
-        key: 1,
-        data: [{
+      data: [
+        {
+          key: '1',
           name: 'xxx',
           imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
           like: 22,
-          content: '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
+          content:
+            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
           time: '18:01',
           location: '天津'
-        }]
-      }, {
-        key: 1,
-        data: [{
+        },
+        {
+          key: '2',
           name: 'xxx',
           imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
           like: 22,
-          content: '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
+          content:
+            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
           time: '18:01',
-          location: '天津'}]}]
+          location: '天津'
+        },
+        {
+          key: '3',
+          name: 'xxx',
+          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
+          like: 22,
+          content:
+            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
+          time: '18:01',
+          location: '天津'
+        },
+        {
+          key: '4',
+          name: 'xxx',
+          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
+          like: 22,
+          content:
+            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
+          time: '18:01',
+          location: '天津'
+        }
+      ]
     }
   }
 
@@ -37,7 +60,7 @@ class BaseWriteNote extends React.Component {
   }
 
   render () {
-    const {goBack} = this.props.navigation
+    const { goBack } = this.props.navigation
     return (
       <View style={styles.container}>
         <View style={styles.writeNoteWrap}>
@@ -46,16 +69,15 @@ class BaseWriteNote extends React.Component {
             <Text>笔记：15个</Text>
           </View>
           <View style={styles.inputContentWrap}>
-            <TextInput multiline style={styles.inputContent}
-            />
+            <TextInput multiline style={styles.inputContent} />
             <View style={styles.checkBoxWrap}>
               <CheckBox
-                style={{padding: 10, width: 111}}
+                style={{ padding: 10, width: 111 }}
                 rightText={'分享笔记'}
                 checkBoxColor={'#1677cb'}
                 isChecked={this.state.isCheckBoxSelected}
                 onClick={this.handleCheckBox}
-                rightTextStyle={{height: 15, fontSize: 14, color: '#8e929b'}}
+                rightTextStyle={{ height: 15, fontSize: 14, color: '#8e929b' }}
               />
             </View>
           </View>

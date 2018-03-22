@@ -1,7 +1,16 @@
 import React from 'react'
-import {StyleSheet, Text, View, SectionList, TouchableOpacity, Image} from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  SectionList,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  FlatList
+} from 'react-native'
 import PropTypes from 'prop-types'
-import {getLineBreak} from '../../config/utils'
+import { getLineBreak } from '../../config/utils'
 
 const propTypes = {
   data: PropTypes.array.isRequired // 数据
@@ -13,7 +22,8 @@ const propTypes = {
 }
 
 class Note extends React.Component {
-  _renderItem = (data) => {
+  _renderItem = data => {
+    const key = data.item.key
     const name = data.item.name
     const imageUrl = data.item.imageUrl
     const location = data.item.location
@@ -21,9 +31,9 @@ class Note extends React.Component {
     const like = data.item.like
     const content = getLineBreak(data.item.content, '\n')
     return (
-      <View>
+      <View key={key}>
         <View style={styles.noteHeaderWrap}>
-          <Image source={{uri: imageUrl}} style={styles.img} />
+          <Image source={{ uri: imageUrl }} style={styles.img} />
           <View style={styles.personInfoWrap}>
             <Text style={styles.nameTitle}>{name}</Text>
             <View style={styles.locationWrap}>
@@ -47,9 +57,7 @@ class Note extends React.Component {
   render () {
     return (
       <View style={styles.noteWrap}>
-        <SectionList
-          renderItem={this._renderItem}
-          sections={this.props.data}
+        <FlatList renderItem={this._renderItem} data={this.props.data} initialNumToRender={2} showsVerticalScrollIndicator={false}
         />
       </View>
     )
