@@ -66,7 +66,8 @@ class Note extends React.Component {
 
 const styles = StyleSheet.create({
   noteWrap: {
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 76
   },
   noteHeaderWrap: {
     flexDirection: 'row',

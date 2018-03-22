@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import CheckBox from 'react-native-check-box'
-import Note from '../../../components/Note/note'
+import Note from '../../../components/Note/Note'
 
 class BaseWriteNote extends React.Component {
   constructor (props) {
@@ -41,6 +41,26 @@ class BaseWriteNote extends React.Component {
         },
         {
           key: '4',
+          name: 'xxx',
+          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
+          like: 22,
+          content:
+            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
+          time: '18:01',
+          location: '天津'
+        },
+        {
+          key: '5',
+          name: 'xxx',
+          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
+          like: 22,
+          content:
+            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
+          time: '18:01',
+          location: '天津'
+        },
+        {
+          key: '6',
           name: 'xxx',
           imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
           like: 22,
