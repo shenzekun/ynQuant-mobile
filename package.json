@@ -16,6 +16,7 @@
     "react-native": "^0.54.2",
     "react-native-app-intro": "^1.1.5",
     "react-native-app-intro-slider": "^0.2.4",
+    "react-native-check-box": "^2.1.0",
     "react-native-git-upgrade": "^0.2.7",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-scrollable-tab-view": "^0.8.0",

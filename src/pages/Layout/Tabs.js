@@ -2,16 +2,17 @@
  navigation 详细说明
  http://www.guiyongdong.com/2017/05/20/ReactNative%E5%AF%BC%E8%88%AA%E6%96%B0%E5%AE%A0%E5%84%BFreact-navigation/
  */
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import {StackNavigator, TabNavigator} from 'react-navigation'
 import React from 'react'
 import Screen from './Screens'
 import DayAnalysisScreen from '../Information/News/dayAnalysis'
 import BaseIntroduce from '../Knowedge/BaseKnowledge/baseIntroduce'
 import CustomerTabBar from '../Tabbar/CustomerTabBar'
-import { connect } from 'react-redux'
-import { changeTabBarColor } from './TabsAction'
-import { Dimensions, Text } from 'react-native'
+import {connect} from 'react-redux'
+import {changeTabBarColor} from './TabsAction'
+import {Dimensions, Text} from 'react-native'
 import BaseDetail from '../Knowedge/BaseKnowledge/baseDetail'
+import BaseWriteNote from '../Knowedge/BaseKnowledge/baseWriteNote'
 
 let today = new Date()
 let mouth = today.getMonth() + 1
@@ -55,7 +56,7 @@ const Navigator = StackNavigator(
         },
         headerTitle: '今日分析',
         headerRight: (
-          <Text style={{ color: 'white', fontSize: 17, marginRight: 9 }}>
+          <Text style={{color: 'white', fontSize: 17, marginRight: 9}}>
             {mouth}月{day}日
           </Text>
         )
@@ -69,6 +70,17 @@ const Navigator = StackNavigator(
     },
     BaseDetail: {
       screen: BaseDetail,
+      navigationOptions: {
+        headerTintColor: '#fff', // 设置导航栏颜色
+        headerStyle: {
+          backgroundColor: '#4b525f',
+          borderBottomColor: '#414752'
+        },
+        headerBackTitle: '返回'
+      }
+    },
+    BaseWriteNote: {
+      screen: BaseWriteNote,
       navigationOptions: {
         headerTintColor: '#fff', // 设置导航栏颜色
         headerStyle: {

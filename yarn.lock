@@ -4738,7 +4738,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1:
+prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -4815,6 +4815,12 @@ react-native-app-intro@^1.1.5:
   dependencies:
     assign-deep "^0.4.5"
     react-native-swiper "git+https://github.com/FuYaoDe/react-native-swiper.git"
+
+react-native-check-box@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/react-native-check-box/download/react-native-check-box-2.1.0.tgz#a4e5fa2c1860cfc3f5758ae3493b6ec2ec7c2878"
+  dependencies:
+    prop-types "^15.5.7"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
