@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import { Image } from 'react-native'
+import {Image, TouchableOpacity} from 'react-native'
 import InformationScreen from '../Information/information' // 时讯
 import KnowledgeScreen from '../Knowedge/knowledge' // 知识
 import SimulateScreen from '../Simulate/simulate' // 模拟
@@ -14,7 +14,7 @@ export default {
   KnowledgeScreen: {
     screen: KnowledgeScreen,
     navigationOptions: () => ({
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({focused, tintColor}) => {
         return (
           <Image
             source={
@@ -22,7 +22,7 @@ export default {
                 ? require('../../images/knowledge-active.png')
                 : require('../../images/knowledge.png')
             }
-            style={{ width: 23, height: 23 }}
+            style={{width: 23, height: 23}}
           />
         )
       },
@@ -45,7 +45,7 @@ export default {
   InformationScreen: {
     screen: InformationScreen,
     navigationOptions: {
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({focused, tintColor}) => {
         return (
           <Image
             source={
@@ -53,7 +53,7 @@ export default {
                 ? require('../../images/information-active.png')
                 : require('../../images/information.png')
             }
-            style={{ width: 23, height: 23 }}
+            style={{width: 23, height: 23}}
           />
         )
       },
@@ -76,7 +76,7 @@ export default {
   SimulateScreen: {
     screen: SimulateScreen,
     navigationOptions: {
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({focused, tintColor}) => {
         return (
           <Image
             source={
@@ -84,7 +84,7 @@ export default {
                 ? require('../../images/simulation-active.png')
                 : require('../../images/simulation.png')
             }
-            style={{ width: 23, height: 23 }}
+            style={{width: 23, height: 23}}
           />
         )
       },
@@ -94,17 +94,22 @@ export default {
   AboutScreen: {
     screen: AboutScreen,
     navigationOptions: {
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({focused, tintColor}) => {
         return (
           <Image
             source={
               focused ? require('../../images/about-active.png') : require('../../images/about.png')
             }
-            style={{ width: 23, height: 25 }}
+            style={{width: 23, height: 25}}
           />
         )
       },
-      title: '我的'
+      title: '我的',
+      headerRight: (
+        <TouchableOpacity style={{marginRight: 20, width: 20, height: 20}}>
+          <Image source={require('../../images/about/setting.png')} />
+        </TouchableOpacity>
+      )
     }
   }
 }
