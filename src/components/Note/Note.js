@@ -3,10 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  SectionList,
   TouchableOpacity,
   Image,
-  ScrollView,
   FlatList
 } from 'react-native'
 import PropTypes from 'prop-types'
@@ -57,7 +55,12 @@ class Note extends React.Component {
   render () {
     return (
       <View style={styles.noteWrap}>
-        <FlatList renderItem={this._renderItem} data={this.props.data} initialNumToRender={2} showsVerticalScrollIndicator={false}
+        <FlatList
+          renderItem={this._renderItem}
+          data={this.props.data}
+          initialNumToRender={2}
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={() => <View style={{ height: 190 }} />}
         />
       </View>
     )
