@@ -86,7 +86,8 @@ const Navigator = StackNavigator(
         headerStyle: {
           backgroundColor: '#4b525f',
           borderBottomColor: '#414752'
-        }
+        },
+        mode: 'modal'
       }
     }
   },
