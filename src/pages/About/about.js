@@ -51,7 +51,7 @@ class AboutScreen extends React.Component {
               <Image source={require('../../images/about/message.png')} style={[styles.commonImg, {
                 marginLeft: 20
               }]} />
-              <Text style={styles.utilText}>工具</Text>
+              <Text style={styles.utilText}>消息</Text>
             </View>
             <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
               marginRight: 20
@@ -63,7 +63,7 @@ class AboutScreen extends React.Component {
               <Image source={require('../../images/about/collect.png')} style={[styles.commonImg, {
                 marginLeft: 20
               }]} />
-              <Text style={styles.utilText}>工具</Text>
+              <Text style={styles.utilText}>收藏</Text>
             </View>
             <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
               marginRight: 20
@@ -75,7 +75,7 @@ class AboutScreen extends React.Component {
               <Image source={require('../../images/about/about.png')} style={[styles.commonImg, {
                 marginLeft: 20
               }]} />
-              <Text style={styles.utilText}>工具</Text>
+              <Text style={styles.utilText}>关于我们</Text>
             </View>
             <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
               marginRight: 20
