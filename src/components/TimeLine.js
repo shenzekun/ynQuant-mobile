@@ -9,9 +9,14 @@ class TimeLine extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isRefresh: false
+      refreshing: false
     }
   }
+
+  _renderRefresh = () => {
+    this.setState({ refreshing: true })
+  }
+
   renderRow (rowData) {
     let array = [...rowData.item.content]
     let firstContent = array.splice(0, 1) // 获取第一个内容
@@ -59,8 +64,9 @@ class TimeLine extends React.Component {
         <FlatList
           data={this.props.data}
           renderItem={this.renderRow}
-          refreshing={this.state.isRefresh}
           initialNumToRender={6}
+          refreshing={this.state.refreshing}
+          onRefresh={this._renderRefresh}
         />
       </View>
     )
