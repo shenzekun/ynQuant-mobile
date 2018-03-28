@@ -44,8 +44,6 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
       // 浏览器是否支持XMLHttpRequest
       if (window.XMLHttpRequest) {
         requestObj = new XMLHttpRequest()
-      } else {
-        requestObj = new window.ActiveXObject('Microsoft.XMLHTTP')
       }
 
       let sendData = ''
