@@ -17,6 +17,10 @@ class BaseIntroduce extends React.Component {
     this.props.navigation.dispatch(replaceAction)
   }
 
+  shouldComponentUpdate () {
+    return false
+  }
+
   render () {
     console.log(this.props)
     const { goBack } = this.props.navigation

@@ -64,11 +64,14 @@ class TimeLine extends React.Component {
         {content.map(data => {
           return (
             <View style={styles.commonWrap} key={data.key}>
-              <TouchableOpacity style={styles.contentWrap} onPress={() => {
-                navigate('NewsDetail', {
-                  content: data
-                })
-              }}>
+              <TouchableOpacity
+                style={styles.contentWrap}
+                onPress={() => {
+                  navigate('NewsDetail', {
+                    content: data
+                  })
+                }}
+              >
                 <View style={styles.time}>
                   <Text style={[styles.fontColor, styles.timeFont]}>{data.time}</Text>
                 </View>
