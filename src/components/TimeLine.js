@@ -1,11 +1,19 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
-import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
 import PropTypes from 'prop-types'
 
 const propTypes = {
-  data: PropTypes.array.isRequired // 新闻数据
+  data: PropTypes.array.isRequired, // 新闻数据
+  navigation: PropTypes.object.isRequired
 }
+
+const DEBUG = true
+
+const log = text => {
+  DEBUG && console.log(text)
+}
+
 class TimeLine extends React.Component {
   constructor (props) {
     super(props)
@@ -19,24 +27,32 @@ class TimeLine extends React.Component {
   }
 
   onHeaderRefresh = () => {
-    this.setState({refreshState: RefreshState.HeaderRefreshing})
+    this.setState({ refreshState: RefreshState.HeaderRefreshing })
   }
 
   onFooterRefresh = () => {
-    this.setState({refreshState: RefreshState.FooterRefreshing})
+    this.setState({ refreshState: RefreshState.FooterRefreshing })
   }
 
-  renderRow (rowData) {
-    let array = [...rowData.item.content]
+  renderRow = (rowData, navigation) => {
+    let { navigate } = navigation
+    let array = [...rowData.content]
     let firstContent = array.splice(0, 1) // 获取第一个内容
     let content = array // 获取其余内容
     return (
       <View style={styles.row}>
         <View style={styles.date}>
-          <Text style={[styles.fontColor, styles.dayFont]}>{rowData.item.day}</Text>
-          <Text style={[styles.fontColor, styles.monthFont]}>{rowData.item.month}</Text>
+          <Text style={[styles.fontColor, styles.dayFont]}>{rowData.day}</Text>
+          <Text style={[styles.fontColor, styles.monthFont]}>{rowData.month}</Text>
         </View>
-        <TouchableOpacity style={styles.contentWrap}>
+        <TouchableOpacity
+          style={styles.contentWrap}
+          onPress={() => {
+            navigate('NewsDetail', {
+              content: firstContent[0]
+            })
+          }}
+        >
           <View style={styles.time}>
             <Text style={[styles.fontColor, styles.timeFont]}>{firstContent[0].time}</Text>
           </View>
@@ -48,7 +64,11 @@ class TimeLine extends React.Component {
         {content.map(data => {
           return (
             <View style={styles.commonWrap} key={data.key}>
-              <TouchableOpacity style={styles.contentWrap}>
+              <TouchableOpacity style={styles.contentWrap} onPress={() => {
+                navigate('NewsDetail', {
+                  content: data
+                })
+              }}>
                 <View style={styles.time}>
                   <Text style={[styles.fontColor, styles.timeFont]}>{data.time}</Text>
                 </View>
@@ -67,12 +87,11 @@ class TimeLine extends React.Component {
   }
 
   render () {
-    // console.log(this.props.data)
     return (
       <View style={styles.container}>
         <RefreshListView
           data={this.props.data}
-          renderItem={this.renderRow}
+          renderItem={({ item }) => this.renderRow(item, this.props.navigation)}
           initialNumToRender={6}
           refreshState={this.state.refreshState}
           onHeaderRefresh={this.onHeaderRefresh}

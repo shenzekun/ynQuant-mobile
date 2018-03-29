@@ -60,7 +60,7 @@ class Note extends React.Component {
           data={this.props.data}
           initialNumToRender={2}
           showsVerticalScrollIndicator={false}
-          ListFooterComponent={() => <View style={{ height: 190 }} />}
+          ListFooterComponent={() => <View style={{ height: 0 }} />}
         />
       </View>
     )
