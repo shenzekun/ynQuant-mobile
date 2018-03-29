@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
+import RefreshListView, {RefreshState} from 'react-native-refresh-list-view'
 import PropTypes from 'prop-types'
 
 const propTypes = {
@@ -9,12 +10,20 @@ class TimeLine extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      refreshing: false
+      refreshState: RefreshState.Idle
     }
   }
 
-  _renderRefresh = () => {
-    this.setState({ refreshing: true })
+  _renderEmptyLayout () {
+    return <Text style={{ alignSelf: 'center', marginTop: 20 }}>暂无数据，刷新试试？</Text>
+  }
+
+  onHeaderRefresh = () => {
+    this.setState({refreshState: RefreshState.HeaderRefreshing})
+  }
+
+  onFooterRefresh = () => {
+    this.setState({refreshState: RefreshState.FooterRefreshing})
   }
 
   renderRow (rowData) {
@@ -61,12 +70,14 @@ class TimeLine extends React.Component {
     // console.log(this.props.data)
     return (
       <View style={styles.container}>
-        <FlatList
+        <RefreshListView
           data={this.props.data}
           renderItem={this.renderRow}
           initialNumToRender={6}
-          refreshing={this.state.refreshing}
-          onRefresh={this._renderRefresh}
+          refreshState={this.state.refreshState}
+          onHeaderRefresh={this.onHeaderRefresh}
+          onFooterRefresh={this.onFooterRefresh}
+          ListEmptyComponent={this._renderEmptyLayout}
         />
       </View>
     )
