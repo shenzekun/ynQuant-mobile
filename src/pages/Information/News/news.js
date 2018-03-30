@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, StyleSheet, InteractionManager } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import TimeLine from '../../../components/TimeLine'
 
@@ -75,7 +75,7 @@ class NewScreen extends React.Component {
     const { navigate } = this.props.navigation
     return (
       <View style={{ flex: 1, position: 'relative' }}>
-        <TimeLine data={this.state.data} />
+        <TimeLine data={this.state.data} navigation={this.props.navigation} />
         <TouchableOpacity style={styles.btnWrap} onPress={() => navigate('DayAnalysisScreen')}>
           <Text style={styles.btnText}>今日分析</Text>
         </TouchableOpacity>
