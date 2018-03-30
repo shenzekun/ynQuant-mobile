@@ -77,31 +77,35 @@ class TimeLine extends React.Component {
     this.page++
     newsList(this.page).then(res => {
       let data = [...this.state.data]
-      for (let key in res) {
-        if (res.hasOwnProperty(key)) {
-          for (let i = data.length - 1; i >= 0; i--) {
-            if (data[i].time === key) {
-              data[i].content = data[i].content.concat(res[key])
-              console.log(data)
-              this.setState({
-                data: data,
-                refreshState: RefreshState.Idle
-              })
-              break
-            } else {
-              data.push({
-                time: key,
-                month: getMonth(key),
-                day: getDay(key),
-                content: res[key]
-              })
-              this.setState({
-                data: data,
-                refreshState: RefreshState.Idle
-              })
+      if (res.length !== 0) {
+        for (let key in res) {
+          if (res.hasOwnProperty(key)) {
+            for (let i = data.length - 1; i >= 0; i--) {
+              if (data[i].time === key) {
+                data[i].content = data[i].content.concat(res[key])
+                this.setState({
+                  data: data,
+                  refreshState: RefreshState.Idle
+                })
+                break
+              } else {
+                data.push({
+                  time: key,
+                  month: getMonth(key),
+                  day: getDay(key),
+                  content: res[key]
+                })
+                this.setState({
+                  data: data,
+                  refreshState: RefreshState.Idle
+                })
+                break
+              }
             }
           }
         }
+      } else {
+        this.setState({refreshState: RefreshState.NoMoreData})
       }
     }).catch(err => {
       console.log(err)
