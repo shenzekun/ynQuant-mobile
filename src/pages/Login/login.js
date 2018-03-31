@@ -1,15 +1,6 @@
 import React from 'react'
-import {
-  Button,
-  Image,
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity
-} from 'react-native'
+import { Button, Image, Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-// import { loginAction } from './loginActions'
 
 /**
  * 首页
@@ -29,12 +20,9 @@ class LoginScreen extends React.Component {
   render () {
     return (
       <View style={styles.loginPage}>
-        <Image
-          source={require('../../images/Logo/loginLogo.png')}
-          style={{ width: 250, height: 120, marginTop: 30, padding: 20}}
-        />
+        <Image source={require('../../images/Logo/loginLogo.png')} style={{ marginTop: 68 }} />
         <View style={styles.loginSection}>
-          <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.7 }}>
+          <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.7, width: 230 }}>
             <TextInput
               style={styles.emailInput}
               placeholderTextColor={'#fff'}
@@ -43,7 +31,7 @@ class LoginScreen extends React.Component {
               autoCapitalize={'none'}
             />
           </View>
-          <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.5 }}>
+          <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.5, width: 230 }}>
             <TextInput
               style={styles.passwordInput}
               placeholderTextColor={'#fff'}
@@ -106,6 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 17
   },
   passwordInput: {
+    color: '#fff',
     marginBottom: 1,
     borderRadius: 3,
     borderColor: 'black',
@@ -117,7 +106,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 86,
     fontSize: 13,
-    color: 'white',
+    color: '#a1a1a1',
     textAlign: 'center'
   },
   loginButton: {
@@ -129,7 +118,7 @@ const styles = StyleSheet.create({
     width: 220
   },
   loginButtonText: {
-    paddingTop: 8,
+    marginTop: 10,
     textAlign: 'center',
     fontSize: 19,
     color: 'white'
@@ -152,7 +141,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     marginTop: 70,
-    color: '#777777',
+    color: '#919090',
     marginBottom: 9
   },
   registerButton: {
