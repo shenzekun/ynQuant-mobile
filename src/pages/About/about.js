@@ -1,0 +1,180 @@
+import React from 'react'
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native'
+import {connect} from 'react-redux'
+
+/*
+  状态栏配置
+  https://reactnavigation.org/docs/status-bar.html
+*/
+class AboutScreen extends React.Component {
+  render () {
+    return (
+      <View style={styles.container}>
+        <View style={styles.authorWrap}>
+          <View style={styles.authorImgShadow}>
+            <Image source={require('../../images/about/author.png')} style={styles.authorImg} />
+          </View>
+          <Text style={styles.authorName}>万千钧</Text>
+        </View>
+
+        <View style={styles.operate}>
+          <TouchableOpacity>
+            <Image source={require('../../images/about/note.png')} /></TouchableOpacity>
+          <TouchableOpacity>
+            <Image source={require('../../images/about/subscribe.png')}
+              style={styles.operateImg}
+            /></TouchableOpacity>
+          <TouchableOpacity>
+            <Image source={require('../../images/about/wallet.png')} /></TouchableOpacity>
+        </View>
+        <View style={styles.utilWrap}>
+          <TouchableOpacity style={styles.util}>
+            <View style={styles.toolWrap}>
+              <Image source={require('../../images/about/tool.png')} style={[styles.commonImg, {
+                marginLeft: 20
+              }]} />
+              <Text style={styles.utilText}>工具</Text>
+            </View>
+
+            <View style={styles.infoAndArrow}>
+              <View style={styles.info}>
+                <Text style={styles.infoText}>1</Text>
+              </View>
+              <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
+                marginRight: 20
+              }]} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.util}>
+            <View style={styles.toolWrap}>
+              <Image source={require('../../images/about/message.png')} style={[styles.commonImg, {
+                marginLeft: 20
+              }]} />
+              <Text style={styles.utilText}>消息</Text>
+            </View>
+            <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
+              marginRight: 20
+            }]} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.util}>
+            <View style={styles.toolWrap}>
+              <Image source={require('../../images/about/collect.png')} style={[styles.commonImg, {
+                marginLeft: 20
+              }]} />
+              <Text style={styles.utilText}>收藏</Text>
+            </View>
+            <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
+              marginRight: 20
+            }]} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.util}>
+            <View style={styles.toolWrap}>
+              <Image source={require('../../images/about/about.png')} style={[styles.commonImg, {
+                marginLeft: 20
+              }]} />
+              <Text style={styles.utilText}>关于我们</Text>
+            </View>
+            <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
+              marginRight: 20
+            }]} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#f8f8f8',
+    position: 'relative'
+  },
+  authorWrap: {
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20
+  },
+  authorImgShadow: {
+    shadowColor: '#cccccc',
+    shadowOffset: {
+      width: 0,
+      height: 9
+    },
+    shadowRadius: 17,
+    shadowOpacity: 0.6,
+    elevation: 1
+  },
+  authorImg: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    justifyContent: 'center'
+  },
+  authorName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 20
+  },
+  operate: {
+    flexDirection: 'row',
+    position: 'relative',
+    height: 67,
+    justifyContent: 'space-between',
+    marginLeft: 20,
+    marginRight: 17,
+    marginTop: 10
+  },
+  operateImg: {
+    marginLeft: 14
+  },
+  utilWrap: {
+    position: 'absolute',
+    backgroundColor: '#fff',
+    bottom: 8,
+    width: '100%'
+  },
+  util: {
+    height: 68,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderColor: '#e3e3e3'
+  },
+  toolWrap: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  // commonImg: {
+  //   width: 32,
+  //   height: 32
+  // },
+  utilText: {
+    marginLeft: 15,
+    fontSize: 15,
+    color: '#a5a8a9'
+  },
+  infoAndArrow: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  info: {
+    width: 24,
+    height: 24,
+    backgroundColor: 'red',
+    borderRadius: 12,
+    marginRight: 20
+  },
+  infoText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 12,
+    marginTop: 5
+  }
+})
+export default AboutScreen

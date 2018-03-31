@@ -1,9 +1,11 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
 import Home from '../pages/Home/homeReduce'
-import Setting from '../pages/Setting/settingReduce'
+import Tabbar from '../pages/Tabbar/CustomerTabBarReduce'
+import Knowlege from '../pages/Knowedge/knowledgeRecuce'
 
 export default combineReducers({
   Home,
-  Setting
+  Tabbar,
+  Knowlege
 })
