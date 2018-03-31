@@ -1,15 +1,17 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import {View, Text, StyleSheet, ScrollView} from 'react-native'
+import {getLineBreak} from '../../../config/utils'
+
 class NewsDetail extends React.Component {
   render () {
-    const { params } = this.props.navigation.state
+    const {params} = this.props.navigation.state
     console.log(params)
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.textWrap}>
-          <Text style={styles.textStyle}>&nbsp;&nbsp;&nbsp;&nbsp;{params.content.text}</Text>
+          <Text style={styles.textStyle}>{getLineBreak(params.content.content, /\n/g, '\n\n')}</Text>
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }

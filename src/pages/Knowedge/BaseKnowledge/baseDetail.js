@@ -42,7 +42,7 @@ class BaseDetail extends React.Component {
     const { navigate } = this.props.navigation
     let text =
       '交易型开放式指数基金，通常又被称为交易所交易基金（Exchange Traded Funds，简称“ETF”），是一种在交易所上市交易的、基金份额可变的一种开放式基金。<br />交易型开放式指数基金属于开放式基金的一种特殊类型，它结合了封闭式基金和开放式基金的运作特点，投资者既可以向基金管理公司申购或赎回基金份额，同时，又可以像封闭式基金一样在二级市场上按市场价格买卖ETF份额，不过，申购赎回必须以一篮子股票换取基金份额或者以基金份额换回一篮子股票。<br />由于同时存在证券市场交易和申购赎回机制，投资者可以在ETF市场价格与基金单位净值之间存在差价时进行套利交易。套利机制的存在，使得ETF避免了封闭式基金普遍存在的折价问题。'
-    text = getLineBreak(text, '\n\n')
+    text = getLineBreak(text, /<br \/>/g, '\n\n')
     console.log(this.props)
     return (
       <View style={styles.container}>

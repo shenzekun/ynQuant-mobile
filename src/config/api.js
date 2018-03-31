@@ -1,3 +1,2 @@
-/** 可以写成这样
- * export const RECOMMEND_URL = 'https://shenzekun-qmusic-api.now.sh/'
- */
+// 获取新闻列表
+export const NEWSLIST = 'http://192.168.1.178/api/news/list'

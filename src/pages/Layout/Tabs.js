@@ -98,7 +98,7 @@ const Navigator = StackNavigator(
         headerStyle: {
           backgroundColor: '#094c90'
         },
-        title: `${navigation.state.params.content.text}`
+        title: `${navigation.state.params.content.title}`
       })
     }
   },
