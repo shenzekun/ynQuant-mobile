@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native'
 import { connect } from 'react-redux'
 // import { loginAction } from './loginActions'
 
@@ -24,15 +24,74 @@ class RegisterScreen extends React.Component {
       email: '',
       user: '',
       password: '',
-      verifyPassword: ''
+      verifyPassword: '',
+      skills: '金融新手',
+      isEmailWarn: false,
+      isUserWarn: false,
+      isPassWordWarn: false,
+      isVerifyPwdWarn: false
     }
   }
-  clickButton = e => {
-    console.log(e)
+
+  clickButton = text => {
+    this.setState({ skills: text })
   }
+
+  validateMail = () => {
+    if (
+      !/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/.test(this.state.email)
+    ) {
+      this.setState({ isEmailWarn: true })
+    } else {
+      this.setState({ isEmailWarn: false })
+    }
+  }
+
+  validateUser = () => {
+    if (this.state.user === '') {
+      this.setState({ isUserWarn: true })
+    } else {
+      this.setState({ isUserWarn: false })
+    }
+  }
+
+  validatePwd = () => {
+    if (this.state.password === '') {
+      this.setState({ isPassWordWarn: true })
+    } else {
+      this.setState({ isPassWordWarn: false })
+    }
+  }
+
+  validateVerifyPwd = () => {
+    if (this.state.verifyPassword === '' || this.state.password !== this.state.verifyPassword) {
+      this.setState({ isVerifyPwdWarn: true })
+    } else {
+      this.setState({ isVerifyPwdWarn: false })
+    }
+  }
+
   register = () => {
-    console.log(this.state)
+    if (this.state.user === '') {
+      return
+    }
+    if (this.state.password === '') {
+      return
+    }
+    if (this.state.verifyPassword === '') {
+      return
+    }
+    if (this.state.password !== this.state.verifyPassword) {
+      return
+    }
+    if (
+      !/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/.test(this.state.email)
+    ) {
+      return
+    }
+    alert(Object.entries(this.state))
   }
+
   render () {
     return (
       <View style={styles.registerPage}>
@@ -42,29 +101,52 @@ class RegisterScreen extends React.Component {
         </View>
         {/* body */}
         <View style={styles.bodyStyle}>
-          <View style={styles.inputer}>
+          <View
+            style={[
+              styles.inputer,
+              {
+                borderColor: this.state.isEmailWarn === true ? 'red' : '#BDBDBD'
+              }
+            ]}
+          >
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
               placeholder='邮箱'
               keyboardType={'email-address'}
               autoCapitalize={'none'}
-              onChangeText={(text) => this.setState({email: text})}
+              onChangeText={text => this.setState({ email: text })}
               value={this.state.email}
+              onEndEditing={this.validateMail}
             />
           </View>
-          <View style={styles.inputer}>
+          <View
+            style={[
+              styles.inputer,
+              {
+                borderColor: this.state.isUserWarn === true ? 'red' : '#BDBDBD'
+              }
+            ]}
+          >
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
               placeholder='用户名'
               autoCapitalize={'none'}
               maxLength={16}
-              onChangeText={(text) => this.setState({user: text})}
+              onChangeText={text => this.setState({ user: text })}
               value={this.state.user}
+              onEndEditing={this.validateUser}
             />
           </View>
-          <View style={styles.inputer}>
+          <View
+            style={[
+              styles.inputer,
+              {
+                borderColor: this.state.isPassWordWarn === true ? 'red' : '#BDBDBD'
+              }
+            ]}
+          >
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
@@ -73,11 +155,19 @@ class RegisterScreen extends React.Component {
               secureTextEntry
               autoCapitalize={'none'}
               maxLength={20}
-              onChangeText={(text) => this.setState({password: text})}
+              onChangeText={text => this.setState({ password: text })}
               value={this.state.password}
+              onEndEditing={this.validatePwd}
             />
           </View>
-          <View style={styles.inputer}>
+          <View
+            style={[
+              styles.inputer,
+              {
+                borderColor: this.state.isVerifyPwdWarn === true ? 'red' : '#BDBDBD'
+              }
+            ]}
+          >
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
@@ -85,26 +175,35 @@ class RegisterScreen extends React.Component {
               secureTextEntry
               autoCapitalize={'none'}
               maxLength={20}
-              onChangeText={(text) => this.setState({verifyPassword: text})}
+              onChangeText={text => this.setState({ verifyPassword: text })}
               value={this.state.verifyPassword}
+              onEndEditing={this.validateVerifyPwd}
             />
           </View>
           <View style={styles.selectType}>
-            <TouchableOpacity onPress={this.clickButton}>
-              <View style={styles.progressBar} />
-              <Text style={styles.progressBarText}>金融新手</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.clickButton}>
-              <View style={styles.progressBar} />
-              <Text style={styles.progressBarText}>略有了解</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.clickButton}>
+            <TouchableOpacity onPress={() => this.clickButton('金融新手')}>
               <View
                 style={[
                   styles.progressBar,
-                  {
-                    backgroundColor: this.color ? this.color : '#d9d9d9'
-                  }
+                  this.state.skills === '金融新手' ? styles.progressBarActive : null
+                ]}
+              />
+              <Text style={styles.progressBarText}>金融新手</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.clickButton('略有了解')}>
+              <View
+                style={[
+                  styles.progressBar,
+                  this.state.skills === '略有了解' ? styles.progressBarActive : null
+                ]}
+              />
+              <Text style={styles.progressBarText}>略有了解</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.clickButton('从业人员')}>
+              <View
+                style={[
+                  styles.progressBar,
+                  this.state.skills === '从业人员' ? styles.progressBarActive : null
                 ]}
               />
               <Text style={styles.progressBarText}>从业人员</Text>
@@ -169,8 +268,7 @@ const styles = StyleSheet.create({
     width: 244,
     marginTop: 18.5,
     alignItems: 'center',
-    borderBottomWidth: 0.5,
-    borderColor: '#BDBDBD'
+    borderBottomWidth: 0.5
   },
   input: {
     width: 230,
@@ -207,7 +305,10 @@ const styles = StyleSheet.create({
     width: 244,
     marginTop: 10.5
   },
-  progressBar: { width: 74.67, height: 4, borderRadius: 9.5 },
+  progressBar: { width: 74.67, height: 4, borderRadius: 9.5, backgroundColor: '#bdbdbd' },
+  progressBarActive: {
+    backgroundColor: '#777777'
+  },
   progressBarText: { textAlign: 'center', marginTop: 8, fontSize: 13, color: '#858585' }
 })
 
