@@ -18,7 +18,6 @@ class TouchTab extends React.Component {
   // bgColor = this.props.bgColor ? this.props.bgColor : '#000'
   constructor (props) {
     super(props)
-    console.log(props)
     this.state = {
       animate: new Animated.Value(0)
     }

@@ -1,13 +1,15 @@
 import React from 'react'
-import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
 class BaseKnowledge extends React.Component {
+  shouldComponentUpdate () {
+    return false
+  }
   render () {
-    console.log(this.props)
-    const {navigate, push} = this.props.navigation
+    const { navigate, push } = this.props.navigation
     return (
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={{ flex: 1 }}>
         <TouchableOpacity
           style={styles.cardWrap}
           activeOpacity={0.7}
@@ -16,8 +18,8 @@ class BaseKnowledge extends React.Component {
           <LinearGradient
             style={styles.gradient}
             colors={['#89AD45', '#ABC672']}
-            start={{x: 0, y: 0.5}}
-            end={{x: 1, y: 0.5}}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
           >
             <View style={styles.cardDescWrap}>
               <View style={styles.cardLogo}>
@@ -67,12 +69,16 @@ class BaseKnowledge extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cardWrap} activeOpacity={0.7} onPress={() => navigate('BaseIntroduce')}>
+        <TouchableOpacity
+          style={styles.cardWrap}
+          activeOpacity={0.7}
+          onPress={() => navigate('BaseIntroduce')}
+        >
           <LinearGradient
             style={styles.gradient}
             colors={['#89AD45', '#ABC672']}
-            start={{x: 0, y: 0.5}}
-            end={{x: 1, y: 0.5}}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
           >
             <View style={styles.cardDescWrap}>
               <View style={styles.cardLogo}>
@@ -122,12 +128,16 @@ class BaseKnowledge extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cardWrap} activeOpacity={0.7} onPress={() => navigate('BaseIntroduce')}>
+        <TouchableOpacity
+          style={styles.cardWrap}
+          activeOpacity={0.7}
+          onPress={() => navigate('BaseIntroduce')}
+        >
           <LinearGradient
             style={styles.gradient}
             colors={['#89AD45', '#ABC672']}
-            start={{x: 0, y: 0.5}}
-            end={{x: 1, y: 0.5}}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
           >
             <View style={styles.cardDescWrap}>
               <View style={styles.cardLogo}>

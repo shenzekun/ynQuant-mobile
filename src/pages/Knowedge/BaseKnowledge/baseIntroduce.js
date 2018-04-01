@@ -1,6 +1,6 @@
 import React from 'react'
-import {View, Text, StyleSheet, Image, Platform} from 'react-native'
-import {NavigationActions, SafeAreaView} from 'react-navigation'
+import { View, Text, StyleSheet, Image, Platform } from 'react-native'
+import { NavigationActions, SafeAreaView } from 'react-navigation'
 
 class BaseIntroduce extends React.Component {
   constructor (props) {
@@ -17,9 +17,13 @@ class BaseIntroduce extends React.Component {
     this.props.navigation.dispatch(replaceAction)
   }
 
+  shouldComponentUpdate () {
+    return false
+  }
+
   render () {
     console.log(this.props)
-    const {goBack} = this.props.navigation
+    const { goBack } = this.props.navigation
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentWrap}>
@@ -28,9 +32,15 @@ class BaseIntroduce extends React.Component {
             style={styles.img}
           />
           <Text style={styles.title}>外汇基础知识</Text>
-          <Text style={styles.contentText}>外汇，就是外国货币或以外国货币表示的能用于国际结算的支付手段</Text>
-          <Text onPress={() => goBack()} style={[styles.btnText, styles.backColor]}>返回</Text>
-          <Text onPress={() => this._replaceTo()} style={[styles.btnText, styles.continueColor]}>开始</Text>
+          <Text style={styles.contentText}>
+            外汇，就是外国货币或以外国货币表示的能用于国际结算的支付手段
+          </Text>
+          <Text onPress={() => goBack()} style={[styles.btnText, styles.backColor]}>
+            返回
+          </Text>
+          <Text onPress={() => this._replaceTo()} style={[styles.btnText, styles.continueColor]}>
+            开始
+          </Text>
         </View>
       </SafeAreaView>
     )

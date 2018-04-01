@@ -4860,6 +4860,10 @@ react-native-linear-gradient@^2.4.0:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-refresh-list-view@^1.0.8:
+  version "1.0.8"
+  resolved "http://registry.npm.taobao.org/react-native-refresh-list-view/download/react-native-refresh-list-view-1.0.8.tgz#d16935ca5135ba85e3b52e72ff98b19bb4adb046"
+
 react-native-safe-area-view@^0.7.0:
   version "0.7.0"
   resolved "http://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"

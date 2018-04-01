@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import CheckBox from 'react-native-check-box'
 import Note from '../../../components/Note/Note'
 

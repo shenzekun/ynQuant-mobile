@@ -19,6 +19,7 @@
     "react-native-check-box": "^2.1.0",
     "react-native-git-upgrade": "^0.2.7",
     "react-native-linear-gradient": "^2.4.0",
+    "react-native-refresh-list-view": "^1.0.8",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^4.5.0",

@@ -27,7 +27,7 @@ class Note extends React.Component {
     const location = data.item.location
     const time = data.item.time
     const like = data.item.like
-    const content = getLineBreak(data.item.content, '\n')
+    const content = getLineBreak(data.item.content, /<br \/>/g, '\n')
     return (
       <View key={key}>
         <View style={styles.noteHeaderWrap}>
@@ -60,7 +60,7 @@ class Note extends React.Component {
           data={this.props.data}
           initialNumToRender={2}
           showsVerticalScrollIndicator={false}
-          ListFooterComponent={() => <View style={{ height: 190 }} />}
+          ListFooterComponent={() => <View style={{ height: 0 }} />}
         />
       </View>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
-import {View, Animated} from 'react-native'
-import {connect} from 'react-redux'
+import { View, Animated } from 'react-native'
+import { connect } from 'react-redux'
 import NewScreen from './News/news'
 import Header from '../../components/Header/Header'
 
@@ -20,10 +20,10 @@ class InformationScreen extends React.Component {
   render () {
     let tabNames = this.state.tabNames
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Header tabNames={tabNames} headerTitle='时训'>
-          <NewScreen tabLabel='环球新闻' navigation={this.props.navigation}/>
-          <NewScreen tabLabel='关键日历' navigation={this.props.navigation}/>
+          <NewScreen tabLabel='环球新闻' navigation={this.props.navigation} />
+          <NewScreen tabLabel='关键日历' navigation={this.props.navigation} />
         </Header>
       </View>
     )
