@@ -2,6 +2,7 @@ import React from 'react'
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
 import {connect} from 'react-redux'
 import Toast from 'react-native-root-toast'
+import {register} from '../../service/getData'
 // import { loginAction } from './loginActions'
 
 /**
@@ -22,7 +23,7 @@ class RegisterScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: '',
+      phone: '',
       user: '',
       password: '',
       verifyPassword: '',
@@ -38,7 +39,7 @@ class RegisterScreen extends React.Component {
   showToast = (message) => {
     this.toast && this.toast.destroy()
     this.toast = Toast.show(message, {
-      duration: 1000000,
+      duration: Toast.durations.SHORT,
       position: Toast.positions.TOP,
       shadow: false,
       animation: true,
@@ -57,7 +58,7 @@ class RegisterScreen extends React.Component {
 
   validatePhone = () => {
     if (
-      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.phone)
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.phone) || this.state.phone === ''
     ) {
       this.setState({isPhoneWarn: true})
       this.showToast('请输入正确的手机格式！')
@@ -107,10 +108,18 @@ class RegisterScreen extends React.Component {
       return
     }
     if (
-      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.email)
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.phone) || this.state.phone === ''
     ) {
       return
     }
+    register({
+      phone: this.state.phone,
+      name: this.state.user,
+      password: this.state.verifyPassword,
+      skills: this.state.skills
+    }).then(res => console.log(res)).catch(err => {
+      console.log(err)
+    })
     alert(Object.entries(this.state))
   }
 
@@ -138,7 +147,9 @@ class RegisterScreen extends React.Component {
               autoCapitalize={'none'}
               onChangeText={text => this.setState({phone: text})}
               value={this.state.phone}
+              keyboardType={'numeric'}
               onEndEditing={this.validatePhone}
+              maxLength={11}
             />
           </View>
           <View
