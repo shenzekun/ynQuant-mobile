@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Image, Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import Toast from 'react-native-root-toast'
+import { login } from '../../service/getData'
 
 /**
  * 首页
@@ -17,6 +19,68 @@ const mapDispatchToProps = dispatch => {
 }
 
 class LoginScreen extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      phone: '',
+      password: ''
+    }
+  }
+  toast = null
+  showToast = message => {
+    this.toast && this.toast.destroy()
+    this.toast = Toast.show(message, {
+      duration: Toast.durations.SHORT,
+      position: Toast.positions.TOP,
+      shadow: false,
+      animation: true,
+      hideOnPress: true,
+      delay: 0,
+      backgroundColor: '#fff',
+      shadowColor: '#000',
+      textColor: '#000',
+      opacity: 1
+    })
+  }
+  validatePhone = () => {
+    if (
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(
+        this.state.phone
+      ) ||
+      this.state.phone === ''
+    ) {
+      this.showToast('请输入正确的手机格式！')
+    }
+  }
+  validatePwd = () => {
+    if (this.state.password === '') {
+      this.showToast('请输入密码！')
+    }
+  }
+  login = () => {
+    if (this.state.password === '') {
+      return
+    }
+    if (this.state.phone === '') {
+      return
+    }
+    if (
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(
+        this.state.phone
+      )
+    ) {
+      return
+    }
+    login({
+      phone: this.state.phone,
+      password: this.state.password
+    })
+      .then(res => console.log(res))
+      .catch(err => {
+        console.log(err)
+      })
+    alert(Object.entries(this.state))
+  }
   render () {
     return (
       <View style={styles.loginPage}>
@@ -24,11 +88,15 @@ class LoginScreen extends React.Component {
         <View style={styles.loginSection}>
           <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.7, width: 230 }}>
             <TextInput
-              style={styles.emailInput}
+              style={styles.phoneInput}
               placeholderTextColor={'#fff'}
-              placeholder='邮箱'
-              keyboardType={'email-address'}
+              placeholder='手机'
               autoCapitalize={'none'}
+              onChangeText={text => this.setState({ phone: text })}
+              value={this.state.phone}
+              keyboardType={'numeric'}
+              maxLength={11}
+              onEndEditing={this.validatePhone}
             />
           </View>
           <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.5, width: 230 }}>
@@ -39,15 +107,13 @@ class LoginScreen extends React.Component {
               secureTextEntry
               autoCapitalize={'none'}
               maxLength={20}
-              // onChangeText={text => (this.password = text)}
+              onEndEditing={this.validatePwd}
+              onChangeText={text => this.setState({ password: text })}
+              value={this.state.password}
             />
           </View>
           <Text style={styles.yinuoText}>亿诺智汇科技©</Text>
-          <TouchableOpacity
-            style={styles.loginButton}
-            // onPress={() => navigate('HomeScreen')}
-            underlayColor='#fff'
-          >
+          <TouchableOpacity style={styles.loginButton} onPress={this.login} underlayColor='#fff'>
             <Text style={styles.loginButtonText}>登录</Text>
           </TouchableOpacity>
 
@@ -85,7 +151,7 @@ const styles = StyleSheet.create({
     padding: 1,
     borderColor: '#171616'
   },
-  emailInput: {
+  phoneInput: {
     marginBottom: 1,
     marginTop: 40,
     height: 40,
@@ -124,7 +190,6 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   weChatButton: {
-    fontSize: 14,
     borderRadius: 21,
     backgroundColor: '#97e960',
     height: 45,
@@ -145,8 +210,6 @@ const styles = StyleSheet.create({
     marginBottom: 9
   },
   registerButton: {
-    color: 'blue',
-    fontSize: 14,
     borderRadius: 21,
     backgroundColor: '#171616',
     height: 45,
