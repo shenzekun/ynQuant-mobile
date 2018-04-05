@@ -1,14 +1,15 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native'
-import { connect } from 'react-redux'
-// import { loginAction } from './loginActions'
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
+import {connect} from 'react-redux'
+import Toast from 'react-native-root-toast'
+import {register} from '../../service/getData'
 
 /**
  * 首页
  */
 
 const mapStateToProps = state => {
-  return state.Home
+  return state
 }
 
 const mapDispatchToProps = dispatch => {
@@ -21,53 +22,74 @@ class RegisterScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: '',
+      phone: '',
       user: '',
       password: '',
       verifyPassword: '',
       skills: '金融新手',
-      isEmailWarn: false,
+      isPhoneWarn: false,
       isUserWarn: false,
       isPassWordWarn: false,
       isVerifyPwdWarn: false
     }
   }
 
-  clickButton = text => {
-    this.setState({ skills: text })
+  toast = null
+  showToast = (message) => {
+    this.toast && this.toast.destroy()
+    this.toast = Toast.show(message, {
+      duration: Toast.durations.SHORT,
+      position: Toast.positions.TOP,
+      shadow: false,
+      animation: true,
+      hideOnPress: true,
+      delay: 0,
+      backgroundColor: '#3f3f3f',
+      shadowColor: '#000',
+      textColor: '#fff',
+      opacity: 1
+    })
   }
 
-  validateMail = () => {
+  clickButton = text => {
+    this.setState({skills: text})
+  }
+
+  validatePhone = () => {
     if (
-      !/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/.test(this.state.email)
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.phone) || this.state.phone === ''
     ) {
-      this.setState({ isEmailWarn: true })
+      this.setState({isPhoneWarn: true})
+      this.showToast('请输入正确的手机格式！')
     } else {
-      this.setState({ isEmailWarn: false })
+      this.setState({isPhoneWarn: false})
     }
   }
 
   validateUser = () => {
     if (this.state.user === '') {
-      this.setState({ isUserWarn: true })
+      this.setState({isUserWarn: true})
+      this.showToast('请输入用户名！')
     } else {
-      this.setState({ isUserWarn: false })
+      this.setState({isUserWarn: false})
     }
   }
 
   validatePwd = () => {
     if (this.state.password === '') {
-      this.setState({ isPassWordWarn: true })
+      this.setState({isPassWordWarn: true})
+      this.showToast('请输入密码！')
     } else {
-      this.setState({ isPassWordWarn: false })
+      this.setState({isPassWordWarn: false})
     }
   }
 
   validateVerifyPwd = () => {
     if (this.state.verifyPassword === '' || this.state.password !== this.state.verifyPassword) {
-      this.setState({ isVerifyPwdWarn: true })
+      this.setState({isVerifyPwdWarn: true})
+      this.showToast('密码和确认密码不一致！')
     } else {
-      this.setState({ isVerifyPwdWarn: false })
+      this.setState({isVerifyPwdWarn: false})
     }
   }
 
@@ -85,10 +107,18 @@ class RegisterScreen extends React.Component {
       return
     }
     if (
-      !/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/.test(this.state.email)
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.phone) || this.state.phone === ''
     ) {
       return
     }
+    register({
+      phone: this.state.phone,
+      name: this.state.user,
+      password: this.state.verifyPassword,
+      skills: this.state.skills
+    }).then(res => console.log(res)).catch(err => {
+      console.log(err)
+    })
     alert(Object.entries(this.state))
   }
 
@@ -105,19 +135,20 @@ class RegisterScreen extends React.Component {
             style={[
               styles.inputer,
               {
-                borderColor: this.state.isEmailWarn === true ? 'red' : '#BDBDBD'
+                borderColor: this.state.isPhoneWarn === true ? 'red' : '#BDBDBD'
               }
             ]}
           >
             <TextInput
               style={styles.input}
               placeholderTextColor={'black'}
-              placeholder='邮箱'
-              keyboardType={'email-address'}
+              placeholder='手机'
               autoCapitalize={'none'}
-              onChangeText={text => this.setState({ email: text })}
-              value={this.state.email}
-              onEndEditing={this.validateMail}
+              onChangeText={text => this.setState({phone: text})}
+              value={this.state.phone}
+              keyboardType={'numeric'}
+              onEndEditing={this.validatePhone}
+              maxLength={11}
             />
           </View>
           <View
@@ -134,7 +165,7 @@ class RegisterScreen extends React.Component {
               placeholder='用户名'
               autoCapitalize={'none'}
               maxLength={16}
-              onChangeText={text => this.setState({ user: text })}
+              onChangeText={text => this.setState({user: text})}
               value={this.state.user}
               onEndEditing={this.validateUser}
             />
@@ -151,11 +182,10 @@ class RegisterScreen extends React.Component {
               style={styles.input}
               placeholderTextColor={'black'}
               placeholder='密码'
-              keyboardType={'email-address'}
               secureTextEntry
               autoCapitalize={'none'}
               maxLength={20}
-              onChangeText={text => this.setState({ password: text })}
+              onChangeText={text => this.setState({password: text})}
               value={this.state.password}
               onEndEditing={this.validatePwd}
             />
@@ -175,7 +205,7 @@ class RegisterScreen extends React.Component {
               secureTextEntry
               autoCapitalize={'none'}
               maxLength={20}
-              onChangeText={text => this.setState({ verifyPassword: text })}
+              onChangeText={text => this.setState({verifyPassword: text})}
               value={this.state.verifyPassword}
               onEndEditing={this.validateVerifyPwd}
             />
@@ -222,13 +252,11 @@ class RegisterScreen extends React.Component {
         <View style={styles.footerStyle}>
           <View style={styles.footerFix}>
             <Text style={styles.remindText}>已经拥有账户？</Text>
-            {/* <Button color='black' title='登录.' /> */}
             <TouchableOpacity
-              // style={styles.registerButton}
               // onPress={() => navigate('HomeScreen')}
               underlayColor='#fff'
             >
-              <Text style={{ fontSize: 14 }}>登录.</Text>
+              <Text style={{fontSize: 14}}>登录.</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -305,11 +333,11 @@ const styles = StyleSheet.create({
     width: 244,
     marginTop: 10.5
   },
-  progressBar: { width: 74.67, height: 4, borderRadius: 9.5, backgroundColor: '#bdbdbd' },
+  progressBar: {width: 74.67, height: 4, borderRadius: 9.5, backgroundColor: '#bdbdbd'},
   progressBarActive: {
     backgroundColor: '#777777'
   },
-  progressBarText: { textAlign: 'center', marginTop: 8, fontSize: 13, color: '#858585' }
+  progressBarText: {textAlign: 'center', marginTop: 8, fontSize: 13, color: '#858585'}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen)

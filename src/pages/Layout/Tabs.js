@@ -14,6 +14,8 @@ import { Dimensions, Text } from 'react-native'
 import BaseDetail from '../Knowedge/BaseKnowledge/baseDetail'
 import BaseWriteNote from '../Knowedge/BaseKnowledge/baseWriteNote'
 import NewsDetail from '../Information/News/newsDetail'
+import Login from '../Login/login'
+import Register from '../Register/register'
 
 let today = new Date()
 let mouth = today.getMonth() + 1
@@ -100,6 +102,12 @@ const Navigator = StackNavigator(
         },
         title: `${navigation.state.params.content.title}`
       })
+    },
+    Login: {
+      screen: Login
+    },
+    Register: {
+      screen: Register
     }
   },
   {
