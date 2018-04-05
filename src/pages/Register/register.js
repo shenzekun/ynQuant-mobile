@@ -3,14 +3,13 @@ import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-
 import {connect} from 'react-redux'
 import Toast from 'react-native-root-toast'
 import {register} from '../../service/getData'
-// import { loginAction } from './loginActions'
 
 /**
  * 首页
  */
 
 const mapStateToProps = state => {
-  return state.Home
+  return state
 }
 
 const mapDispatchToProps = dispatch => {

@@ -1,23 +1,23 @@
 import React from 'react'
-import { Button, Image, Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import Toast from 'react-native-root-toast'
-import { login } from '../../service/getData'
+// import { login } from '../../service/getData'
+import {login} from '../Login/loginAction'
 
 /**
  * 首页
  */
 
 const mapStateToProps = state => {
-  return state.Home
+  return state.Login
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIncreaseClick: () => dispatch()
+    login: () => dispatch(login())
   }
 }
-
 class LoginScreen extends React.Component {
   constructor (props) {
     super(props)
@@ -41,6 +41,13 @@ class LoginScreen extends React.Component {
       textColor: '#000',
       opacity: 1
     })
+  }
+  shouldComponentUpdate (nextProps, nextState) {
+    // 登录完成,切成功登录
+    if (nextProps.status === '登陆成功' && nextProps.isSuccess) {
+      return false
+    }
+    return true
   }
   validatePhone = () => {
     if (
@@ -71,15 +78,7 @@ class LoginScreen extends React.Component {
     ) {
       return
     }
-    login({
-      phone: this.state.phone,
-      password: this.state.password
-    })
-      .then(res => console.log(res))
-      .catch(err => {
-        console.log(err)
-      })
-    alert(Object.entries(this.state))
+    this.props.login()
   }
   render () {
     return (
