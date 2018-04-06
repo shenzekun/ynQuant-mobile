@@ -3,7 +3,7 @@ import { Image, Text, View, TextInput, StyleSheet, TouchableOpacity } from 'reac
 import { connect } from 'react-redux'
 import Toast from 'react-native-root-toast'
 // import { login } from '../../service/getData'
-import {login} from '../Login/loginAction'
+import { login } from '../Login/loginAction'
 
 /**
  * 首页
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: () => dispatch(login())
+    login: data => dispatch(login(data))
   }
 }
 class LoginScreen extends React.Component {
@@ -78,7 +78,10 @@ class LoginScreen extends React.Component {
     ) {
       return
     }
-    this.props.login()
+    this.props.login({
+      phone: this.state.phone,
+      password: this.state.password
+    })
   }
   render () {
     return (

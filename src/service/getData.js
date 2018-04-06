@@ -6,4 +6,4 @@ export const newsList = page => fetch(NEWSLIST + '?page=' + page)
 // 注册
 export const register = data => fetch(REGISTER, data, 'post')
 // 登录
-export const login = data => fetch(LOGIN, data, 'post')
+export const enter = data => fetch(LOGIN, data, 'post')
