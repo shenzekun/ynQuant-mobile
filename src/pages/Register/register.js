@@ -1,12 +1,8 @@
 import React from 'react'
-import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
-import {connect} from 'react-redux'
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
 import Toast from 'react-native-root-toast'
-import {register} from '../../service/getData'
-
-/**
- * 首页
- */
+import { register } from '../../service/getData'
 
 const mapStateToProps = state => {
   return state
@@ -35,7 +31,7 @@ class RegisterScreen extends React.Component {
   }
 
   toast = null
-  showToast = (message) => {
+  showToast = message => {
     this.toast && this.toast.destroy()
     this.toast = Toast.show(message, {
       duration: Toast.durations.SHORT,
@@ -52,44 +48,47 @@ class RegisterScreen extends React.Component {
   }
 
   clickButton = text => {
-    this.setState({skills: text})
+    this.setState({ skills: text })
   }
 
   validatePhone = () => {
     if (
-      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.phone) || this.state.phone === ''
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(
+        this.state.phone
+      ) ||
+      this.state.phone === ''
     ) {
-      this.setState({isPhoneWarn: true})
+      this.setState({ isPhoneWarn: true })
       this.showToast('请输入正确的手机格式！')
     } else {
-      this.setState({isPhoneWarn: false})
+      this.setState({ isPhoneWarn: false })
     }
   }
 
   validateUser = () => {
     if (this.state.user === '') {
-      this.setState({isUserWarn: true})
+      this.setState({ isUserWarn: true })
       this.showToast('请输入用户名！')
     } else {
-      this.setState({isUserWarn: false})
+      this.setState({ isUserWarn: false })
     }
   }
 
   validatePwd = () => {
     if (this.state.password === '') {
-      this.setState({isPassWordWarn: true})
+      this.setState({ isPassWordWarn: true })
       this.showToast('请输入密码！')
     } else {
-      this.setState({isPassWordWarn: false})
+      this.setState({ isPassWordWarn: false })
     }
   }
 
   validateVerifyPwd = () => {
     if (this.state.verifyPassword === '' || this.state.password !== this.state.verifyPassword) {
-      this.setState({isVerifyPwdWarn: true})
+      this.setState({ isVerifyPwdWarn: true })
       this.showToast('密码和确认密码不一致！')
     } else {
-      this.setState({isVerifyPwdWarn: false})
+      this.setState({ isVerifyPwdWarn: false })
     }
   }
 
@@ -107,7 +106,10 @@ class RegisterScreen extends React.Component {
       return
     }
     if (
-      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(this.state.phone) || this.state.phone === ''
+      !/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$/.test(
+        this.state.phone
+      ) ||
+      this.state.phone === ''
     ) {
       return
     }
@@ -116,20 +118,27 @@ class RegisterScreen extends React.Component {
       name: this.state.user,
       password: this.state.verifyPassword,
       skills: this.state.skills
-    }).then(res => console.log(res)).catch(err => {
-      console.log(err)
     })
+      .then(res => console.log(res))
+      .catch(err => {
+        console.log(err)
+      })
     alert(Object.entries(this.state))
   }
 
   render () {
+    let { goBack } = this.props.navigation
     return (
       <View style={styles.registerPage}>
-        {/* header */}
         <View style={styles.headerStyle}>
+          <TouchableOpacity style={styles.back} onPress={() => goBack()}>
+            <Image
+              source={require('../../images/common/back.png')}
+              style={{ width: 8, height: 16 }}
+            />
+          </TouchableOpacity>
           <Image style={styles.logo} source={require('../../images/Logo/loginLogo.png')} />
         </View>
-        {/* body */}
         <View style={styles.bodyStyle}>
           <View
             style={[
@@ -144,7 +153,7 @@ class RegisterScreen extends React.Component {
               placeholderTextColor={'black'}
               placeholder='手机'
               autoCapitalize={'none'}
-              onChangeText={text => this.setState({phone: text})}
+              onChangeText={text => this.setState({ phone: text })}
               value={this.state.phone}
               keyboardType={'numeric'}
               onEndEditing={this.validatePhone}
@@ -165,7 +174,7 @@ class RegisterScreen extends React.Component {
               placeholder='用户名'
               autoCapitalize={'none'}
               maxLength={16}
-              onChangeText={text => this.setState({user: text})}
+              onChangeText={text => this.setState({ user: text })}
               value={this.state.user}
               onEndEditing={this.validateUser}
             />
@@ -185,7 +194,7 @@ class RegisterScreen extends React.Component {
               secureTextEntry
               autoCapitalize={'none'}
               maxLength={20}
-              onChangeText={text => this.setState({password: text})}
+              onChangeText={text => this.setState({ password: text })}
               value={this.state.password}
               onEndEditing={this.validatePwd}
             />
@@ -205,7 +214,7 @@ class RegisterScreen extends React.Component {
               secureTextEntry
               autoCapitalize={'none'}
               maxLength={20}
-              onChangeText={text => this.setState({verifyPassword: text})}
+              onChangeText={text => this.setState({ verifyPassword: text })}
               value={this.state.verifyPassword}
               onEndEditing={this.validateVerifyPwd}
             />
@@ -253,10 +262,10 @@ class RegisterScreen extends React.Component {
           <View style={styles.footerFix}>
             <Text style={styles.remindText}>已经拥有账户？</Text>
             <TouchableOpacity
-              // onPress={() => navigate('HomeScreen')}
+              onPress={() => goBack()}
               underlayColor='#fff'
             >
-              <Text style={{fontSize: 14}}>登录.</Text>
+              <Text style={{ fontSize: 14 }}>登录.</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -272,7 +281,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 0
   },
+  back: {
+    position: 'absolute',
+    left: 22,
+    top: 40
+  },
   headerStyle: {
+    position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'black',
@@ -333,11 +348,11 @@ const styles = StyleSheet.create({
     width: 244,
     marginTop: 10.5
   },
-  progressBar: {width: 74.67, height: 4, borderRadius: 9.5, backgroundColor: '#bdbdbd'},
+  progressBar: { width: 74.67, height: 4, borderRadius: 9.5, backgroundColor: '#bdbdbd' },
   progressBarActive: {
     backgroundColor: '#777777'
   },
-  progressBarText: {textAlign: 'center', marginTop: 8, fontSize: 13, color: '#858585'}
+  progressBarText: { textAlign: 'center', marginTop: 8, fontSize: 13, color: '#858585' }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen)
