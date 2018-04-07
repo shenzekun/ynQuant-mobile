@@ -9,12 +9,6 @@ const propTypes = {
   navigation: PropTypes.object.isRequired
 }
 
-const DEBUG = true
-
-const log = text => {
-  DEBUG && console.log(text)
-}
-
 class TimeLine extends React.Component {
   constructor (props) {
     super(props)
