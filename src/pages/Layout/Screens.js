@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import { Image, TouchableOpacity } from 'react-native'
+import { Image } from 'react-native'
 import InformationScreen from '../Information/information' // 时讯
 import KnowledgeScreen from '../Knowedge/knowledge' // 知识
 import SimulateScreen from '../Simulate/simulate' // 模拟

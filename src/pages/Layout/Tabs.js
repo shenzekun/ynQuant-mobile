@@ -36,7 +36,7 @@ let TabBar = TabNavigator(Screen, {
       fontSize: 11
     }
   },
-  lazy: false, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
+  lazy: true, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
   animationEnabled: false, // 开启动画
   initialLayout: {
     height: 49,

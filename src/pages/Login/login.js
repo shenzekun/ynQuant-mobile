@@ -1,9 +1,10 @@
 import React from 'react'
-import { Image, Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, Text, View, TextInput, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import Toast from 'react-native-root-toast'
 import { login } from '../Login/loginAction'
 import Loading from '../../components/Loading'
+import { SafeAreaView } from 'react-navigation'
 
 const mapStateToProps = state => {
   return state.Login
@@ -41,8 +42,16 @@ class LoginScreen extends React.Component {
   shouldComponentUpdate (nextProps, nextState) {
     // 登录完成,切成功登录
     if (nextProps.status === '登陆成功' && nextProps.isSuccess) {
+      StatusBar.setNetworkActivityIndicatorVisible(false)
       this.props.navigation.goBack()
       return false
+    }
+    if (nextProps.status === '正在登陆') {
+      StatusBar.setNetworkActivityIndicatorVisible(true)
+    }
+    if (nextProps.status === '登录出错') {
+      this.showToast('登录失败！')
+      StatusBar.setNetworkActivityIndicatorVisible(false)
     }
     return true
   }
@@ -81,9 +90,10 @@ class LoginScreen extends React.Component {
     })
   }
   render () {
-    let {goBack, navigate} = this.props.navigation
+    let { goBack, navigate } = this.props.navigation
     return (
-      <View style={styles.loginPage}>
+      <SafeAreaView style={styles.loginPage}>
+        <StatusBar barStyle='light-content' backgroundColor='#000' />
         <TouchableOpacity style={styles.back} onPress={() => goBack()}>
           <Image
             source={require('../../images/common/back.png')}
@@ -142,7 +152,7 @@ class LoginScreen extends React.Component {
           </TouchableOpacity>
         </View>
         {this.props.status === '正在登陆' ? <Loading /> : null}
-      </View>
+      </SafeAreaView>
     )
   }
 }
@@ -151,7 +161,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 0,
     backgroundColor: '#171616',
     position: 'relative'
   },

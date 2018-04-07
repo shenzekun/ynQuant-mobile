@@ -9,7 +9,12 @@ export function login (data) {
     // 模拟用户登录
     enter(data)
       .then(res => {
-        dispatch(loginSuccess(true, res))
+        console.log(res)
+        if (res === '权限不足') {
+          dispatch(loginError(false))
+        } else {
+          dispatch(loginSuccess(true, res))
+        }
       })
       .catch(e => {
         dispatch(loginError(false))
