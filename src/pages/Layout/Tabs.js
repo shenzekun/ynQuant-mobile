@@ -26,7 +26,7 @@ let TabBar = TabNavigator(Screen, {
   initialRouteName: 'InformationScreen', // 首页名字
   tabBarComponent: CustomerTabBar,
   tabBarOptions: {
-    activeTintColor: '#fff', // 选中时文字颜色
+    activeTintColor: 'rgba(137, 172, 249, 1.000)', // 选中时文字颜色
     inactiveTintColor: '#9a9a9a', // 未选中时文字颜色
     showIcon: true,
     tabBarPosition: 'bottom', // tab bar的位置
@@ -36,7 +36,7 @@ let TabBar = TabNavigator(Screen, {
       fontSize: 11
     }
   },
-  lazy: false, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
+  lazy: true, // 是否懒加载界面，默认一次加载所有的界面,true为懒加载
   animationEnabled: false, // 开启动画
   initialLayout: {
     height: 49,
@@ -104,10 +104,16 @@ const Navigator = StackNavigator(
       })
     },
     Login: {
-      screen: Login
+      screen: Login,
+      navigationOptions: {
+        header: 'none'
+      }
     },
     Register: {
-      screen: Register
+      screen: Register,
+      navigationOptions: {
+        header: 'none'
+      }
     }
   },
   {
@@ -133,7 +139,8 @@ class Tabs extends React.Component {
   getScreenColor (ScreenName) {
     const screenColor = {
       KnowledgeScreen: 'rgba(75,83,94,1)',
-      InformationScreen: 'rgba(0,0,0,1)'
+      InformationScreen: 'rgba(0,0,0,1)',
+      AboutScreen: 'rgba(251, 251, 251, 1)'
     }
 
     return screenColor[ScreenName] || null

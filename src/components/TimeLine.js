@@ -9,12 +9,6 @@ const propTypes = {
   navigation: PropTypes.object.isRequired
 }
 
-const DEBUG = true
-
-const log = text => {
-  DEBUG && console.log(text)
-}
-
 class TimeLine extends React.Component {
   constructor (props) {
     super(props)
@@ -121,7 +115,7 @@ class TimeLine extends React.Component {
       <View style={styles.row}>
         <View style={styles.date}>
           <Text style={[styles.fontColor, styles.dayFont]}>{rowData.day}</Text>
-          <Text style={[styles.fontColor, styles.monthFont]}>{rowData.month}</Text>
+          <Text style={[styles.fontColor, styles.monthFont]}>{rowData.month}月</Text>
         </View>
         <TouchableOpacity
           style={styles.contentWrap}

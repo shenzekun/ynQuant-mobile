@@ -1,12 +1,9 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, StatusBar, Platform } from 'react-native'
 import BaseKnowledge from './BaseKnowledge/baseKnowledge'
 import Header from '../../components/Header/Header'
 import { connect } from 'react-redux'
-/*
-  状态栏配置
-  https://reactnavigation.org/docs/status-bar.html
-*/
+
 const mapStateToProps = state => {
   return state.Knowlege
 }
@@ -25,7 +22,16 @@ class KnowledgeScreen extends React.Component {
     }
     console.log(this.props.navigation)
   }
+  componentDidMount () {
+    this._navListener = this.props.navigation.addListener('didFocus', () => {
+      StatusBar.setBarStyle('light-content')
+      Platform.OS === 'android' && StatusBar.setBackgroundColor('#000')
+    })
+  }
 
+  componentWillUnmount () {
+    this._navListener.remove()
+  }
   render () {
     let tabNames = this.state.tabNames
     return (

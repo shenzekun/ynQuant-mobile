@@ -1,13 +1,10 @@
 import React from 'react'
-import { Image, Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, Text, View, TextInput, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import Toast from 'react-native-root-toast'
-// import { login } from '../../service/getData'
-import {login} from '../Login/loginAction'
-
-/**
- * 首页
- */
+import { login } from '../Login/loginAction'
+import Loading from '../../components/Loading'
+import { SafeAreaView } from 'react-navigation'
 
 const mapStateToProps = state => {
   return state.Login
@@ -15,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: () => dispatch(login())
+    login: data => dispatch(login(data))
   }
 }
 class LoginScreen extends React.Component {
@@ -45,7 +42,16 @@ class LoginScreen extends React.Component {
   shouldComponentUpdate (nextProps, nextState) {
     // 登录完成,切成功登录
     if (nextProps.status === '登陆成功' && nextProps.isSuccess) {
+      StatusBar.setNetworkActivityIndicatorVisible(false)
+      this.props.navigation.goBack()
       return false
+    }
+    if (nextProps.status === '正在登陆') {
+      StatusBar.setNetworkActivityIndicatorVisible(true)
+    }
+    if (nextProps.status === '登录出错') {
+      this.showToast('登录失败！')
+      StatusBar.setNetworkActivityIndicatorVisible(false)
     }
     return true
   }
@@ -78,11 +84,22 @@ class LoginScreen extends React.Component {
     ) {
       return
     }
-    this.props.login()
+    this.props.login({
+      phone: this.state.phone,
+      password: this.state.password
+    })
   }
   render () {
+    let { goBack, navigate } = this.props.navigation
     return (
-      <View style={styles.loginPage}>
+      <SafeAreaView style={styles.loginPage}>
+        <StatusBar barStyle='light-content' backgroundColor='#000' />
+        <TouchableOpacity style={styles.back} onPress={() => goBack()}>
+          <Image
+            source={require('../../images/common/back.png')}
+            style={{ width: 8, height: 16 }}
+          />
+        </TouchableOpacity>
         <Image source={require('../../images/Logo/loginLogo.png')} style={{ marginTop: 68 }} />
         <View style={styles.loginSection}>
           <View style={{ borderBottomColor: 'white', borderBottomWidth: 0.7, width: 230 }}>
@@ -128,13 +145,14 @@ class LoginScreen extends React.Component {
 
           <TouchableOpacity
             style={styles.registerButton}
-            // onPress={() => navigate('HomeScreen')}
+            onPress={() => navigate('Register')}
             underlayColor='#fff'
           >
             <Text style={styles.registerButtonText}>注册</Text>
           </TouchableOpacity>
         </View>
-      </View>
+        {this.props.status === '正在登陆' ? <Loading /> : null}
+      </SafeAreaView>
     )
   }
 }
@@ -143,8 +161,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 0,
-    backgroundColor: '#171616'
+    backgroundColor: '#171616',
+    position: 'relative'
+  },
+  back: {
+    position: 'absolute',
+    left: 22,
+    top: 40
   },
   loginSection: {
     padding: 1,
@@ -180,11 +203,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     height: 45,
-    width: 220
+    width: 220,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   loginButtonText: {
-    marginTop: 10,
-    textAlign: 'center',
     fontSize: 19,
     color: 'white'
   },
@@ -193,11 +216,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#97e960',
     height: 45,
     width: 220,
-    marginTop: 8
+    marginTop: 8,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   weChatButtonText: {
-    paddingTop: 12,
-    textAlign: 'center',
     fontSize: 19,
     color: 'black'
   },

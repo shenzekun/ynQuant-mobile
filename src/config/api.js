@@ -1,8 +1,10 @@
+const port = '8111'
+const domain = 'http://192.168.1.178'
 // 获取新闻列表
-export const NEWSLIST = 'http://192.168.1.178/api/news/list'
+export const NEWSLIST = `${domain}:${port}/api/news/list`
 
 // 注册
-export const REGISTER = 'http://192.168.1.178/user/regist'
+export const REGISTER = `${domain}:${port}/user/regist`
 
 // 登录
-export const LOGIN = 'http://192.168.1.178/user/login'
+export const LOGIN = `${domain}:${port}/user/login`

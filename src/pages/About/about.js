@@ -1,38 +1,92 @@
 import React from 'react'
-import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native'
+import {Button, Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, Platform} from 'react-native'
 import {connect} from 'react-redux'
+import {SafeAreaView} from 'react-navigation'
 
-/*
-  状态栏配置
-  https://reactnavigation.org/docs/status-bar.html
-*/
+const mapStateToProps = state => {
+  return {
+    user: state.Login.user
+  }
+}
+
 class AboutScreen extends React.Component {
+  static navigationOptions = ({navigation, screenProps}) => ({
+    tabBarIcon: ({focused, tintColor}) => (
+      <Image
+        source={
+          focused ? require('../../images/about-active2.png') : require('../../images/about.png')
+        }
+        style={{width: 23, height: 25}}
+      />
+    ),
+    activeTintColor: 'rgba(137, 172, 249, 1.000)',
+    headerStyle: {
+      backgroundColor: '#fff',
+      borderBottomColor: '#fff'
+    },
+    title: '我的',
+    headerRight: (
+      <TouchableOpacity
+        style={{marginRight: 20, width: 20, height: 20}}
+        onPress={navigation.state.params ? navigation.state.params.goToSetting : null}
+      >
+        <Image source={require('../../images/about/setting.png')} />
+      </TouchableOpacity>
+    )
+  })
+
+  componentDidMount () {
+    this._navListener = this.props.navigation.addListener('didFocus', () => {
+      StatusBar.setBarStyle('dark-content')
+      Platform.OS === 'android' && StatusBar.setBackgroundColor('#fff')
+    })
+    this.props.navigation.setParams({
+      goToSetting: this.goToSetting
+    })
+  }
+
+  componentWillUnmount () {
+    this._navListener.remove()
+  }
+
+  goToSetting = () => {
+    this.props.navigation.navigate('Login')
+  }
+
   render () {
-    return (
-      <View style={styles.container}>
+    let user = this.props.user
+    let {navigate} = this.props.navigation
+    return user ? (
+      <SafeAreaView style={styles.container}>
         <View style={styles.authorWrap}>
           <View style={styles.authorImgShadow}>
             <Image source={require('../../images/about/author.png')} style={styles.authorImg} />
           </View>
-          <Text style={styles.authorName}>万千钧</Text>
+          <Text style={styles.authorName}>{user.name}</Text>
         </View>
-
         <View style={styles.operate}>
           <TouchableOpacity>
-            <Image source={require('../../images/about/note.png')} /></TouchableOpacity>
+            <Image source={require('../../images/about/note.png')} />
+          </TouchableOpacity>
           <TouchableOpacity>
-            <Image source={require('../../images/about/subscribe.png')}
-              style={styles.operateImg}
-            /></TouchableOpacity>
+            <Image source={require('../../images/about/subscribe.png')} style={styles.operateImg} />
+          </TouchableOpacity>
           <TouchableOpacity>
-            <Image source={require('../../images/about/wallet.png')} /></TouchableOpacity>
+            <Image source={require('../../images/about/wallet.png')} />
+          </TouchableOpacity>
         </View>
         <View style={styles.utilWrap}>
           <TouchableOpacity style={styles.util}>
             <View style={styles.toolWrap}>
-              <Image source={require('../../images/about/tool.png')} style={[styles.commonImg, {
-                marginLeft: 20
-              }]} />
+              <Image
+                source={require('../../images/about/tool.png')}
+                style={[
+                  styles.commonImg,
+                  {
+                    marginLeft: 20
+                  }
+                ]}
+              />
               <Text style={styles.utilText}>工具</Text>
             </View>
 
@@ -40,49 +94,100 @@ class AboutScreen extends React.Component {
               <View style={styles.info}>
                 <Text style={styles.infoText}>1</Text>
               </View>
-              <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
-                marginRight: 20
-              }]} />
+              <Image
+                source={require('../../images/about/rightArrow.png')}
+                style={[
+                  styles.commonImg,
+                  {
+                    marginRight: 20
+                  }
+                ]}
+              />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.util}>
             <View style={styles.toolWrap}>
-              <Image source={require('../../images/about/message.png')} style={[styles.commonImg, {
-                marginLeft: 20
-              }]} />
+              <Image
+                source={require('../../images/about/message.png')}
+                style={[
+                  styles.commonImg,
+                  {
+                    marginLeft: 20
+                  }
+                ]}
+              />
               <Text style={styles.utilText}>消息</Text>
             </View>
-            <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
-              marginRight: 20
-            }]} />
+            <Image
+              source={require('../../images/about/rightArrow.png')}
+              style={[
+                styles.commonImg,
+                {
+                  marginRight: 20
+                }
+              ]}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.util}>
             <View style={styles.toolWrap}>
-              <Image source={require('../../images/about/collect.png')} style={[styles.commonImg, {
-                marginLeft: 20
-              }]} />
+              <Image
+                source={require('../../images/about/collect.png')}
+                style={[
+                  styles.commonImg,
+                  {
+                    marginLeft: 20
+                  }
+                ]}
+              />
               <Text style={styles.utilText}>收藏</Text>
             </View>
-            <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
-              marginRight: 20
-            }]} />
+            <Image
+              source={require('../../images/about/rightArrow.png')}
+              style={[
+                styles.commonImg,
+                {
+                  marginRight: 20
+                }
+              ]}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.util}>
             <View style={styles.toolWrap}>
-              <Image source={require('../../images/about/about.png')} style={[styles.commonImg, {
-                marginLeft: 20
-              }]} />
+              <Image
+                source={require('../../images/about/about.png')}
+                style={[
+                  styles.commonImg,
+                  {
+                    marginLeft: 20
+                  }
+                ]}
+              />
               <Text style={styles.utilText}>关于我们</Text>
             </View>
-            <Image source={require('../../images/about/rightArrow.png')} style={[styles.commonImg, {
-              marginRight: 20
-            }]} />
+            <Image
+              source={require('../../images/about/rightArrow.png')}
+              style={[
+                styles.commonImg,
+                {
+                  marginRight: 20
+                }
+              ]}
+            />
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
+    ) : (
+      <SafeAreaView>
+        <Button
+          onPress={() => navigate('Login')}
+          title='登录'
+          color='#841584'
+          accessibilityLabel='登录'
+        />
+      </SafeAreaView>
     )
   }
 }
@@ -177,4 +282,4 @@ const styles = StyleSheet.create({
     marginTop: 5
   }
 })
-export default AboutScreen
+export default connect(mapStateToProps)(AboutScreen)

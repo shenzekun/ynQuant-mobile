@@ -1,18 +1,20 @@
 import * as types from './loginTypes'
-let user = {
-  name: 'zhangsan',
-  age: 24
-}
+import { enter } from '../../service/getData'
 
 // 访问登录接口 根据返回结果来划分action属于哪个type,然后返回对象,给reducer处理
-export function login () {
+export function login (data) {
   console.log('登录方法')
   return dispatch => {
     dispatch(isLogining())
     // 模拟用户登录
-    let result = fetch('https://www.baidu.com/')
+    enter(data)
       .then(res => {
-        dispatch(loginSuccess(true, user))
+        console.log(res)
+        if (res === '权限不足') {
+          dispatch(loginError(false))
+        } else {
+          dispatch(loginSuccess(true, res))
+        }
       })
       .catch(e => {
         dispatch(loginError(false))

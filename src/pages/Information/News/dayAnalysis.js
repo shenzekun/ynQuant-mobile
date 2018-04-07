@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet, Linking } from 'react-native'
+import { View, Text, StyleSheet, Linking, StatusBar } from 'react-native'
 import ProgressBar from '../../../components/ProgressBar'
 class DayAnalysisScreen extends React.Component {
   render () {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle='light-content' backgroundColor='#000' />
         <Text style={styles.content}>
           &nbsp;&nbsp;&nbsp;&nbsp; 据天空新闻：<Text
             onPress={() => Linking.openURL('https://www.baidu.com')}

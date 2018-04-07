@@ -27,7 +27,6 @@ export default (state = initialState, action) => {
         user: null
       }
     default:
-      console.log(state)
       return state
   }
 }
