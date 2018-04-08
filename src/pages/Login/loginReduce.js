@@ -1,7 +1,8 @@
 const initialState = {
   status: '点击登录',
   isSuccess: false,
-  user: null
+  user: null,
+  errMsg: ''
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -23,8 +24,9 @@ export default (state = initialState, action) => {
       return {
         ...state,
         status: '登录出错',
-        isSuccess: true,
-        user: null
+        isSuccess: false,
+        user: null,
+        errMsg: action.errMsg
       }
     default:
       return state

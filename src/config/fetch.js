@@ -32,10 +32,14 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
     }
     try {
       const response = await fetch(url, requestConfig)
-      const responseJson = await response.json()
-      return responseJson
+      if (response.status === 200) {
+        const responseJson = await response.json()
+        return responseJson
+      } else {
+        throw await response.json()
+      }
     } catch (error) {
-      throw new Error(error)
+      throw error
     }
   } else {
     return new Promise((resolve, reject) => {

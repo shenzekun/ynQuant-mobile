@@ -9,15 +9,14 @@ export function login (data) {
     // 模拟用户登录
     enter(data)
       .then(res => {
-        console.log(res)
-        if (res === '权限不足') {
-          dispatch(loginError(false))
-        } else {
-          dispatch(loginSuccess(true, res))
-        }
+        dispatch(loginSuccess(true, res))
       })
       .catch(e => {
-        dispatch(loginError(false))
+        if (e.message === 'Network request failed') {
+          dispatch(loginError('网络请求失败'))
+        } else {
+          dispatch(loginError(e))
+        }
       })
   }
 }
@@ -36,9 +35,10 @@ function loginSuccess (isSuccess, user) {
   }
 }
 
-function loginError (isSuccess) {
+function loginError (errorMsg) {
   console.log('error')
   return {
-    type: types.LOGIN_IN_ERROR
+    type: types.LOGIN_IN_ERROR,
+    errMsg: errorMsg
   }
 }
