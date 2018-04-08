@@ -50,7 +50,7 @@ class LoginScreen extends React.Component {
       StatusBar.setNetworkActivityIndicatorVisible(true)
     }
     if (nextProps.status === '登录出错') {
-      this.showToast('登录失败！')
+      this.showToast(nextProps.errMsg)
       StatusBar.setNetworkActivityIndicatorVisible(false)
     }
     return true
