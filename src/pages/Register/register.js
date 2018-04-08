@@ -1,16 +1,18 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import Toast from 'react-native-root-toast'
-import { register } from '../../service/getData'
+import { register, init } from './registerAction'
+import Loading from '../../components/Loading'
 
 const mapStateToProps = state => {
-  return state
+  return state.Register
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIncreaseClick: () => dispatch()
+    register: data => dispatch(register(data)),
+    init: () => dispatch(init())
   }
 }
 
@@ -28,13 +30,41 @@ class RegisterScreen extends React.Component {
       isPassWordWarn: false,
       isVerifyPwdWarn: false
     }
+    // this.errorCount = 0 // 记录出错的次数
+  }
+  shouldComponentUpdate (nextProps, nextState) {
+    // 登录完成,切成功登录
+    if (nextProps.status === '注册成功' && nextProps.isSuccess) {
+      StatusBar.setNetworkActivityIndicatorVisible(false)
+      this.showToast('注册成功', 1000)
+      this.time_id = setTimeout(() => {
+        this.props.navigation.goBack()
+      }, 1000)
+      return false
+    }
+    if (nextProps.status === '正在注册') {
+      StatusBar.setNetworkActivityIndicatorVisible(true)
+    }
+    if (nextProps.status === '注册出错') {
+      // this.errorCount++
+      // if (this.errorCount === 1) {
+      this.showToast(nextProps.errMsg, 1000)
+      StatusBar.setNetworkActivityIndicatorVisible(false)
+      // }
+    }
+    return true
+  }
+
+  componentWillMount () {
+    clearTimeout(this.time_id)
+    this.props.init()
   }
 
   toast = null
-  showToast = message => {
+  showToast = (message, time) => {
     this.toast && this.toast.destroy()
     this.toast = Toast.show(message, {
-      duration: Toast.durations.SHORT,
+      duration: time || Toast.durations.SHORT,
       position: Toast.positions.TOP,
       shadow: false,
       animation: true,
@@ -113,17 +143,12 @@ class RegisterScreen extends React.Component {
     ) {
       return
     }
-    register({
+    this.props.register({
       phone: this.state.phone,
       name: this.state.user,
       password: this.state.verifyPassword,
       skills: this.state.skills
     })
-      .then(res => console.log(res))
-      .catch(err => {
-        console.log(err)
-      })
-    alert(Object.entries(this.state))
   }
 
   render () {
@@ -153,7 +178,9 @@ class RegisterScreen extends React.Component {
               placeholderTextColor={'black'}
               placeholder='手机'
               autoCapitalize={'none'}
-              onChangeText={text => this.setState({ phone: text })}
+              onChangeText={text => {
+                this.setState({ phone: text })
+              }}
               value={this.state.phone}
               keyboardType={'numeric'}
               onEndEditing={this.validatePhone}
@@ -261,14 +288,12 @@ class RegisterScreen extends React.Component {
         <View style={styles.footerStyle}>
           <View style={styles.footerFix}>
             <Text style={styles.remindText}>已经拥有账户？</Text>
-            <TouchableOpacity
-              onPress={() => goBack()}
-              underlayColor='#fff'
-            >
+            <TouchableOpacity onPress={() => goBack()} underlayColor='#fff'>
               <Text style={{ fontSize: 14 }}>登录.</Text>
             </TouchableOpacity>
           </View>
         </View>
+        {this.props.status === '正在注册' ? <Loading /> : null}
       </View>
     )
   }

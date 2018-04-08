@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux'
-
-import Home from '../pages/Home/homeReduce'
 import Tabbar from '../pages/Tabbar/CustomerTabBarReduce'
 import Knowlege from '../pages/Knowedge/knowledgeRecuce'
 import Login from '../pages/Login/loginReduce'
+import Register from '../pages/Register/registerReduce'
 
 export default combineReducers({
-  Home,
   Tabbar,
   Knowlege,
-  Login
+  Login,
+  Register
 })

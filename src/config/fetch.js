@@ -32,7 +32,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
     }
     try {
       const response = await fetch(url, requestConfig)
-      if (response.status === 200) {
+      if (response.status >= 200 && response.status <= 300) {
         const responseJson = await response.json()
         return responseJson
       } else {
