@@ -41,6 +41,6 @@ export default class IntroScreen extends React.Component {
   }
 
   render () {
-    return <AppIntroSlider slides={slides} onDone={this._onDone}/>
+    return <AppIntroSlider slides={slides} onDone={this._onDone} />
   }
 }

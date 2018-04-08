@@ -15,7 +15,6 @@ const mapStateToProps = state => {
 }
 class TouchTab extends React.Component {
   len = this.props.tabs.length - 1
-  // bgColor = this.props.bgColor ? this.props.bgColor : '#000'
   constructor (props) {
     super(props)
     this.state = {
