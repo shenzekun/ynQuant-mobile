@@ -293,7 +293,7 @@ class RegisterScreen extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        {this.props.status === '正在注册' ? <Loading /> : null}
+        {this.props.status === '正在注册' ? <Loading color={'#858585'} /> : null}
       </View>
     )
   }

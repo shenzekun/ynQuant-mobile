@@ -16,6 +16,7 @@ import BaseWriteNote from '../Knowedge/BaseKnowledge/baseWriteNote'
 import NewsDetail from '../Information/News/newsDetail'
 import Login from '../Login/login'
 import Register from '../Register/register'
+import Setting from '../Setting/setting'
 
 let today = new Date()
 let mouth = today.getMonth() + 1
@@ -113,6 +114,12 @@ const Navigator = StackNavigator(
       screen: Register,
       navigationOptions: {
         header: 'none'
+      }
+    },
+    Setting: {
+      screen: Setting,
+      navigationOptions: {
+        headerTitle: '设置'
       }
     }
   },
