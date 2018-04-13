@@ -2,24 +2,45 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
 import PropTypes from 'prop-types'
+import { getDay, getMonth, getTime } from '../config/utils'
+import { newsList } from '../service/getData'
 
 const propTypes = {
-  data: PropTypes.array.isRequired, // 新闻数据
   navigation: PropTypes.object.isRequired
-}
-
-const DEBUG = true
-
-const log = text => {
-  DEBUG && console.log(text)
+  // onHeaderRefresh: PropTypes.func.isRequired,
+  // onFooterRefresh: PropTypes.func.isRequired,
+  // data: PropTypes.array.isRequired
 }
 
 class TimeLine extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      refreshState: RefreshState.Idle
+      refreshState: RefreshState.Idle,
+      data: []
     }
+    this.page = 1
+  }
+
+  componentDidMount () {
+    newsList(this.page)
+      .then(res => {
+        let data = []
+        for (let key in res) {
+          if (res.hasOwnProperty(key)) {
+            data.push({
+              time: key,
+              month: getMonth(key),
+              day: getDay(key),
+              content: res[key]
+            })
+          }
+        }
+        this.setState({ data: data })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   _renderEmptyLayout () {
@@ -28,10 +49,70 @@ class TimeLine extends React.Component {
 
   onHeaderRefresh = () => {
     this.setState({ refreshState: RefreshState.HeaderRefreshing })
+    this.page = 1
+    newsList(this.page)
+      .then(res => {
+        let data = []
+        for (let key in res) {
+          if (res.hasOwnProperty(key)) {
+            data.push({
+              time: key,
+              month: getMonth(key),
+              day: getDay(key),
+              content: res[key]
+            })
+          }
+        }
+        this.setState({
+          data: data,
+          refreshState: RefreshState.Idle
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   onFooterRefresh = () => {
     this.setState({ refreshState: RefreshState.FooterRefreshing })
+    this.page++
+    newsList(this.page)
+      .then(res => {
+        let data = [...this.state.data]
+        if (res.length !== 0) {
+          for (let key in res) {
+            if (res.hasOwnProperty(key)) {
+              for (let i = data.length - 1; i >= 0; i--) {
+                if (data[i].time === key) {
+                  data[i].content = data[i].content.concat(res[key])
+                  this.setState({
+                    data: data,
+                    refreshState: RefreshState.Idle
+                  })
+                  break
+                } else {
+                  data.push({
+                    time: key,
+                    month: getMonth(key),
+                    day: getDay(key),
+                    content: res[key]
+                  })
+                  this.setState({
+                    data: data,
+                    refreshState: RefreshState.Idle
+                  })
+                  break
+                }
+              }
+            }
+          }
+        } else {
+          this.setState({ refreshState: RefreshState.NoMoreData })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   renderRow = (rowData, navigation) => {
@@ -40,43 +121,47 @@ class TimeLine extends React.Component {
     let firstContent = array.splice(0, 1) // 获取第一个内容
     let content = array // 获取其余内容
     return (
-      <View style={styles.row}>
+      <View style={styles.row} key={firstContent[0].id}>
         <View style={styles.date}>
           <Text style={[styles.fontColor, styles.dayFont]}>{rowData.day}</Text>
-          <Text style={[styles.fontColor, styles.monthFont]}>{rowData.month}</Text>
+          <Text style={[styles.fontColor, styles.monthFont]}>{rowData.month}月</Text>
         </View>
         <TouchableOpacity
           style={styles.contentWrap}
           onPress={() => {
             navigate('NewsDetail', {
-              content: firstContent[0]
+              content: firstContent[0],
+              id: firstContent[0].id
             })
           }}
         >
           <View style={styles.time}>
-            <Text style={[styles.fontColor, styles.timeFont]}>{firstContent[0].time}</Text>
+            <Text style={[styles.fontColor, styles.timeFont]}>
+              {getTime(firstContent[0].news_time)}
+            </Text>
           </View>
           <View style={styles.content}>
-            <Text style={styles.contentFont}>{firstContent[0].text}</Text>
+            <Text style={styles.contentFont}>{firstContent[0].title}</Text>
           </View>
         </TouchableOpacity>
 
         {content.map(data => {
           return (
-            <View style={styles.commonWrap} key={data.key}>
+            <View style={styles.commonWrap} key={data.id}>
               <TouchableOpacity
                 style={styles.contentWrap}
                 onPress={() => {
                   navigate('NewsDetail', {
-                    content: data
+                    content: data,
+                    id: data.id
                   })
                 }}
               >
                 <View style={styles.time}>
-                  <Text style={[styles.fontColor, styles.timeFont]}>{data.time}</Text>
+                  <Text style={[styles.fontColor, styles.timeFont]}>{getTime(data.news_time)}</Text>
                 </View>
                 <View style={styles.content}>
-                  <Text style={styles.contentFont}>{data.text}</Text>
+                  <Text style={styles.contentFont}>{data.title}</Text>
                 </View>
               </TouchableOpacity>
               <View style={styles.dotOutWard}>
@@ -93,7 +178,7 @@ class TimeLine extends React.Component {
     return (
       <View style={styles.container}>
         <RefreshListView
-          data={this.props.data}
+          data={this.state.data}
           renderItem={({ item }) => this.renderRow(item, this.props.navigation)}
           initialNumToRender={6}
           refreshState={this.state.refreshState}

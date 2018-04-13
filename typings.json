@@ -1,5 +1,6 @@
 {
   "globalDependencies": {
-    "redux": "registry:dt/redux#3.5.2+20160703092728"
+    "redux": "registry:dt/redux#3.5.2+20160703092728",
+    "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921"
   }
 }

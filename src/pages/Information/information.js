@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Animated } from 'react-native'
+import { View, Animated, StatusBar, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import NewScreen from './News/news'
 import Header from '../../components/Header/Header'
@@ -15,6 +15,16 @@ class InformationScreen extends React.Component {
       tabNames: ['环球新闻', '关键日历'],
       fontSize: new Animated.Value(0)
     }
+  }
+  componentDidMount () {
+    this._navListener = this.props.navigation.addListener('didFocus', () => {
+      StatusBar.setBarStyle('light-content')
+      Platform.OS === 'android' && StatusBar.setBackgroundColor('#000')
+    })
+  }
+
+  componentWillUnmount () {
+    this._navListener.remove()
   }
 
   render () {

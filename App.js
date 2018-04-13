@@ -1,6 +1,6 @@
 import React from 'react'
 import Navigator from './src/pages/Layout/Navigator'
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
 import configureStore from './src/store/configureStore'
 // import LoginScreen from './src/pages/Login/login'
 // import RegisterScreen from './src/pages/Register/register'
@@ -15,6 +15,7 @@ export default class App extends React.Component {
     return (
       <Provider store={configureStore}>
         <Navigator />
+        {/* <LoginScreen /> */}
         {/* <RegisterScreen /> */}
         {/* <IntroScreen /> */}
       </Provider>

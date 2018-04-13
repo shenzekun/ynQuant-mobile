@@ -22,7 +22,6 @@ class BaseIntroduce extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     const { goBack } = this.props.navigation
     return (
       <SafeAreaView style={styles.container}>

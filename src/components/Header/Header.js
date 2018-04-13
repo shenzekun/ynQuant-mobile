@@ -59,7 +59,6 @@ class Header extends React.Component {
     })
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar barStyle='light-content' backgroundColor='#000' />
         <Animated.View
           style={[
             styles.container,

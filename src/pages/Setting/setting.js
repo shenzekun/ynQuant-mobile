@@ -5,7 +5,7 @@ import { StatusBar, Text, View, Platform } from 'react-native'
   状态栏配置
   https://reactnavigation.org/docs/status-bar.html
 */
-class SimulateScreen extends React.Component {
+class SettingScreen extends React.Component {
   componentDidMount () {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('dark-content')
@@ -19,10 +19,14 @@ class SimulateScreen extends React.Component {
   render () {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>SimulateScreen</Text>
+        <Text>sddsd</Text>
+        <Text>sddsd</Text>
+        <Text>sddsd</Text>
+        <Text>sddsd</Text>
+        <Text>sddsd</Text>
       </View>
     )
   }
 }
 
-export default SimulateScreen
+export default SettingScreen

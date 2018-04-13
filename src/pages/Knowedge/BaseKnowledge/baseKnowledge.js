@@ -7,7 +7,6 @@ class BaseKnowledge extends React.Component {
     return false
   }
   render () {
-    console.log(this.props)
     const { navigate, push } = this.props.navigation
     return (
       <ScrollView style={{ flex: 1 }}>
