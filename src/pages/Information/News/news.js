@@ -1,15 +1,11 @@
 import React from 'react'
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native'
 import TimeLine from '../../../components/TimeLine'
+// import {RefreshState} from 'react-native-refresh-list-view'
+// import {getDay, getMonth, getTime} from '../../../config/utils'
+// import {newsList} from '../../Information/News/news'
 
 class NewScreen extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      data: []
-    }
-  }
-
   render () {
     const {navigate} = this.props.navigation
     return (

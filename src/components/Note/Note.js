@@ -1,14 +1,9 @@
 import React from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  FlatList
-} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import PropTypes from 'prop-types'
-import { getLineBreak } from '../../config/utils'
+import { getLineBreak, getTime, getImageUrl } from '../../config/utils'
+import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
+import { newsComments, commentLikes } from '../../service/getData'
 
 const propTypes = {
   data: PropTypes.array.isRequired // 数据
@@ -20,13 +15,61 @@ const propTypes = {
 }
 
 class Note extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      refreshState: RefreshState.Idle,
+      data: props.data || []
+    }
+    this.page = 1
+  }
+  onFooterRefresh = () => {
+    this.setState({ refreshState: RefreshState.FooterRefreshing })
+    this.page++
+    newsComments(this.page, this.props.id)
+      .then(res => {
+        if (res.length !== 0) {
+          let data = [...this.props.data]
+          data = data.concat(res.data)
+          this.setState({ data: data, refreshState: RefreshState.Idle })
+          console.log(this.state.data)
+        } else {
+          this.setState({ refreshState: RefreshState.NoMoreData })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  commentLike (id, like) {
+    console.log(id)
+    commentLikes(id)
+      .then(res => {
+        if (res === 'success') {
+          this.setState({ like: like + 1 })
+        } else {
+          this.setState({ like: like - 1 })
+        }
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+  }
+
+  _renderEmptyLayout () {
+    return <Text style={{ alignSelf: 'center', marginTop: 20 }}>暂无数据</Text>
+  }
   _renderItem = data => {
-    const key = data.item.key
-    const name = data.item.name
-    const imageUrl = data.item.imageUrl
+    if (!data) {
+      return
+    }
+    const key = data.item.id
+    const name = data.item.user_info.name
+    const userId = data.item.user_info.id
+    const imageUrl = getImageUrl(data.item.user_info.head_url)
     const location = data.item.location
-    const time = data.item.time
-    const like = data.item.like
+    const time = getTime(data.item.created_at)
+    const like = data.item.likes_count
     const content = getLineBreak(data.item.content, /<br \/>/g, '\n')
     return (
       <View key={key}>
@@ -36,12 +79,12 @@ class Note extends React.Component {
             <Text style={styles.nameTitle}>{name}</Text>
             <View style={styles.locationWrap}>
               <Image source={require('../../images/note/location.png')} />
-              <Text style={styles.locationText}>{location}</Text>
+              <Text style={styles.locationText}>天津</Text>
               <Text style={styles.locationText}>{time}</Text>
             </View>
           </View>
           <View style={styles.likeWrap}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.commentLike(key, like)}>
               <Image source={require('../../images/note/like.png')} />
             </TouchableOpacity>
             <Text style={styles.likeNum}>{like}</Text>
@@ -55,12 +98,14 @@ class Note extends React.Component {
   render () {
     return (
       <View style={styles.noteWrap}>
-        <FlatList
+        <RefreshListView
           renderItem={this._renderItem}
           data={this.props.data}
-          initialNumToRender={2}
+          initialNumToRender={3}
+          refreshState={this.state.refreshState}
+          onFooterRefresh={this.onFooterRefresh}
           showsVerticalScrollIndicator={false}
-          ListFooterComponent={() => <View style={{ height: 0 }} />}
+          ListEmptyComponent={this._renderEmptyLayout}
         />
       </View>
     )
