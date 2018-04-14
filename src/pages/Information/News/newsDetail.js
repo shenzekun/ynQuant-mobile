@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import { getLineBreak } from '../../../config/utils'
 import Note from '../../../components/Note/Note'
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
@@ -11,6 +11,7 @@ class NewsDetail extends React.PureComponent {
     super(props)
     this.state = {
       refreshState: RefreshState.Idle,
+      commentData: [],
       data: []
     }
     const { params } = props.navigation.state
@@ -28,10 +29,10 @@ class NewsDetail extends React.PureComponent {
       .then(res => {
         console.log(res)
         if (res.data.length !== 0) {
-          let data = [...this.state.data]
+          let data = [...this.state.commentData]
           data = data.concat(res.data)
           console.log(data)
-          this.setState({ data: data, refreshState: RefreshState.Idle })
+          this.setState({ commentData: data, refreshState: RefreshState.Idle })
         } else {
           this.setState({ refreshState: RefreshState.NoMoreData })
         }
@@ -45,8 +46,7 @@ class NewsDetail extends React.PureComponent {
     this.page = 1
     newsComments(this.page, this.params.id)
       .then(res => {
-        console.log(res)
-        this.setState({ data: res.data, refreshState: RefreshState.Idle })
+        this.setState({ commentData: res.data, refreshState: RefreshState.Idle })
       })
       .catch(err => {
         console.log(err)
@@ -57,9 +57,12 @@ class NewsDetail extends React.PureComponent {
     this.params = params
     newsDetail(params.id)
       .then(res => {
-        this.setState({ data: res.comments })
+        this.setState({ commentData: res.comments, data: res })
       })
       .catch(err => console.log(err))
+  }
+  _renderEmptyLayout () {
+    return <Text style={{ alignSelf: 'center', marginTop: 20 }}>暂无数据</Text>
   }
   _renderHeaderLayout () {
     return (
@@ -71,15 +74,16 @@ class NewsDetail extends React.PureComponent {
       </View>
     )
   }
+  _renderFooterLayout () {
+    return <View style={{ height: 60 }} />
+  }
   render () {
-    const { params } = this.props.navigation.state
-    console.log(params)
     return (
       <View style={styles.container}>
         <View style={styles.textWrap}>
           <RefreshListView
             renderItem={this._renderItem}
-            data={this.state.data}
+            data={this.state.commentData}
             initialNumToRender={10}
             refreshState={this.state.refreshState}
             onFooterRefresh={this.onFooterRefresh}
@@ -88,7 +92,31 @@ class NewsDetail extends React.PureComponent {
             onHeaderRefresh={this.onHeaderRefresh}
             keyExtractor={this._keyExtractor}
             ListHeaderComponent={() => this._renderHeaderLayout()}
+            ListFooterComponent={() => this._renderFooterLayout()}
           />
+        </View>
+        <View style={styles.bottomBarWrap}>
+          <View style={styles.bottomBarIconWarp}>
+            <Image
+              source={require('../../../images/Information/watch.png')}
+              style={styles.watchIcon}
+            />
+            <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
+          </View>
+          <View style={styles.bottomBarIconWarp}>
+            <Image
+              source={require('../../../images/Information/comment.png')}
+              style={styles.commentIcon}
+            />
+            <Text style={styles.bottomBarText}>{this.state.data.comments_count}</Text>
+          </View>
+          <View style={styles.bottomBarIconWarp}>
+            <Image
+              source={require('../../../images/Information/Star.png')}
+              style={styles.starIcon}
+            />
+            <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
+          </View>
         </View>
       </View>
     )
@@ -109,6 +137,36 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 20
+  },
+  bottomBarWrap: {
+    width: '100%',
+    height: 49,
+    backgroundColor: 'rgba(9, 76, 144, 1.000)',
+    bottom: 0,
+    position: 'absolute',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  bottomBarIconWarp: {
+    flexDirection: 'row'
+  },
+  bottomBarText: {
+    color: '#fff',
+    fontSize: 14,
+    marginLeft: 3
+  },
+  watchIcon: {
+    width: 21.98,
+    height: 16.9
+  },
+  commentIcon: {
+    width: 22,
+    height: 20
+  },
+  starIcon: {
+    height: 20,
+    width: 20
   }
 })
 export default NewsDetail

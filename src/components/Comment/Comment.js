@@ -9,7 +9,7 @@ const propTypes = {
 class Comment extends React.PureComponent {
   constructor (props) {
     super(props)
-    this.state = { like: props.data.likes_count, isLike: false }
+    this.state = { like: props.data.likes_count, isLike: props.data.current_user_liked_count }
   }
   render () {
     const key = this.props.data.id
@@ -36,17 +36,12 @@ class Comment extends React.PureComponent {
             <TouchableOpacity
               onPress={() => {
                 commentLikes(key)
-                  .then(res => {
-                    if (res === 'created') {
-                      this.setState({ like: this.state.like + 1, isLike: true })
-                    } else {
-                      if (this.state.like > 0) {
-                        this.setState({ like: this.state.like - 1, isLike: false })
-                      }
-                    }
-                    console.log(res)
-                  })
+                  .then()
                   .catch(err => console.log(err))
+                this.setState({
+                  like: this.state.like + (this.state.isLike ? -1 : 1),
+                  isLike: !this.state.isLike
+                })
               }}
             >
               <Image

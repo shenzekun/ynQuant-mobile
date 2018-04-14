@@ -1,15 +1,12 @@
 import React from 'react'
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native'
 import TimeLine from '../../../components/TimeLine'
-// import {RefreshState} from 'react-native-refresh-list-view'
-// import {getDay, getMonth, getTime} from '../../../config/utils'
-// import {newsList} from '../../Information/News/news'
 
 class NewScreen extends React.Component {
   render () {
     const {navigate} = this.props.navigation
     return (
-      <View style={{flex: 1, position: 'relative'}}>
+      <View style={styles.container}>
         <TimeLine navigation={this.props.navigation} />
         <TouchableOpacity style={styles.btnWrap} onPress={() => navigate('DayAnalysisScreen')}>
           <Text style={styles.btnText}>今日分析</Text>
@@ -20,6 +17,9 @@ class NewScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1, position: 'relative'
+  },
   btnWrap: {
     width: 49,
     height: 49,
