@@ -3,17 +3,10 @@ import {View, TouchableOpacity, Text, StyleSheet} from 'react-native'
 import TimeLine from '../../../components/TimeLine'
 
 class NewScreen extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      data: []
-    }
-  }
-
   render () {
     const {navigate} = this.props.navigation
     return (
-      <View style={{flex: 1, position: 'relative'}}>
+      <View style={styles.container}>
         <TimeLine navigation={this.props.navigation} />
         <TouchableOpacity style={styles.btnWrap} onPress={() => navigate('DayAnalysisScreen')}>
           <Text style={styles.btnText}>今日分析</Text>
@@ -24,6 +17,9 @@ class NewScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1, position: 'relative'
+  },
   btnWrap: {
     width: 49,
     height: 49,

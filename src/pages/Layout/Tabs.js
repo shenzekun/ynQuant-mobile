@@ -16,6 +16,8 @@ import BaseWriteNote from '../Knowedge/BaseKnowledge/baseWriteNote'
 import NewsDetail from '../Information/News/newsDetail'
 import Login from '../Login/login'
 import Register from '../Register/register'
+import Setting from '../Setting/setting'
+import WriteComment from '../Information/News/writeComment'
 
 let today = new Date()
 let mouth = today.getMonth() + 1
@@ -100,7 +102,8 @@ const Navigator = StackNavigator(
         headerStyle: {
           backgroundColor: '#094c90'
         },
-        title: `${navigation.state.params.content.title}`
+        title: `${navigation.state.params.content.title}`,
+        headerBackTitle: '返回'
       })
     },
     Login: {
@@ -113,6 +116,22 @@ const Navigator = StackNavigator(
       screen: Register,
       navigationOptions: {
         header: 'none'
+      }
+    },
+    Setting: {
+      screen: Setting,
+      navigationOptions: {
+        headerTitle: '设置'
+      }
+    },
+    WriteComment: {
+      screen: WriteComment,
+      navigationOptions: {
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: '#094c90'
+        },
+        title: '写评论'
       }
     }
   },

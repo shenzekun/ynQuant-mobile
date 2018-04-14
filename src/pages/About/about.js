@@ -1,7 +1,16 @@
 import React from 'react'
-import {Button, Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, Platform} from 'react-native'
-import {connect} from 'react-redux'
-import {SafeAreaView} from 'react-navigation'
+import {
+  Button,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+  Platform
+} from 'react-native'
+import { connect } from 'react-redux'
+import { SafeAreaView } from 'react-navigation'
 
 const mapStateToProps = state => {
   return {
@@ -10,13 +19,13 @@ const mapStateToProps = state => {
 }
 
 class AboutScreen extends React.Component {
-  static navigationOptions = ({navigation, screenProps}) => ({
-    tabBarIcon: ({focused, tintColor}) => (
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    tabBarIcon: ({ focused, tintColor }) => (
       <Image
         source={
           focused ? require('../../images/about-active2.png') : require('../../images/about.png')
         }
-        style={{width: 23, height: 25}}
+        style={{ width: 23, height: 25 }}
       />
     ),
     activeTintColor: 'rgba(137, 172, 249, 1.000)',
@@ -25,9 +34,10 @@ class AboutScreen extends React.Component {
       borderBottomColor: '#fff'
     },
     title: '我的',
+    headerBackTitle: '返回',
     headerRight: (
       <TouchableOpacity
-        style={{marginRight: 20, width: 20, height: 20}}
+        style={{ marginRight: 20, width: 20, height: 20 }}
         onPress={navigation.state.params ? navigation.state.params.goToSetting : null}
       >
         <Image source={require('../../images/about/setting.png')} />
@@ -50,12 +60,12 @@ class AboutScreen extends React.Component {
   }
 
   goToSetting = () => {
-    this.props.navigation.navigate('Login')
+    this.props.navigation.navigate('Setting')
   }
 
   render () {
     let user = this.props.user
-    let {navigate} = this.props.navigation
+    let { navigate } = this.props.navigation
     return user ? (
       <SafeAreaView style={styles.container}>
         <View style={styles.authorWrap}>
