@@ -102,7 +102,10 @@ class NewsDetail extends React.PureComponent {
             />
             <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
           </View>
-          <TouchableOpacity style={styles.bottomBarIconWarp}>
+          <TouchableOpacity style={styles.bottomBarIconWarp} onPress={() => {
+            let {navigate} = this.props.navigation
+            navigate('WriteComment')
+          }}>
             <Image
               source={require('../../../images/Information/comment.png')}
               style={styles.commentIcon}
