@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { getLineBreak } from '../../../config/utils'
-import Note from '../../../components/Note/Note'
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
 import { newsDetail, newsComments } from '../../../service/getData'
 import Comment from '../../../components/Comment/Comment'
@@ -103,20 +102,20 @@ class NewsDetail extends React.PureComponent {
             />
             <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
           </View>
-          <View style={styles.bottomBarIconWarp}>
+          <TouchableOpacity style={styles.bottomBarIconWarp}>
             <Image
               source={require('../../../images/Information/comment.png')}
               style={styles.commentIcon}
             />
             <Text style={styles.bottomBarText}>{this.state.data.comments_count}</Text>
-          </View>
-          <View style={styles.bottomBarIconWarp}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bottomBarIconWarp}>
             <Image
               source={require('../../../images/Information/Star.png')}
               style={styles.starIcon}
             />
             <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     )
