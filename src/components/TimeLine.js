@@ -21,7 +21,7 @@ class TimeLine extends React.Component {
     }
     this.page = 1
   }
-
+  _keyExtractor = (item, index) => item.id + ''
   componentDidMount () {
     newsList(this.page)
       .then(res => {
@@ -181,6 +181,7 @@ class TimeLine extends React.Component {
           data={this.state.data}
           renderItem={({ item }) => this.renderRow(item, this.props.navigation)}
           initialNumToRender={6}
+          keyExtractor={this._keyExtractor}
           refreshState={this.state.refreshState}
           onHeaderRefresh={this.onHeaderRefresh}
           onFooterRefresh={this.onFooterRefresh}

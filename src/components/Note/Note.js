@@ -19,8 +19,10 @@ class Note extends React.Component {
     super(props)
     this.state = {
       refreshState: RefreshState.Idle,
-      data: props.data || []
+      data: props.data || [],
+      isInit: false
     }
+    console.log(props)
     this.page = 1
   }
   onFooterRefresh = () => {
@@ -28,11 +30,12 @@ class Note extends React.Component {
     this.page++
     newsComments(this.page, this.props.id)
       .then(res => {
-        if (res.length !== 0) {
-          let data = [...this.props.data]
+        console.log(res)
+        if (res.data.length !== 0) {
+          let data = [...this.state.data]
           data = data.concat(res.data)
+          console.log(data)
           this.setState({ data: data, refreshState: RefreshState.Idle })
-          console.log(this.state.data)
         } else {
           this.setState({ refreshState: RefreshState.NoMoreData })
         }
@@ -55,7 +58,14 @@ class Note extends React.Component {
       })
       .catch(err => console.log(err))
   }
-
+  shouldComponentUpdate (nextprops, nextstate) {
+    return this.state.data !== nextstate.data
+  }
+  componentWillReceiveProps (nextprops) {
+    if (!this.state.isInit) {
+      this.setState({ data: nextprops.data, isInit: true })
+    }
+  }
   _renderEmptyLayout () {
     return <Text style={{ alignSelf: 'center', marginTop: 20 }}>暂无数据</Text>
   }
@@ -100,7 +110,7 @@ class Note extends React.Component {
       <View style={styles.noteWrap}>
         <RefreshListView
           renderItem={this._renderItem}
-          data={this.props.data}
+          data={this.state.data}
           initialNumToRender={3}
           refreshState={this.state.refreshState}
           onFooterRefresh={this.onFooterRefresh}

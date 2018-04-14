@@ -1,5 +1,5 @@
 const port = '8111'
-const domain = 'http://192.168.1.180'
+const domain = 'http://192.168.1.179'
 export const domainWhole = `${domain}:${port}`
 // 获取新闻列表
 export const NEWSLIST = `${domainWhole}/api/news/list`
