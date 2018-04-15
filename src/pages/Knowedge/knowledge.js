@@ -20,7 +20,6 @@ class KnowledgeScreen extends React.Component {
     this.state = {
       tabNames: ['基础知识', '进阶知识']
     }
-    console.log(this.props.navigation)
   }
   componentDidMount () {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
