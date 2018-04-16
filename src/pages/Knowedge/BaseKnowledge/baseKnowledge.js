@@ -18,6 +18,64 @@ class BaseKnowledge extends React.Component {
         console.log(res)
       })
       .catch(err => console.log(err))
+    // let data = [
+    //   {
+    //     id: 1,
+    //     title: '\u5803\u603b\u5e05\u4e0d\u5e05',
+    //     content: '\u5803\u603b\u5f88\u5e05, \u70b9\u51fb\u9605\u8bfb!',
+    //     parent: null,
+    //     type: 0,
+    //     page: null,
+    //     difficulty: '\u521d\u5b66\u8005',
+    //     created_at: '2018-04-12 16:47:43',
+    //     updated_at: '2018-04-12 16:47:45',
+    //     deleted_at: null,
+    //     views_count: 11,
+    //     total_count: 6,
+    //     finished_count: 1,
+    //     user_page_tag: {
+    //       id: 4,
+    //       knowledge_id: 1,
+    //       user_id: 1,
+    //       page: 6,
+    //       created_at: '2018-04-15 12:17:30',
+    //       updated_at: '2018-04-15 12:17:34'
+    //     }
+    //   },
+    //   {
+    //     id: 2,
+    //     title: '\u5803\u603b\u5e05\u4e0d\u5e05',
+    //     content: '\u5803\u603b\u5f88\u5e05, \u70b9\u51fb\u9605\u8bfb!',
+    //     parent: null,
+    //     type: 0,
+    //     page: null,
+    //     difficulty: '\u521d\u5b66\u8005',
+    //     created_at: '2018-04-12 16:47:43',
+    //     updated_at: '2018-04-12 16:47:45',
+    //     deleted_at: null,
+    //     views_count: 0,
+    //     total_count: 0,
+    //     finished_count: 0,
+    //     user_page_tag: null
+    //   },
+    //   {
+    //     id: 3,
+    //     title: '\u5803\u603b\u5e05\u4e0d\u5e05',
+    //     content: '\u5803\u603b\u5f88\u5e05, \u70b9\u51fb\u9605\u8bfb!',
+    //     parent: null,
+    //     type: 0,
+    //     page: null,
+    //     difficulty: '\u521d\u5b66\u8005',
+    //     created_at: '2018-04-12 16:47:43',
+    //     updated_at: '2018-04-12 16:47:45',
+    //     deleted_at: null,
+    //     views_count: 0,
+    //     total_count: 0,
+    //     finished_count: 0,
+    //     user_page_tag: null
+    //   }
+    // ]
+    // this.setState({ data: data })
   }
 
   render () {
@@ -32,7 +90,7 @@ class BaseKnowledge extends React.Component {
             <TouchableOpacity
               style={styles.cardWrap}
               activeOpacity={0.7}
-              onPress={() => push('BaseIntroduce')}
+              onPress={() => push('BaseIntroduce', { content: item.content, title: item.title })}
               key={item.id}
             >
               <LinearGradient
