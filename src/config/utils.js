@@ -21,3 +21,7 @@ export function getTime (str) {
 export function getImageUrl (url) {
   return domainWhole + url
 }
+
+export function trim (str) {
+  return str.replace(/^\s+|\s+$/g, '')
+}

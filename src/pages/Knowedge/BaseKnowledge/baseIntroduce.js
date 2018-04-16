@@ -17,12 +17,8 @@ class BaseIntroduce extends React.Component {
     this.props.navigation.dispatch(replaceAction)
   }
 
-  shouldComponentUpdate () {
-    return false
-  }
-
   render () {
-    const { goBack } = this.props.navigation
+    const { goBack, state } = this.props.navigation
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentWrap}>
@@ -30,9 +26,9 @@ class BaseIntroduce extends React.Component {
             source={require('../../../images/knowledge/foreignExchange.png')}
             style={styles.img}
           />
-          <Text style={styles.title}>外汇基础知识</Text>
+          <Text style={styles.title}>{state.params.title}</Text>
           <Text style={styles.contentText}>
-            外汇，就是外国货币或以外国货币表示的能用于国际结算的支付手段
+            {state.params.content}
           </Text>
           <Text onPress={() => goBack()} style={[styles.btnText, styles.backColor]}>
             返回

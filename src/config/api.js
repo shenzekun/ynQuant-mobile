@@ -1,5 +1,5 @@
 const port = '8111'
-const domain = 'http://192.168.1.180'
+const domain = 'http://192.168.1.178'
 export const domainWhole = `${domain}:${port}`
 // 获取新闻列表
 export const NEWSLIST = `${domainWhole}/api/news/list`
@@ -18,3 +18,6 @@ export const LOGIN = `${domainWhole}/user/login`
 
 // 获取评论点赞数
 export const COMMENTLIKE = `${domainWhole}/api/comment/like`
+
+// 列出知识
+export const KNOWLEDGELIST = `${domainWhole}/api/knowledge`

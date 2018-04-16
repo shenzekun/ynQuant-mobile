@@ -1,37 +1,126 @@
 import React from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { getLineBreak } from '../../../config/utils'
-import Note from '../../../components/Note/Note'
-import { newsDetail } from '../../../service/getData'
+import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
+import { newsDetail, newsComments } from '../../../service/getData'
+import Comment from '../../../components/Comment/Comment'
 
-class NewsDetail extends React.Component {
+class NewsDetail extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = {
+      refreshState: RefreshState.Idle,
+      commentData: [],
       data: []
     }
+    const { params } = props.navigation.state
+    this.params = params
+    this.page = 1
+  }
+  _keyExtractor = (item, index) => item.id + ''
+  _renderItem = data => {
+    return <Comment data={data.item} />
+  }
+  onFooterRefresh = () => {
+    this.setState({ refreshState: RefreshState.FooterRefreshing })
+    this.page++
+    newsComments(this.page, this.params.id)
+      .then(res => {
+        console.log(res)
+        if (res.data.length !== 0) {
+          let data = [...this.state.commentData]
+          data = data.concat(res.data)
+          console.log(data)
+          this.setState({ commentData: data, refreshState: RefreshState.Idle })
+        } else {
+          this.setState({ refreshState: RefreshState.NoMoreData })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  onHeaderRefresh = () => {
+    this.setState({ refreshState: RefreshState.HeaderRefreshing })
+    this.page = 1
+    newsComments(this.page, this.params.id)
+      .then(res => {
+        this.setState({ commentData: res.data, refreshState: RefreshState.Idle })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
   componentDidMount () {
     const { params } = this.props.navigation.state
-    console.log(params)
+    this.params = params
     newsDetail(params.id)
       .then(res => {
-        this.setState({ data: res.comments })
+        this.setState({ commentData: res.comments, data: res })
       })
       .catch(err => console.log(err))
   }
-  render () {
-    const { params } = this.props.navigation.state
+  _renderEmptyLayout () {
+    return <Text style={{ alignSelf: 'center', marginTop: 20 }}>暂无数据</Text>
+  }
+  _renderHeaderLayout () {
     return (
-      <ScrollView style={styles.container}>
+      <View style={{ marginTop: 16 }}>
+        <Text style={styles.textStyle}>
+          {getLineBreak(this.params.content.content, /\n/g, '\n\n')}
+        </Text>
+        <Text style={styles.commentText}>评论</Text>
+      </View>
+    )
+  }
+  _renderFooterLayout () {
+    return <View style={{ height: 60 }} />
+  }
+  render () {
+    return (
+      <View style={styles.container}>
         <View style={styles.textWrap}>
-          <Text style={styles.textStyle}>
-            {getLineBreak(params.content.content, /\n/g, '\n\n')}
-          </Text>
-          <Text style={styles.commentText}>评论</Text>
-          <Note data={this.state.data} id={params.id} />
+          <RefreshListView
+            renderItem={this._renderItem}
+            data={this.state.commentData}
+            initialNumToRender={10}
+            refreshState={this.state.refreshState}
+            onFooterRefresh={this.onFooterRefresh}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={this._renderEmptyLayout}
+            onHeaderRefresh={this.onHeaderRefresh}
+            keyExtractor={this._keyExtractor}
+            ListHeaderComponent={() => this._renderHeaderLayout()}
+            ListFooterComponent={() => this._renderFooterLayout()}
+          />
         </View>
-      </ScrollView>
+        <View style={styles.bottomBarWrap}>
+          <View style={styles.bottomBarIconWarp}>
+            <Image
+              source={require('../../../images/Information/watch.png')}
+              style={styles.watchIcon}
+            />
+            <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
+          </View>
+          <TouchableOpacity style={styles.bottomBarIconWarp} onPress={() => {
+            let {navigate} = this.props.navigation
+            navigate('WriteComment')
+          }}>
+            <Image
+              source={require('../../../images/Information/comment.png')}
+              style={styles.commentIcon}
+            />
+            <Text style={styles.bottomBarText}>{this.state.data.comments_count}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bottomBarIconWarp}>
+            <Image
+              source={require('../../../images/Information/Star.png')}
+              style={styles.starIcon}
+            />
+            <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     )
   }
 }
@@ -41,7 +130,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   textWrap: {
-    margin: 16
+    marginRight: 16,
+    marginLeft: 16
   },
   commentText: {
     fontSize: 24,
@@ -49,6 +139,36 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 20
+  },
+  bottomBarWrap: {
+    width: '100%',
+    height: 49,
+    backgroundColor: 'rgba(9, 76, 144, 1.000)',
+    bottom: 0,
+    position: 'absolute',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  bottomBarIconWarp: {
+    flexDirection: 'row'
+  },
+  bottomBarText: {
+    color: '#fff',
+    fontSize: 14,
+    marginLeft: 3
+  },
+  watchIcon: {
+    width: 21.98,
+    height: 16.9
+  },
+  commentIcon: {
+    width: 22,
+    height: 20
+  },
+  starIcon: {
+    height: 20,
+    width: 20
   }
 })
 export default NewsDetail
