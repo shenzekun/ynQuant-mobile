@@ -1,6 +1,12 @@
 const port = '8111'
 const domain = 'http://192.168.1.178'
-export const domainWhole = `${domain}:${port}`
+const isdev = false
+export let domainWhole
+if (isdev) {
+  domainWhole = `${domain}:${port}`
+} else {
+  domainWhole = 'https://ynQuant.clarkwan.com'
+}
 // 获取新闻列表
 export const NEWSLIST = `${domainWhole}/api/news/list`
 
