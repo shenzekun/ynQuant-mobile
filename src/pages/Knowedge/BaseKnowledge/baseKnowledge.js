@@ -25,14 +25,19 @@ class BaseKnowledge extends React.Component {
     return (
       <ScrollView style={{ flex: 1 }}>
         {this.state.data.map(item => {
-          console.log(item)
           const page = item.user_page_tag ? item.user_page_tag.page : 0
-          const totalPage = item.total_count
+          const totalPage = item.total_count ? item.total_count : 0
           return (
             <TouchableOpacity
               style={styles.cardWrap}
               activeOpacity={0.7}
-              onPress={() => push('BaseIntroduce', { content: item.content, title: item.title })}
+              onPress={() =>
+                push('BaseIntroduce', {
+                  content: item.content,
+                  title: item.title,
+                  id: item.id
+                })
+              }
               key={item.id}
             >
               <LinearGradient
@@ -100,7 +105,7 @@ class BaseKnowledge extends React.Component {
                       source={require('../../../images/knowledge/message.png')}
                       style={styles.messageImg}
                     />
-                    <Text style={styles.text}>12</Text>
+                    <Text style={styles.text}>{item.comments_count}</Text>
                   </View>
                 </View>
               </View>
