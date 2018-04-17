@@ -4,6 +4,7 @@ import { getLineBreak } from '../../../config/utils'
 import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
 import { newsDetail, newsComments } from '../../../service/getData'
 import Comment from '../../../components/Comment/Comment'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 
 class NewsDetail extends React.PureComponent {
   constructor (props) {
@@ -17,6 +18,7 @@ class NewsDetail extends React.PureComponent {
     this.params = params
     this.page = 1
   }
+
   _keyExtractor = (item, index) => item.id + ''
   _renderItem = data => {
     return <Comment data={data.item} />
@@ -51,6 +53,7 @@ class NewsDetail extends React.PureComponent {
         console.log(err)
       })
   }
+
   componentDidMount () {
     const { params } = this.props.navigation.state
     this.params = params
@@ -60,9 +63,11 @@ class NewsDetail extends React.PureComponent {
       })
       .catch(err => console.log(err))
   }
+
   _renderEmptyLayout () {
     return <Text style={{ alignSelf: 'center', marginTop: 20 }}>暂无数据</Text>
   }
+
   _renderHeaderLayout () {
     return (
       <View style={{ marginTop: 16 }}>
@@ -73,9 +78,11 @@ class NewsDetail extends React.PureComponent {
       </View>
     )
   }
+
   _renderFooterLayout () {
     return <View style={{ height: 60 }} />
   }
+
   render () {
     return (
       <View style={styles.container}>
@@ -103,7 +110,7 @@ class NewsDetail extends React.PureComponent {
             <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
           </View>
           <TouchableOpacity style={styles.bottomBarIconWarp} onPress={() => {
-            let {navigate} = this.props.navigation
+            let { navigate } = this.props.navigation
             navigate('WriteComment')
           }}>
             <Image
@@ -142,7 +149,11 @@ const styles = StyleSheet.create({
   },
   bottomBarWrap: {
     width: '100%',
-    height: 49,
+    ...ifIphoneX({
+      height: 59
+    }, {
+      height: 49
+    }),
     backgroundColor: 'rgba(9, 76, 144, 1.000)',
     bottom: 0,
     position: 'absolute',
@@ -151,7 +162,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   bottomBarIconWarp: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    ...ifIphoneX({
+      marginBottom: 10
+    })
   },
   bottomBarText: {
     color: '#fff',
