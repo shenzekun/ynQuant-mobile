@@ -70,7 +70,12 @@ export default {
         require('../../images/simulation.png'),
         23
       ),
-      title: '模拟'
+      title: '美元/日元',
+      headerStyle: {
+        backgroundColor: '#1f2c37',
+        borderBottomColor: '#1f2c37'
+      },
+      headerTintColor: '#fff'
     }
   },
   AboutScreen: {
