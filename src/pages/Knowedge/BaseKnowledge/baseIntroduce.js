@@ -12,6 +12,7 @@ class BaseIntroduce extends React.Component {
     const replaceAction = NavigationActions.replace({
       key: this.props.navigation.state.key,
       routeName: 'BaseDetail',
+      params: { id: this.props.navigation.state.params.id },
       immediate: true
     })
     this.props.navigation.dispatch(replaceAction)
@@ -27,9 +28,7 @@ class BaseIntroduce extends React.Component {
             style={styles.img}
           />
           <Text style={styles.title}>{state.params.title}</Text>
-          <Text style={styles.contentText}>
-            {state.params.content}
-          </Text>
+          <Text style={styles.contentText}>{state.params.content}</Text>
           <Text onPress={() => goBack()} style={[styles.btnText, styles.backColor]}>
             返回
           </Text>

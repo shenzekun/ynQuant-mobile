@@ -159,6 +159,7 @@ class Tabs extends React.Component {
     const screenColor = {
       KnowledgeScreen: 'rgba(75,83,94,1)',
       InformationScreen: 'rgba(0,0,0,1)',
+      SimulateScreen: 'rgba(31, 44, 55, 1)',
       AboutScreen: 'rgba(251, 251, 251, 1)'
     }
 

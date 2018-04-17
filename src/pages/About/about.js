@@ -1,14 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  StatusBar,
-  Platform
-} from 'react-native'
+import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { SafeAreaView } from 'react-navigation'
 
@@ -66,13 +57,19 @@ class AboutScreen extends React.Component {
   render () {
     let user = this.props.user
     let { navigate } = this.props.navigation
-    return user ? (
+    return (
       <SafeAreaView style={styles.container}>
         <View style={styles.authorWrap}>
           <View style={styles.authorImgShadow}>
             <Image source={require('../../images/about/author.png')} style={styles.authorImg} />
           </View>
-          <Text style={styles.authorName}>{user.name}</Text>
+          {user ? (
+            <Text style={styles.authorName}>{user.name}</Text>
+          ) : (
+            <TouchableOpacity onPress={() => navigate('Login')}>
+              <Text style={styles.authorName}>登录</Text>
+            </TouchableOpacity>
+          )}
         </View>
         <View style={styles.operate}>
           <TouchableOpacity>
@@ -188,15 +185,6 @@ class AboutScreen extends React.Component {
             />
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
-    ) : (
-      <SafeAreaView>
-        <Button
-          onPress={() => navigate('Login')}
-          title='登录'
-          color='#841584'
-          accessibilityLabel='登录'
-        />
       </SafeAreaView>
     )
   }
