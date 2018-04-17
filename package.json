@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios": "node node_modules/react-native/local-cli/cli.js run-ios --simulator \"iPhone 8 Plus\"",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios --simulator \"iPhone X\"",
     "ios-device": "node node_modules/react-native/local-cli/cli.js run-ios --device",
     "build-ios": "react-native bundle --bundle-output build/ios.bundle --entry-file App.js --platform ios --dev false ",
     "test": "jest"
