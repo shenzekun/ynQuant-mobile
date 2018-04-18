@@ -5,15 +5,19 @@ import Swiper from 'react-native-swiper'
 import { knowledge } from '../../../service/getData'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 
+// TODO: 翻页请求
 class BaseDetail extends React.Component {
   constructor (props) {
     super(props)
     this.swiperRef = swiper => (this.swiper = swiper)
     this.state = {
-      currentPageNum: 0, // 页数
+      currentPageNum: props.navigation.state.params
+        ? props.navigation.state.params.currentPage - 1
+        : 0, // 页数
       maxPage: 0,
       data: []
     }
+    console.log(props)
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -23,12 +27,17 @@ class BaseDetail extends React.Component {
     return {
       title: title,
       headerRight: (
-        <Text style={{marginRight: 8, fontSize: 20, color: '#fff'}}>{page + 1} / {total}</Text>
+        <Text style={{ marginRight: 8, fontSize: 20, color: '#fff' }}>
+          {page + 1} / {total}
+        </Text>
       )
     }
   }
 
   componentDidMount () {
+    this.props.navigation.setParams({
+      page: this.state.currentPageNum
+    })
     knowledge(this.props.navigation.state.params.id)
       .then(res => {
         this.setState({ data: res, maxPage: res.length - 1 })
@@ -60,8 +69,9 @@ class BaseDetail extends React.Component {
   }
 
   handleIndexChange = index => {
+    console.log('currentPageNum', this.state.currentPageNum)
     this.props.navigation.setParams({
-      page: index
+      page: this.state.currentPageNum
     })
     this.setState({ currentPageNum: index })
   }
@@ -75,10 +85,16 @@ class BaseDetail extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.titleAndBtn}>
-          <Text style={{
-            fontSize: 20,
-            color: '#fff'
-          }}>{this.state.data[this.state.currentPageNum] ? this.state.data[this.state.currentPageNum].title : ''}</Text>
+          <Text
+            style={{
+              fontSize: 20,
+              color: '#fff'
+            }}
+          >
+            {this.state.data[this.state.currentPageNum]
+              ? this.state.data[this.state.currentPageNum].title
+              : ''}
+          </Text>
           <View style={styles.arrowWrap}>
             <TouchableOpacity onPress={this.prePage}>
               <Image
@@ -113,6 +129,7 @@ class BaseDetail extends React.Component {
           loop={false}
           showsPagination={false}
           loadMinimal
+          loadMinimalSize={3}
           ref={this.swiperRef}
           key={this.state.data.length}
         >
@@ -130,9 +147,13 @@ class BaseDetail extends React.Component {
             <Text style={[styles.writeTextFont, { color: '#b5b7bd' }]}>笔记: 15个</Text>
           </View>
           <View style={styles.btnWrap}>
-            <TouchableOpacity onPress={() => navigate('BaseWriteNote', {
-              id: this.props.navigation.state.params.id
-            })}>
+            <TouchableOpacity
+              onPress={() =>
+                navigate('BaseWriteNote', {
+                  id: this.props.navigation.state.params.id
+                })
+              }
+            >
               <Text style={[styles.noteBgColor, styles.btn, styles.writeTextFont]}>写笔记</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.nextPage}>

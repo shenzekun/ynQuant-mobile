@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import CheckBox from 'react-native-check-box'
 import Note from '../../../components/Note/Note'
 import Comment from '../../../components/Comment/Comment'
+import { knowledgeCommentsList } from '../../../service/getData'
 // import {} from '../../../service/getData'
 
 class BaseWriteNote extends React.Component {
@@ -15,6 +16,12 @@ class BaseWriteNote extends React.Component {
   }
   componentDidMount () {
     console.log(this.props.navigation.state.params.id)
+    knowledgeCommentsList(this.props.navigation.state.params.id)
+      .then(res => {
+        console.log(res.data)
+        this.setState({ commentData: res.data })
+      })
+      .catch(err => console.log(err))
   }
 
   handleCheckBox = () => {
@@ -24,7 +31,6 @@ class BaseWriteNote extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     const { goBack } = this.props.navigation
     return (
       <View style={styles.container}>
@@ -50,7 +56,9 @@ class BaseWriteNote extends React.Component {
         </View>
         <View style={styles.writeNoteWrap}>
           <Text>精彩笔记：</Text>
-          {/* <Comment data={this.state.data} /> */}
+          {this.state.commentData.map(item => {
+            return <Comment data={item} />
+          })}
         </View>
         <View style={styles.writeNote}>
           <View style={styles.btnWrap}>

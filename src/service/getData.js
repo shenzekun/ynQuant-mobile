@@ -7,7 +7,8 @@ import {
   NEWSCOMMNETS,
   COMMENTLIKE,
   KNOWLEDGELIST,
-  ADDCOMMENTS
+  ADDNEWSCOMMENTS,
+  ADDKNOWLEDGECOMMENTS
 } from '../config/api'
 
 // 获取新闻列表
@@ -27,6 +28,8 @@ export const knowledgeList = type => fetch(KNOWLEDGELIST + '?type=' + type)
 // 列出知识点
 export const knowledge = parent => fetch(KNOWLEDGELIST + '?parent=' + parent)
 // 新增知识点评论
-export const addKnowledgeComments = data => fetch(ADDCOMMENTS, data, 'post')
+export const addKnowledgeComments = data => fetch(ADDKNOWLEDGECOMMENTS, data, 'post')
 // 新增新闻评论
-export const addNewsComments = data => fetch(ADDCOMMENTS, data, 'post')
+export const addNewsComments = data => fetch(ADDNEWSCOMMENTS, data, 'post')
+// 获取知识点评论
+export const knowledgeCommentsList = id => fetch(ADDKNOWLEDGECOMMENTS + '?id=' + id)

@@ -12,7 +12,11 @@ class BaseIntroduce extends React.Component {
     const replaceAction = NavigationActions.replace({
       key: this.props.navigation.state.key,
       routeName: 'BaseDetail',
-      params: { id: this.props.navigation.state.params.id, title: this.props.navigation.state.params.title },
+      params: {
+        id: this.props.navigation.state.params.id,
+        title: this.props.navigation.state.params.title,
+        currentPage: this.props.navigation.state.params.page
+      },
       immediate: true
     })
     this.props.navigation.dispatch(replaceAction)

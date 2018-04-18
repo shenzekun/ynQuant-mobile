@@ -12,6 +12,7 @@ class Comment extends React.PureComponent {
     this.state = { like: props.data.likes_count, isLike: props.data.current_user_liked_count }
   }
   render () {
+    console.log(this.props)
     const key = this.props.data.id
     const name = this.props.data.user_info.name
     const userId = this.props.data.user_info.id

@@ -48,7 +48,7 @@ class Note extends React.Component {
           this.setState({ isLoading: true })
           addNewsComments({
             content: this.state.text,
-            news_id: this.props.id
+            id: this.props.id
           })
             .then(res => {
               if (res === 'created') {
@@ -62,7 +62,7 @@ class Note extends React.Component {
           this.setState({ isLoading: true })
           addKnowledgeComments({
             content: this.state.text,
-            knowledge_id: this.props.id
+            id: this.props.id
           })
             .then(res => {
               console.log(res)
