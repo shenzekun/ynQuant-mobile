@@ -33,3 +33,6 @@ export const ADDNEWSCOMMENTS = `${domainWhole}/api/news/comments`
 
 // 列出笔记和创建新笔记
 export const ADDKNOWLEDGECOMMENTS = `${domainWhole}/api/knowledge/note`
+
+// 知识点翻页
+export const KNOWLEDGEPAGECHANGE = `${domainWhole}/api/knowledge/pageTag`

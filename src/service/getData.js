@@ -8,7 +8,8 @@ import {
   COMMENTLIKE,
   KNOWLEDGELIST,
   ADDNEWSCOMMENTS,
-  ADDKNOWLEDGECOMMENTS
+  ADDKNOWLEDGECOMMENTS,
+  KNOWLEDGEPAGECHANGE
 } from '../config/api'
 
 // 获取新闻列表
@@ -33,3 +34,5 @@ export const addKnowledgeComments = data => fetch(ADDKNOWLEDGECOMMENTS, data, 'p
 export const addNewsComments = data => fetch(ADDNEWSCOMMENTS, data, 'post')
 // 获取知识点评论
 export const knowledgeCommentsList = id => fetch(ADDKNOWLEDGECOMMENTS + '?id=' + id)
+// 知识点翻页
+export const knowlegePageChange = data => fetch(KNOWLEDGEPAGECHANGE, data, 'post')
