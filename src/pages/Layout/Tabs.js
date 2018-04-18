@@ -91,7 +91,8 @@ const Navigator = StackNavigator(
         headerStyle: {
           backgroundColor: '#4b525f',
           borderBottomColor: '#414752'
-        }
+        },
+        headerTitle: '写笔记'
       }
     },
     NewsDetail: {

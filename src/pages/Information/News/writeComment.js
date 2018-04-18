@@ -3,9 +3,10 @@ import { View, StyleSheet } from 'react-native'
 import Note from '../../../components/Note/Note'
 class WriteComment extends React.Component {
   render () {
+    const { params } = this.props.navigation.state
     return (
       <View style={styles.container}>
-        <Note />
+        <Note type={params.type} id={params.id} />
       </View>
     )
   }

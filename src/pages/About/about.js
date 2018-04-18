@@ -98,9 +98,6 @@ class AboutScreen extends React.Component {
             </View>
 
             <View style={styles.infoAndArrow}>
-              <View style={styles.info}>
-                <Text style={styles.infoText}>1</Text>
-              </View>
               <Image
                 source={require('../../images/about/rightArrow.png')}
                 style={[
@@ -126,15 +123,20 @@ class AboutScreen extends React.Component {
               />
               <Text style={styles.utilText}>消息</Text>
             </View>
-            <Image
-              source={require('../../images/about/rightArrow.png')}
-              style={[
-                styles.commonImg,
-                {
-                  marginRight: 20
-                }
-              ]}
-            />
+            <View style={styles.infoAndArrow}>
+              <View style={styles.info}>
+                <Text style={styles.infoText}>1</Text>
+              </View>
+              <Image
+                source={require('../../images/about/rightArrow.png')}
+                style={[
+                  styles.commonImg,
+                  {
+                    marginRight: 20
+                  }
+                ]}
+              />
+            </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.util}>

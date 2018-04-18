@@ -27,3 +27,6 @@ export const COMMENTLIKE = `${domainWhole}/api/comment/like`
 
 // 列出知识
 export const KNOWLEDGELIST = `${domainWhole}/api/knowledge`
+
+// 新增评论
+export const ADDCOMMENTS = `${domainWhole}/api/comment`

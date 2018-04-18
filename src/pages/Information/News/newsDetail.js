@@ -5,6 +5,7 @@ import RefreshListView, { RefreshState } from 'react-native-refresh-list-view'
 import { newsDetail, newsComments } from '../../../service/getData'
 import Comment from '../../../components/Comment/Comment'
 
+// TODO:返回页面刷新
 class NewsDetail extends React.PureComponent {
   constructor (props) {
     super(props)
@@ -40,6 +41,17 @@ class NewsDetail extends React.PureComponent {
         console.log(err)
       })
   }
+  // componentWillReceiveProps (nextProps) {
+  //   const { params } = this.props.navigation.state
+  //   this.params = params
+  //   if (nextProps) {
+  //     newsDetail(params.id)
+  //       .then(res => {
+  //         this.setState({ commentData: res.comments, data: res })
+  //       })
+  //       .catch(err => console.log(err))
+  //   }
+  // }
   onHeaderRefresh = () => {
     this.setState({ refreshState: RefreshState.HeaderRefreshing })
     this.page = 1
@@ -102,10 +114,16 @@ class NewsDetail extends React.PureComponent {
             />
             <Text style={styles.bottomBarText}>{this.state.data.views_count}</Text>
           </View>
-          <TouchableOpacity style={styles.bottomBarIconWarp} onPress={() => {
-            let {navigate} = this.props.navigation
-            navigate('WriteComment')
-          }}>
+          <TouchableOpacity
+            style={styles.bottomBarIconWarp}
+            onPress={() => {
+              let { navigate } = this.props.navigation
+              navigate('WriteComment', {
+                type: 0,
+                id: this.params.id
+              })
+            }}
+          >
             <Image
               source={require('../../../images/Information/comment.png')}
               style={styles.commentIcon}
