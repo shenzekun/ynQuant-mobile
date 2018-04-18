@@ -13,7 +13,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 class KnowledgeScreen extends React.Component {
-  static navigationOptions = ({ navigation, navigationOptions, screenProps }) => {}
+  static navigationOptions = ({ navigation, navigationOptions, screenProps }) => {
+  }
 
   constructor (props) {
     super(props)
@@ -21,6 +22,7 @@ class KnowledgeScreen extends React.Component {
       tabNames: ['基础知识', '进阶知识']
     }
   }
+
   componentDidMount () {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('light-content')
@@ -31,13 +33,14 @@ class KnowledgeScreen extends React.Component {
   componentWillUnmount () {
     this._navListener.remove()
   }
+
   render () {
     let tabNames = this.state.tabNames
     return (
       <View style={styles.container}>
         <Header tabNames={tabNames} headerTitle='知识' searchColor='#7c7c7c' bgColor='#4b525e'>
-          <BaseKnowledge tabLabel='基础知识' navigation={this.props.navigation} />
-          <BaseKnowledge tabLabel='进阶知识' navigation={this.props.navigation} />
+          <BaseKnowledge tabLabel='基础知识' navigation={this.props.navigation} type={0} />
+          <BaseKnowledge tabLabel='进阶知识' navigation={this.props.navigation} type={1} />
         </Header>
       </View>
     )

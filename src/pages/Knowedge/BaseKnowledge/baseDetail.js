@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'rea
 import { getLineBreak } from '../../../config/utils'
 import Swiper from 'react-native-swiper'
 import { knowledge } from '../../../service/getData'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 
 class BaseDetail extends React.Component {
   constructor (props) {
@@ -15,10 +16,26 @@ class BaseDetail extends React.Component {
     }
   }
 
+  static navigationOptions = ({ navigation }) => {
+    const page = navigation.state.params.page || 0
+    const total = navigation.state.params.total || 0
+    const title = navigation.state.params.title || ''
+    return {
+      title: title,
+      headerRight: (
+        <Text style={{marginRight: 8, fontSize: 20, color: '#fff'}}>{page + 1} / {total}</Text>
+      )
+    }
+  }
+
   componentDidMount () {
-    console.log(this.props.navigation.state.params)
     knowledge(this.props.navigation.state.params.id)
-      .then(res => this.setState({ data: res, maxPage: res.length - 1 }))
+      .then(res => {
+        this.setState({ data: res, maxPage: res.length - 1 })
+        this.props.navigation.setParams({
+          total: res.length
+        })
+      })
       .catch(err => console.log(err))
   }
 
@@ -43,6 +60,9 @@ class BaseDetail extends React.Component {
   }
 
   handleIndexChange = index => {
+    this.props.navigation.setParams({
+      page: index
+    })
     this.setState({ currentPageNum: index })
   }
 
@@ -55,7 +75,10 @@ class BaseDetail extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.titleAndBtn}>
-          <Text style={{ fontSize: 20, color: '#fff' }}>ETF{this.state.currentPageNum + 1}</Text>
+          <Text style={{
+            fontSize: 20,
+            color: '#fff'
+          }}>{this.state.data[this.state.currentPageNum] ? this.state.data[this.state.currentPageNum].title : ''}</Text>
           <View style={styles.arrowWrap}>
             <TouchableOpacity onPress={this.prePage}>
               <Image
@@ -171,7 +194,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 16,
+    ...ifIphoneX({ marginTop: 10 }, { marginTop: 16 }),
     marginLeft: 16,
     marginRight: 16
   },

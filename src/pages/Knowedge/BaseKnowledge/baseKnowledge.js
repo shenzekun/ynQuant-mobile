@@ -12,10 +12,9 @@ class BaseKnowledge extends React.Component {
   }
 
   componentDidMount () {
-    knowledgeList(0)
+    knowledgeList(this.props.type)
       .then(res => {
         this.setState({ data: res })
-        console.log(res)
       })
       .catch(err => console.log(err))
   }
