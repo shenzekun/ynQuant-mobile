@@ -3,6 +3,7 @@ import { View, Animated, StatusBar, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import NewScreen from './News/news'
 import Header from '../../components/Header/Header'
+import CalendarScreen from './Calendar/calendar'
 
 /*
   状态栏配置
@@ -33,7 +34,7 @@ class InformationScreen extends React.Component {
       <View style={{ flex: 1 }}>
         <Header tabNames={tabNames} headerTitle='时训'>
           <NewScreen tabLabel='环球新闻' navigation={this.props.navigation} />
-          <NewScreen tabLabel='关键日历' navigation={this.props.navigation} />
+          <CalendarScreen tabLabel='关键日历' navigation={this.props.navigation} />
         </Header>
       </View>
     )
