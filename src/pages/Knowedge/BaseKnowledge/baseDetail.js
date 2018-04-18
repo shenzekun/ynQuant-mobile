@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, WebView } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, WebView } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { knowledge } from '../../../service/getData'
+import { knowledge, knowlegePageChange } from '../../../service/getData'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 
 // TODO: 翻页请求
@@ -20,28 +20,31 @@ class BaseDetail extends React.Component {
   }
 
   static navigationOptions = ({ navigation }) => {
-    const page = navigation.state.params.page || 0
+    const page = navigation.state.params.page || ''
     const total = navigation.state.params.total || 0
     const title = navigation.state.params.title || ''
     return {
       title: title,
       headerRight: (
         <Text style={{ marginRight: 8, fontSize: 20, color: '#fff' }}>
-          {page + 1} / {total}
+          {page} / {total}
         </Text>
       )
     }
   }
 
   componentDidMount () {
-    this.props.navigation.setParams({
-      page: this.state.currentPageNum
-    })
     knowledge(this.props.navigation.state.params.id)
       .then(res => {
-        this.setState({ data: res, maxPage: res.length - 1 })
+        this.setState({
+          data: res,
+          maxPage: res.length - 1
+        })
+        this.forceUpdate()
+        this.swiper.scrollBy(this.props.navigation.state.params.currentPage - 1, true)
         this.props.navigation.setParams({
-          total: res.length
+          total: res.length,
+          page: res[this.state.currentPageNum].page
         })
       })
       .catch(err => console.log(err))
@@ -68,10 +71,19 @@ class BaseDetail extends React.Component {
   }
 
   handleIndexChange = index => {
+    if (!this.state.data[index]) {
+      return
+    }
     this.props.navigation.setParams({
-      page: this.state.currentPageNum
+      page: this.state.data[index].page
     })
-    this.setState({ currentPageNum: index })
+    knowlegePageChange({
+      id: this.props.navigation.state.params.id,
+      page: this.state.data[index].page
+    })
+    this.setState({
+      currentPageNum: index
+    })
   }
 
   render () {
@@ -122,7 +134,7 @@ class BaseDetail extends React.Component {
           </View>
         </View>
         <Swiper
-          // index={0 || this.props.screenProps.initPageNum}
+          // index={this.props.navigation.state.params.currentPage}
           onIndexChanged={this.handleIndexChange}
           loop={false}
           showsPagination={false}
