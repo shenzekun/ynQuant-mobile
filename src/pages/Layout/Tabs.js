@@ -92,7 +92,7 @@ const Navigator = StackNavigator(
           backgroundColor: '#4b525f',
           borderBottomColor: '#414752'
         },
-        mode: 'modal'
+        headerTitle: '写笔记'
       }
     },
     NewsDetail: {

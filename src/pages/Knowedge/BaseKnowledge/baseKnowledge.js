@@ -34,7 +34,8 @@ class BaseKnowledge extends React.Component {
                 push('BaseIntroduce', {
                   content: item.content,
                   title: item.title,
-                  id: item.id
+                  id: item.id,
+                  page: page
                 })
               }
               key={item.id}
@@ -92,13 +93,13 @@ class BaseKnowledge extends React.Component {
                   </Text>
                 </View>
                 <View style={styles.loveAndMsgWrap}>
-                  {/* <View style={styles.rowCenter}>
+                  <View style={styles.rowCenter}>
                     <Image
                       source={require('../../../images/knowledge/love.png')}
                       style={styles.loveImg}
                     />
                     <Text style={styles.text}>2121</Text>
-                  </View> */}
+                  </View>
                   <View style={styles.rowCenter}>
                     <Image
                       source={require('../../../images/knowledge/message.png')}

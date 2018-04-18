@@ -1,116 +1,27 @@
 import React from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import CheckBox from 'react-native-check-box'
 import Note from '../../../components/Note/Note'
+import Comment from '../../../components/Comment/Comment'
+import { knowledgeCommentsList } from '../../../service/getData'
+// import {} from '../../../service/getData'
 
 class BaseWriteNote extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       isCheckBoxSelected: true,
-      data: [
-        {
-          key: '1',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '2',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '3',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '4',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '5',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '6',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '7',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '8',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '9',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        },
-        {
-          key: '10',
-          name: 'xxx',
-          imageUrl: 'https://ws4.sinaimg.cn/large/006tKfTcly1fplvuidixtj3014014742.jpg',
-          like: 22,
-          content:
-            '1）对普通投资者而言，ETF也可以像普通股票一样，在被拆分成更小交易单位后，在交易所二级市场进行买卖。<br />2）赚了指数就赚钱，投资者再也不用研究股票，担心踩上地雷股了；（2010年之前我国证券市场不存在做空机制，因此存在着“指数跌了就要赔钱”的情况。2010年4月，股指期货开通，2011年12月5日起，有七只ETF基金纳入融资融券标的的范畴',
-          time: '18:01',
-          location: '天津'
-        }
-      ]
+      commentData: []
     }
+  }
+  componentDidMount () {
+    console.log(this.props.navigation.state.params.id)
+    knowledgeCommentsList(this.props.navigation.state.params.id)
+      .then(res => {
+        console.log(res.data)
+        this.setState({ commentData: res.data })
+      })
+      .catch(err => console.log(err))
   }
 
   handleCheckBox = () => {
@@ -128,7 +39,8 @@ class BaseWriteNote extends React.Component {
             <Text>信息</Text>
             <Text>笔记：15个</Text>
           </View>
-          <View style={styles.inputContentWrap}>
+          <Note id={this.props.navigation.state.params.id} type={1} />
+          {/* <View style={styles.inputContentWrap}>
             <TextInput multiline style={styles.inputContent} />
             <View style={styles.checkBoxWrap}>
               <CheckBox
@@ -140,11 +52,13 @@ class BaseWriteNote extends React.Component {
                 rightTextStyle={{ height: 15, fontSize: 14, color: '#8e929b' }}
               />
             </View>
-          </View>
+          </View> */}
         </View>
         <View style={styles.writeNoteWrap}>
           <Text>精彩笔记：</Text>
-          <Note data={this.state.data} />
+          {this.state.commentData.map(item => {
+            return <Comment data={item} />
+          })}
         </View>
         <View style={styles.writeNote}>
           <View style={styles.btnWrap}>
@@ -166,7 +80,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   writeNoteWrap: {
-    margin: 16
+    marginTop: 16,
+    marginLeft: 16,
+    marginRight: 16
   },
   informationWrap: {
     flexDirection: 'row',
