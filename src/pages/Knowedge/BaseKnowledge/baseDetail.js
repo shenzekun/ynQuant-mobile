@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native'
-import { getLineBreak } from '../../../config/utils'
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, WebView } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { knowledge } from '../../../service/getData'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
@@ -69,7 +68,6 @@ class BaseDetail extends React.Component {
   }
 
   handleIndexChange = index => {
-    console.log('currentPageNum', this.state.currentPageNum)
     this.props.navigation.setParams({
       page: this.state.currentPageNum
     })
@@ -135,9 +133,14 @@ class BaseDetail extends React.Component {
         >
           {this.state.data.map(item => {
             return (
-              <ScrollView style={styles.content} key={item.id}>
-                <Text style={styles.contentText}>{item.content}</Text>
-              </ScrollView>
+              // <ScrollView style={styles.content} key={item.id}>
+              //   <Text style={styles.contentText}>{item.content}</Text>
+              // </ScrollView>
+              <View style={styles.content}>
+                <WebView
+                  source={{ uri: 'https://ynQuant.clarkwan.com/knowledge/show?id=' + item.id }}
+                />
+              </View>
             )
           })}
         </Swiper>
