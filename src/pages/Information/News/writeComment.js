@@ -4,9 +4,10 @@ import Note from '../../../components/Note/Note'
 class WriteComment extends React.Component {
   render () {
     const { params } = this.props.navigation.state
+    const goBack = this.props.navigation.goBack
     return (
       <View style={styles.container}>
-        <Note type={params.type} id={params.id} />
+        <Note type={params.type} goBack={goBack} id={params.id} />
       </View>
     )
   }

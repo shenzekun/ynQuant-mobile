@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
   },
   textWrap: {
     marginRight: 16,
-    marginLeft: 16
+    marginLeft: 16,
+    paddingBottom: 16
   },
   commentText: {
     fontSize: 24,

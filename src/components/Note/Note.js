@@ -6,6 +6,7 @@ import { trim } from '../../config/utils'
 import Loading from '../Loading'
 import Toast from 'react-native-root-toast'
 import { addKnowledgeComments, addNewsComments } from '../../service/getData'
+
 const propTypes = {
   id: PropTypes.number.isRequired,
   type: PropTypes.number.isRequired
@@ -20,6 +21,7 @@ class Note extends React.Component {
       isLoading: false
     }
   }
+
   toast = null
   showToast = message => {
     this.toast && this.toast.destroy()
@@ -76,10 +78,12 @@ class Note extends React.Component {
         default:
           return false
       }
+      this.props.goBack()
     } else {
       return false
     }
   }
+
   render () {
     return (
       <View style={styles.noteWrap}>
@@ -93,12 +97,15 @@ class Note extends React.Component {
             }}
             placeholder={'评论点什么吧...'}
             placeholderTextColor={'#a6a6a6'}
+            returnKeyType={'send'}
             autoCapitalize={'none'}
             blurOnSubmit
+            autoFocus={true}
+            enablesReturnKeyAutomatically={true}
             onSubmitEditing={this.handleSubmit}
             value={this.state.text}
           />
-          {/* <View style={styles.checkBoxWrap}>
+          {this.props.type === 1 ? (<View style={styles.checkBoxWrap}>
             <CheckBox
               style={{ padding: 10, width: 111 }}
               rightText={'分享笔记'}
@@ -107,7 +114,7 @@ class Note extends React.Component {
               onClick={this.handleCheckBox}
               rightTextStyle={{ height: 15, fontSize: 14, color: '#8e929b' }}
             />
-          </View> */}
+          </View>) : ''}
         </View>
         {this.state.isLoading ? <Loading color={'#9a9a9a'} /> : null}
       </View>
@@ -126,11 +133,11 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   inputContent: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F0F0F0',
     height: 174,
-    borderColor: '#cdcdcd',
-    borderWidth: 1,
-    borderRadius: 3
+    borderRadius: 3,
+    padding: 15,
+    paddingTop: 10
   },
   checkBoxWrap: {
     flex: 1,

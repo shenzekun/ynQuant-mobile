@@ -39,20 +39,7 @@ class BaseWriteNote extends React.Component {
             <Text>信息</Text>
             <Text>笔记：15个</Text>
           </View>
-          <Note id={this.props.navigation.state.params.id} type={1} />
-          {/* <View style={styles.inputContentWrap}>
-            <TextInput multiline style={styles.inputContent} />
-            <View style={styles.checkBoxWrap}>
-              <CheckBox
-                style={{ padding: 10, width: 111 }}
-                rightText={'分享笔记'}
-                checkBoxColor={'#1677cb'}
-                isChecked={this.state.isCheckBoxSelected}
-                onClick={this.handleCheckBox}
-                rightTextStyle={{ height: 15, fontSize: 14, color: '#8e929b' }}
-              />
-            </View>
-          </View> */}
+          <Note id={this.props.navigation.state.params.id} goBack={goBack} type={1} />
         </View>
         <View style={styles.writeNoteWrap}>
           <Text>精彩笔记：</Text>

@@ -166,7 +166,7 @@ class BaseDetail extends React.Component {
             <TouchableOpacity
               onPress={() =>
                 navigate('BaseWriteNote', {
-                  id: this.props.navigation.state.params.id
+                  id: this.state.data[this.state.currentPageNum].id
                 })
               }
             >
