@@ -42,14 +42,14 @@ class BaseKnowledge extends React.Component {
             >
               <LinearGradient
                 style={styles.gradient}
-                colors={['#89AD45', '#ABC672']}
+                colors={this.props.type === 0 ? ['#89AD45', '#ABC672'] : ['#2782ad', '#00a6d4']}
                 start={{ x: 0, y: 0.5 }}
                 end={{ x: 1, y: 0.5 }}
               >
                 <View style={styles.cardDescWrap}>
                   <View style={styles.cardLogo}>
                     <Image
-                      source={require('../../../images/knowledge/knowledge.png')}
+                      source={this.props.type === 0 ? require('../../../images/knowledge/knowledge.png') : require('../../../images/knowledge/knowledge-height.png')}
                       style={styles.cardImg}
                     />
                   </View>

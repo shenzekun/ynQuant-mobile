@@ -41,7 +41,7 @@ class BaseDetail extends React.Component {
           maxPage: res.length - 1
         })
         this.forceUpdate()
-        this.swiper.scrollBy(this.props.navigation.state.params.currentPage - 1, true)
+        // this.swiper.scrollBy(this.props.navigation.state.params.currentPage - 1, true)
         this.props.navigation.setParams({
           total: res.length,
           page: res[this.state.currentPageNum].page
@@ -84,6 +84,7 @@ class BaseDetail extends React.Component {
     this.setState({
       currentPageNum: index
     })
+    this.forceUpdate()
   }
 
   render () {
@@ -134,7 +135,7 @@ class BaseDetail extends React.Component {
           </View>
         </View>
         <Swiper
-          // index={this.props.navigation.state.params.currentPage}
+          index={this.props.navigation.state.params.currentPage - 1}
           onIndexChanged={this.handleIndexChange}
           loop={false}
           showsPagination={false}
