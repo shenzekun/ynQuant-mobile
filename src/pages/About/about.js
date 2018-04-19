@@ -61,7 +61,9 @@ class AboutScreen extends React.Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.authorWrap}>
           <View style={styles.authorImgShadow}>
-            <Image source={require('../../images/about/author.png')} style={styles.authorImg} />
+            <Image source={user ? require('../../images/about/author.png') : require('../../images/about/un-login.png')}
+              style={styles.authorImg}
+            />
           </View>
           {user ? (
             <Text style={styles.authorName}>{user.name}</Text>
@@ -205,18 +207,18 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   authorImgShadow: {
-    shadowColor: '#cccccc',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 9
     },
-    shadowRadius: 17,
-    shadowOpacity: 0.6,
+    shadowRadius: 10,
+    shadowOpacity: 0.2,
     elevation: 1
   },
   authorImg: {
-    width: 100,
-    height: 100,
+    // width: 100,
+    // height: 100,
     borderRadius: 50,
     justifyContent: 'center'
   },
