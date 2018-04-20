@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, WebView } from 'react-
 import Swiper from 'react-native-swiper'
 import { knowledge, knowlegePageChange } from '../../../service/getData'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
-
+// FIXME: 何时交易和为什么交易外汇，有 bug，原因是标题被顶下去的原因，很迷。。。
 class BaseDetail extends React.Component {
   constructor (props) {
     super(props)
@@ -13,6 +13,7 @@ class BaseDetail extends React.Component {
       maxPage: 0,
       data: []
     }
+    this.initPage = props.navigation.state.params.currentPage
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -36,10 +37,17 @@ class BaseDetail extends React.Component {
           data: res,
           maxPage: res.length
         })
-        this.props.navigation.setParams({
-          total: res.length,
-          page: res[this.state.currentPageNum].page
-        })
+        if (this.state.maxPage === this.state.currentPageNum) {
+          this.props.navigation.setParams({
+            total: res.length,
+            page: res[this.state.currentPageNum - 1].page
+          })
+        } else {
+          this.props.navigation.setParams({
+            total: res.length,
+            page: res[this.state.currentPageNum].page
+          })
+        }
       })
       .catch(err => console.log(err))
   }
@@ -65,7 +73,6 @@ class BaseDetail extends React.Component {
   }
 
   handleIndexChange = index => {
-    console.log(index)
     this.setState({
       currentPageNum: index
     })
@@ -94,9 +101,9 @@ class BaseDetail extends React.Component {
               color: '#fff'
             }}
           >
-            {this.state.data[this.state.currentPageNum]
+            {/* {this.state.data[this.state.currentPageNum]
               ? this.state.data[this.state.currentPageNum].title
-              : ''}
+              : ''} */}
           </Text>
           <View style={styles.arrowWrap}>
             <TouchableOpacity onPress={this.prePage}>
@@ -127,17 +134,16 @@ class BaseDetail extends React.Component {
           </View>
         </View>
         <Swiper
-          // index={1}
+          index={this.initPage}
           onIndexChanged={this.handleIndexChange}
           loop={false}
           showsPagination={false}
           loadMinimal
-          loadMinimalSize={this.state.data.length}
+          loadMinimalSize={100}
           ref={this.swiperRef}
           key={this.state.data.length}
         >
           {this.state.data.map(item => {
-            console.log(item)
             return (
               // <ScrollView style={styles.content} key={item.id}>
               //   <Text style={styles.contentText}>{item.content}</Text>
